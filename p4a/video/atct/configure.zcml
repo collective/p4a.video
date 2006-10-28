@@ -1,0 +1,60 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+  <class class="Products.ATContentTypes.content.topic.ATTopic">
+      <implements interface="p4a.audio.interfaces.IPossibleAudioContainer" />
+  </class>
+
+  <class class="Products.ATContentTypes.content.folder.ATFolder">
+      <implements interface="p4a.audio.interfaces.IPossibleAudioContainer" />
+  </class>
+
+  <class class="Products.ATContentTypes.content.folder.ATBTreeFolder">
+      <implements interface="p4a.audio.interfaces.IPossibleAudioContainer" />
+  </class>
+
+  <class class="Products.ATContentTypes.content.file.ATFile">
+      <implements interface="p4a.audio.interfaces.IPossibleMedia" />
+  </class>
+
+  <adapter factory="._atct.ATCTFileAudio" />
+  <adapter factory="._atct.ATCTFolderAudioProvider" />
+  <adapter factory="._atct.ATCTTopicAudioProvider" />
+
+  <subscriber
+      for="p4a.audio.interfaces.IAudioEnhanced
+           zope.app.event.interfaces.IObjectModifiedEvent"
+      handler="._atct.sync_audio_metadata"
+      />
+
+  <subscriber
+      for="p4a.audio.interfaces.IPossibleMedia
+           zope.app.event.interfaces.IObjectCreatedEvent"
+      handler="._atct.attempt_media_activation"
+      />
+
+  <subscriber
+      for="p4a.audio.interfaces.IPossibleMedia
+           zope.app.event.interfaces.IObjectModifiedEvent"
+      handler="._atct.attempt_media_activation"
+      />
+
+  <subscriber
+      for="p4a.audio.interfaces.IAudioEnhanced
+           zope.app.event.interfaces.IObjectModifiedEvent"
+      handler="._atct.update_dublincore"
+      />
+
+  <subscriber
+      for="p4a.audio.interfaces.IAudioEnhanced
+           zope.app.event.interfaces.IObjectModifiedEvent"
+      handler="._atct.update_catalog"
+      />
+      
+  <subscriber
+      for="p4a.audio.interfaces.IAudio
+           p4a.audio.audioanno.AudioAnnotationAddedEvent"
+      handler="._atct.load_metadata"
+      />
+
+</configure>
