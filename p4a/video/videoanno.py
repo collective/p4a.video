@@ -4,11 +4,11 @@ from zope import event
 from zope import interface
 from zope.app.annotation import interfaces as annointerfaces
 from zope.app.event import objectevent
-from p4a.audio import interfaces
+from p4a.video import interfaces
 from p4a.fileimage import DictProperty
 
 class VideoAnnotationAddedEvent(objectevent.ObjectEvent):
-    """Annotations added to an object for audio metadata.
+    """Annotations added to an object for video metadata.
     """
 
 class AnnotationVideo(object):
@@ -38,6 +38,6 @@ class AnnotationVideo(object):
     frequency = DictProperty(interfaces.IVideo['frequency'], 'video_data')
     length = DictProperty(interfaces.IVideo['length'], 'video_data')
     file = DictProperty(interfaces.IVideo['file'], 'video_data')
-    video_image = DictProperty(interfaces.IVideo['audio_image'], 'video_data')
+    video_image = DictProperty(interfaces.IVideo['video_image'], 'video_data')
 
-    video_type = DictProperty(interfaces.IVideo['audio_type'], 'video_data')
+    video_type = DictProperty(interfaces.IVideo['video_type'], 'video_data')

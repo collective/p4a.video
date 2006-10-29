@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+<div metal:fill-slot="css_slot">
+<link rel="stylesheet" href="video.css"
+      tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
+      />
+</div>
+
+<div metal:fill-slot="main"
+     tal:define="video_info context/@@video_view;
+                 context_url string:${context/absolute_url};
+                 mime_type context/content_type;
+     ">
+
+    <tal:main-macro metal:define-macro="main" 
+           tal:define="size python:context.getObjSize(context);">
+
+        <div metal:use-macro="context/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <h1 tal:content="video_info/title" class="documentFirstHeading">
+            Title or id
+        </h1>
+
+        <div metal:use-macro="context/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+
+        <div id="summary_wrapper">
+            <div id="video_metadata">
+                <div><strong i18n:translate="label_size">Size:</strong>
+                    <span tal:condition="size" tal:content="size">257 KB</span>
+                    <span tal:condition="python:size is None or size < 1" i18n:translate="no_file_uploaded">
+                      (No file has been uploaded yet)
+                    </span>
+                </div>
+                <div><strong i18n:translate="label_file_type">File type:</strong>
+                    <span tal:content="string:${video_info/video_type} ($mime_type)">Content type</span>
+                </div>    
+                <div><strong i18n:translate="label_bitrate">Bit rate:</strong>
+                    <span tal:content="video_info/bit_rate">Bitrate</span>
+                </div>
+                <div><strong i18n:translate="label_frequency">Frequency:</strong>
+                    <span tal:content="video_info/frequency">Frequency</span>
+                </div>
+                <div><strong i18n:translate="label_track_length">Track length:</strong>
+                    <span tal:content="video_info/length">Track length</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="visualClear">&nbsp;</div>
+        
+    </tal:main-macro>
+
+</div>
+
+</body>
+
+</html>

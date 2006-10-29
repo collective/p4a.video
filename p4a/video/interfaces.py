@@ -54,12 +54,12 @@ class IMediaPlayer(interface.Interface):
     """
     
     def __call__(downloadurl):
-        """Return the HTML required to play the audio content located
+        """Return the HTML required to play the video content located
         at *downloadurl*.
         """
 
 class IPossibleVideoContainer(interface.Interface):
-    """Any folderish entity tha can be turned into an actual audio 
+    """Any folderish entity tha can be turned into an actual video 
     container.
     """
 

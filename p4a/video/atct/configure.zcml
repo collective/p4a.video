@@ -2,58 +2,58 @@
     xmlns="http://namespaces.zope.org/zope">
 
   <class class="Products.ATContentTypes.content.topic.ATTopic">
-      <implements interface="p4a.audio.interfaces.IPossibleAudioContainer" />
+      <implements interface="p4a.video.interfaces.IPossibleVideoContainer" />
   </class>
 
   <class class="Products.ATContentTypes.content.folder.ATFolder">
-      <implements interface="p4a.audio.interfaces.IPossibleAudioContainer" />
+      <implements interface="p4a.video.interfaces.IPossibleVideoContainer" />
   </class>
 
   <class class="Products.ATContentTypes.content.folder.ATBTreeFolder">
-      <implements interface="p4a.audio.interfaces.IPossibleAudioContainer" />
+      <implements interface="p4a.video.interfaces.IPossibleVideoContainer" />
   </class>
 
   <class class="Products.ATContentTypes.content.file.ATFile">
-      <implements interface="p4a.audio.interfaces.IPossibleMedia" />
+      <implements interface="p4a.video.interfaces.IPossibleMedia" />
   </class>
 
-  <adapter factory="._atct.ATCTFileAudio" />
-  <adapter factory="._atct.ATCTFolderAudioProvider" />
-  <adapter factory="._atct.ATCTTopicAudioProvider" />
+  <adapter factory="._atct.ATCTFileVideo" />
+  <adapter factory="._atct.ATCTFolderVideoProvider" />
+  <adapter factory="._atct.ATCTTopicVideoProvider" />
 
   <subscriber
-      for="p4a.audio.interfaces.IAudioEnhanced
+      for="p4a.video.interfaces.IVideoEnhanced
            zope.app.event.interfaces.IObjectModifiedEvent"
-      handler="._atct.sync_audio_metadata"
+      handler="._atct.sync_video_metadata"
       />
 
   <subscriber
-      for="p4a.audio.interfaces.IPossibleMedia
+      for="p4a.video.interfaces.IPossibleMedia
            zope.app.event.interfaces.IObjectCreatedEvent"
       handler="._atct.attempt_media_activation"
       />
 
   <subscriber
-      for="p4a.audio.interfaces.IPossibleMedia
+      for="p4a.video.interfaces.IPossibleMedia
            zope.app.event.interfaces.IObjectModifiedEvent"
       handler="._atct.attempt_media_activation"
       />
 
   <subscriber
-      for="p4a.audio.interfaces.IAudioEnhanced
+      for="p4a.video.interfaces.IVideoEnhanced
            zope.app.event.interfaces.IObjectModifiedEvent"
       handler="._atct.update_dublincore"
       />
 
   <subscriber
-      for="p4a.audio.interfaces.IAudioEnhanced
+      for="p4a.video.interfaces.IVideoEnhanced
            zope.app.event.interfaces.IObjectModifiedEvent"
       handler="._atct.update_catalog"
       />
       
   <subscriber
-      for="p4a.audio.interfaces.IAudio
-           p4a.audio.audioanno.AudioAnnotationAddedEvent"
+      for="p4a.video.interfaces.IVideo
+           p4a.video.videoanno.VideoAnnotationAddedEvent"
       handler="._atct.load_metadata"
       />
 

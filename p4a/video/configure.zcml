@@ -1,11 +1,11 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five">
-<!--
+
   <include package=".atct" />
 
   <include package=".browser" />
--->
+
   <include package=".mov" />
 
   <include package="zope.app.annotation" />

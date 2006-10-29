@@ -53,16 +53,19 @@ class MOVVideoDataAccessor(object):
 
     def load(self, filename):
         
+        # TODO this is just added statically at the moment.  need to grab
+        #      the metadata from the file
+        
         self._video_data['title'] = 'foo'
         self._video_data['artist'] = 'bar'
         self._video_data['year'] = '2007'
-        self._video_data['video_image'] = 'fake image'
+        self._video_data['video_image'] = None
         
         self._video_data['comment'] = 'this is a comment'
 
-        self._video_data['bit_rate'] = '256'
-        self._video_data['frequency'] = ''
-        self._video_data['length'] = '5:13'
+        self._video_data['bit_rate'] = 256000
+        self._video_data['frequency'] = 41000
+        self._video_data['length'] = 125000
 
     def store(self, filename):
         content_type = self._filecontent.get_content_type()

@@ -66,7 +66,7 @@ class _ATCTFileVideo(videoanno.AnnotationVideo):
     ANNO_KEY = 'p4a.video.atct.ATCTFileVideo'
 
     def _load_video_metadata(self):
-        """Retrieve audio metadata from the raw file data and update
+        """Retrieve video metadata from the raw file data and update
         this object's appropriate metadata fields.
         """
         
@@ -80,7 +80,7 @@ class _ATCTFileVideo(videoanno.AnnotationVideo):
             os.remove(filename)
 
     def _save_video_metadata(self):
-        """Write the audio metadata fields of this object as metadata
+        """Write the video metadata fields of this object as metadata
         on the raw file data.
         """
         
@@ -128,7 +128,7 @@ class _ATCTFileVideo(videoanno.AnnotationVideo):
     def _get_file(self):
         return self.context.getRawFile()
     def _set_file(self, v):
-        if v != interfaces.IAudio['file'].missing_value:
+        if v != interfaces.IVideo['file'].missing_value:
             self.context.getRawFile().manage_upload(file=v)
     file = property(_get_file, _set_file)
 
@@ -168,29 +168,29 @@ def load_metadata(obj, evt):
     
     obj._load_video_metadata()
 
-def sync_audio_metadata(obj, evt):
+def sync_video_metadata(obj, evt):
     """An event handler for saving id3 tag information back onto the file.
     """
     
-    audio = interfaces.IAudio(obj)
+    video = interfaces.IVideo(obj)
     for description in evt.descriptions:
         if isinstance(description, objectevent.Attributes):
             attrs = description.attributes
             orig = {}
             for key in attrs:
                 if key != 'file':
-                    orig[key] = getattr(audio, key)
+                    orig[key] = getattr(video, key)
             if 'file' in attrs:
-                audio._load_audio_metadata()
+                video._load_video_metadata()
                 for key, value in orig.items():
-                    setattr(audio, key, value)
-    audio._save_audio_metadata()
+                    setattr(video, key, value)
+    video._save_video_metadata()
 
 def attempt_media_activation(obj, evt):
     """Try to activiate the media capabilities of the given object.
     """
 
-    view = obj.restrictedTraverse('@@media-config.html')
+    view = obj.restrictedTraverse('@@video-config.html')
     if view.media_activated:
         return
     
