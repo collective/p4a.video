@@ -14,20 +14,18 @@ class FLVVideoPlayer(object):
         contentobj = self.context.context.context
         site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
         
-        player = "%s/++resource++oggplayer/cortado-ovt-debug-0.2.1.jar" % site.absolute_url()
+        player = "%s/++resource++flowplayer/FlowPlayer.swf" % site.absolute_url()
         
         return """
-        <div class="ogg-player">
-            <applet code="com.fluendo.player.Cortado.class" 
-                    archive="%(player)s" 
-         	        width="100" height="50">
-              <param name="url" value="%(url)s"/>
-              <param name="local" value="false"/>
-              <param name="duration" value="00352"/>
-              <param name="video" value="false"/>
-              <param name="video" value="true"/>
-              <param name="bufferSize" value="200"/>
-              <param name="debug" value="3" />
-            </applet>
+        <div class="flowplayer">
+            <object type="application/x-shockwave-flash" data="%(player)s" 
+            	width="320" height="263" id="FlowPlayer">
+            	<param name="allowScriptAccess" value="sameDomain" />
+            	<param name="movie" value="%(player)s" />
+            	<param name="quality" value="high" />
+            	<param name="scale" value="noScale" />
+            	<param name="wmode" value="transparent" />
+            	<param name="flashvars" value="config={videoFile: '%(url)s'}" />
+            </object>
         </div>
         """ % {'player': player, 'url': downloadurl}
