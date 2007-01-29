@@ -5,26 +5,26 @@
 
   <adapter
       for="p4a.video.interfaces.IPossibleVideo"
-      factory="._videodata.MP3VideoDataAccessor"
+      factory="._videodata.MOVVideoDataAccessor"
       provides="p4a.video.interfaces.IVideoDataAccessor"
-      name="video/mpeg"
+      name="video/quicktime"
       />
 
   <adapter
-      factory="._player.MP3VideoPlayer"
-      name="video/mpeg"
+      factory="._player.MOVVideoPlayer"
+      name="video/quicktime"
       />
 
-  <browser:resourceDirectory
-      name="flashmp3player"
-      directory="flashmp3player"
-      permission="zope.Public"
-      />
-
-  <browser:resourceDirectory
-      name="xspf_player"
-      directory="xspf_player"
-      permission="zope.Public"
-      />
+  <!-- <browser:resourceDirectory -->
+  <!--     name="flashmp3player" -->
+  <!--     directory="flashmp3player" -->
+  <!--     permission="zope.Public" -->
+  <!--     /> -->
+  <!--  -->
+  <!-- <browser:resourceDirectory -->
+  <!--     name="xspf_player" -->
+  <!--     directory="xspf_player" -->
+  <!--     permission="zope.Public" -->
+  <!--     /> -->
 
 </configure>

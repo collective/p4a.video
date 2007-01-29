@@ -5,20 +5,20 @@
 
   <adapter
       for="p4a.video.interfaces.IPossibleVideo"
-      factory="._videodata.OggVideoDataAccessor"
+      factory="._videodata.FLVVideoDataAccessor"
       provides="p4a.video.interfaces.IVideoDataAccessor"
-      name="application/ogg"
+      name="video/x-flv"
       />
 
   <adapter
-      factory="._player.OggVideoPlayer"
-      name="application/ogg"
+      factory="._player.FLVVideoPlayer"
+      name="video/x-flv"
       />
 
-  <browser:resourceDirectory
-      name="oggplayer"
-      directory="oggplayer"
-      permission="zope.Public"
-      />
+  <!-- <browser:resourceDirectory -->
+  <!--     name="oggplayer" -->
+  <!--     directory="oggplayer" -->
+  <!--     permission="zope.Public" -->
+  <!--     /> -->
 
 </configure>

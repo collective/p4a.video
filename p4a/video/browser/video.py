@@ -20,15 +20,15 @@ from Products.CMFCore import utils as cmfutils
 
 class IVideoView(interface.Interface):
     def title(): pass
-    def artist(): pass
-    def album(): pass
-    def year(): pass
-    def genre(): pass
-    def comment(): pass
-    def variable_bit_rate(): pass
-    def bit_rate(): pass
-    def frequency(): pass
-    def length(): pass
+    # def artist(): pass
+    # def album(): pass
+    # def year(): pass
+    # def genre(): pass
+    # def comment(): pass
+    # def variable_bit_rate(): pass
+    # def bit_rate(): pass
+    # def frequency(): pass
+    # def length(): pass
     def video_type(): pass
     def has_media_player(): pass
 
@@ -45,31 +45,31 @@ class VideoView(object):
                                                    interfaces.IMediaPlayer,
                                                    mime_type)
 
-    def title(self): return self.video_info.title
-    def artist(self): return self.video_info.artist
-    def album(self): return self.video_info.album
-    def year(self): return self.video_info.year
-    def comment(self): return self.video_info.comment
-    def variable_bit_rate(self): return self.video_info.variable_bit_rate
+    def title(self): return 'video file'
+    # def artist(self): return self.video_info.artist
+    # def album(self): return self.video_info.album
+    # def year(self): return self.video_info.year
+    # def comment(self): return self.video_info.comment
+    # def variable_bit_rate(self): return self.video_info.variable_bit_rate
     def video_type(self): return self.video_info.video_type
     def has_media_player(self): return self.media_player is not None
 
-    def genre(self): 
-        g = self.video_info.genre
-        if g in genre.GENRE_VOCABULARY:
-            return genre.GENRE_VOCABULARY.getTerm(g).title
-        return u''
-
-    def frequency(self): 
-        if not self.video_info.frequency:
-            return 'N/A'
-        return '%i Khz' % (self.video_info.frequency / 1000)
-
-    def bit_rate(self): 
-        return '%i Kbps' % (self.video_info.bit_rate / 1000)
-
-    def length(self):
-        return formatting.fancy_time_amount(self.video_info.length)
+    # def genre(self): 
+    #     g = self.video_info.genre
+    #     if g in genre.GENRE_VOCABULARY:
+    #         return genre.GENRE_VOCABULARY.getTerm(g).title
+    #     return u''
+    # 
+    # def frequency(self): 
+    #     if not self.video_info.frequency:
+    #         return 'N/A'
+    #     return '%i Khz' % (self.video_info.frequency / 1000)
+    # 
+    # def bit_rate(self): 
+    #     return '%i Kbps' % (self.video_info.bit_rate / 1000)
+    # 
+    # def length(self):
+    #     return formatting.fancy_time_amount(self.video_info.length)
 
 class VideoPageView(media.BaseMediaDisplayView):
     """Page for displaying video.
@@ -183,7 +183,7 @@ class VideoContainerView(object):
         self.context = context
         self.request = request
         self._video_items = None
-        self._total_length = None
+        # self._total_length = None
         
         self._build_info()
 
@@ -193,7 +193,7 @@ class VideoContainerView(object):
         # cheating here by getting file properties we need by looking
         # up context attribute which isn't in the interface contract
         self._video_items = []
-        self._total_length = 0
+        # self._total_length = 0
         
         for x in provider.video_items:
             aFile = x.context
@@ -202,8 +202,8 @@ class VideoContainerView(object):
             self._video_items.append( \
                 {'title': x.title,
                  'url': aFile.absolute_url(),
-                 'size': formatting.fancy_data_size(field.get_size()),
-                 'length': formatting.fancy_time_amount(x.length),
+                 # 'size': formatting.fancy_data_size(field.get_size()),
+                 # 'length': formatting.fancy_time_amount(x.length),
                  'description': x.context.Description(),
                  'icon': aFile.getIcon(),
                  'widget': w,
@@ -218,8 +218,8 @@ class VideoContainerView(object):
     def video_items(self):
         return self._video_items
     
-    def total_length(self):
-        return formatting.fancy_time_amount(self._total_length)
+    # def total_length(self):
+    #     return formatting.fancy_time_amount(self._total_length)
 
     def has_syndication(self):
         try:

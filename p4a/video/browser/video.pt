@@ -41,7 +41,7 @@
                 <div><strong i18n:translate="label_file_type">File type:</strong>
                     <span tal:content="string:${video_info/video_type} ($mime_type)">Content type</span>
                 </div>    
-                <div><strong i18n:translate="label_bitrate">Bit rate:</strong>
+                <!-- <div><strong i18n:translate="label_bitrate">Bit rate:</strong>
                     <span tal:content="video_info/bit_rate">Bitrate</span>
                 </div>
                 <div><strong i18n:translate="label_frequency">Frequency:</strong>
@@ -49,7 +49,7 @@
                 </div>
                 <div><strong i18n:translate="label_track_length">Track length:</strong>
                     <span tal:content="video_info/length">Track length</span>
-                </div>
+                </div> -->
 
             </div>
 
@@ -68,11 +68,12 @@
 
                 </div>
 
-            <div class="video-images">
+            <!-- <div class="video-images">
               <img tal:replace="structure view/widgets/video_image" />
-            </div>
+            </div> -->
 
                 <div id="object_metadata">
+			<!--
                     <p>
                       <strong>Artist:</strong>
                       <span tal:condition="video_info/artist|nothing" tal:content="video_info/artist">Artist</span>
@@ -92,7 +93,7 @@
                     <p>
                       <strong>Comment:</strong>
                       <span tal:condition="video_info/comment | nothing" tal:content="video_info/comment">Comment</span>
-                    </p>
+                    </p> -->
 
 			        <tal:block tal:condition="view/has_contentlicensing_support">
 	                  <div tal:replace="structure context/@@copyright_byline_view" />

@@ -3,7 +3,7 @@ from zope import component
 from p4a.video import interfaces
 from Products.CMFCore import utils as cmfutils
 
-class OggVideoPlayer(object):
+class FLVVideoPlayer(object):
     interface.implements(interfaces.IMediaPlayer)
     component.adapts(object)
     
