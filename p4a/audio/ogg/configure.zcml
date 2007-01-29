@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <adapter
+      for="p4a.audio.interfaces.IPossibleAudio"
+      factory="._audiodata.OggAudioDataAccessor"
+      provides="p4a.audio.interfaces.IAudioDataAccessor"
+      name="application/ogg"
+      />
+
+  <adapter
+      factory="._player.OggAudioPlayer"
+      name="application/ogg"
+      />
+
+  <browser:resourceDirectory
+      name="oggplayer"
+      directory="oggplayer"
+      permission="zope.Public"
+      />
+
+</configure>

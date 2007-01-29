@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+<div metal:fill-slot="css_slot">
+<link rel="stylesheet" href="audio.css"
+      tal:attributes="href string:$portal_url/++resource++audiostyles/audio.css"
+      />
+</div>
+
+<div metal:fill-slot="main"
+     tal:define="audio_info context/@@audio_view;
+                 context_url string:${context/absolute_url};
+                 mime_type context/content_type;
+     ">
+    <tal:main-macro metal:define-macro="main" 
+           tal:define="size python:context.getObjSize(context);">
+
+        <div metal:use-macro="context/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <h1 tal:content="audio_info/title" class="documentFirstHeading">
+            Title or id
+        </h1>
+
+        <div metal:use-macro="context/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+
+        <div id="summary_wrapper">
+            <div id="audio_metadata">
+                <div><strong i18n:translate="label_size">Size:</strong>
+                    <span tal:condition="size" tal:content="size">257 KB</span>
+                    <span tal:condition="python:size is None or size < 1" i18n:translate="no_file_uploaded">
+                      (No file has been uploaded yet)
+                    </span>
+                </div>
+                <div><strong i18n:translate="label_file_type">File type:</strong>
+                    <span tal:content="string:${audio_info/audio_type} ($mime_type)">Content type</span>
+                </div>    
+                <div><strong i18n:translate="label_bitrate">Bit rate:</strong>
+                    <span tal:content="audio_info/bit_rate">Bitrate</span>
+                </div>
+                <div><strong i18n:translate="label_frequency">Frequency:</strong>
+                    <span tal:content="audio_info/frequency">Frequency</span>
+                </div>
+                <div><strong i18n:translate="label_track_length">Track length:</strong>
+                    <span tal:content="audio_info/length">Track length</span>
+                </div>
+
+            </div>
+
+            <div id="objmetadata_pbwidgets_wrapper">
+                <div id="playback_widgets">
+                    <div tal:replace="structure view/widgets/media_player"></div>
+
+            <a tal:condition="audio_info/has_media_player" id="popup_play_icon"
+               href="#" title="Play in popup window" class="widget_icon"
+               tal:attributes="href string:javascript:void window.open('${context/absolute_url}/popup-play.html', '', 'width=200, height=45, toolbar=no, location=no, directories=no, status=no, menubar=no')">
+            </a>
+                    <a href="" id="play_icon" class="widget_icon"
+                           tal:attributes="href string:$context_url/stream.m3u" title="Stream file"></a>
+                    <a href="" id="download_icon" class="widget_icon"
+                           tal:attributes="href string:$context_url" title="Download file"></a>
+
+                </div>
+
+            <div class="audio-images">
+              <img tal:replace="structure view/widgets/audio_image" />
+            </div>
+
+                <div id="object_metadata">
+                    <p>
+                      <strong>Artist:</strong>
+                      <span tal:condition="audio_info/artist|nothing" tal:content="audio_info/artist">Artist</span>
+                    </p>
+                    <p>
+                      <strong>Album:</strong> 
+                      <span tal:condition="audio_info/album | nothing" tal:content="audio_info/album">Album</span>
+                    </p>
+                    <p>
+                      <strong>Year:</strong> 
+                      <span tal:condition="audio_info/year | nothing" tal:content="audio_info/year">Year</span>
+                    </p>
+                    <p>
+                        <strong>Genre:</strong>
+                        <span tal:content="audio_info/genre|nothing" ></span>
+                    </p>
+                    <p>
+                      <strong>Comment:</strong>
+                      <span tal:condition="audio_info/comment | nothing" tal:content="audio_info/comment">Comment</span>
+                    </p>
+
+			        <tal:block tal:condition="view/has_contentlicensing_support">
+	                  <div tal:replace="structure context/@@copyright_byline_view" />
+                      <div tal:replace="structure context/@@metadata_view" />
+			        </tal:block>
+
+                </div>
+            <div class="visualClear">&nbsp;</div>
+            </div>
+        </div>
+        <div class="visualClear">&nbsp;</div>
+        
+    </tal:main-macro>
+</div>
+
+</body>
+
+</html>

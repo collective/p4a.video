@@ -1,0 +1,125 @@
+<configure
+    xmlns="http://namespaces.zope.org/browser"
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="Plone4Artists">
+
+  <resourceDirectory
+      name="audiostyles"
+      directory="resources/audiostyles"
+      permission="zope.Public"
+      />
+
+  <resourceDirectory
+      name="audioimages"
+      directory="resources/audioimages"
+      permission="zope.Public"
+      />
+
+  <page
+      name="audio-container.html"
+      for="p4a.audio.interfaces.IAudioContainerEnhanced"
+      permission="zope2.View"
+      template="audio-container.pt"
+      class=".audio.AudioContainerView"
+      />
+
+  <page
+      name="audiocd-popup.html"
+      for="p4a.audio.interfaces.IAudioContainerEnhanced"
+      permission="zope2.View"
+      template="audiocd-popup.pt"
+      class=".audio.AudioContainerView"
+      />
+
+  <page
+      name="cd_playlist.xspf"
+      for="p4a.audio.interfaces.IAudioContainerEnhanced"
+      permission="zope2.View"
+      template="cd_playlist.xspf.pt"
+      class=".audio.AudioContainerView"
+      />
+
+  <page
+      name="file_view"
+      template="audio.pt"
+      for="p4a.audio.interfaces.IAudioEnhanced"
+      class=".audio.AudioPageView"
+      permission="zope2.View"
+      />
+
+  <page
+      name="audio_view"
+      class=".audio.AudioView"
+      allowed_interface=".audio.IAudioView"
+      for="p4a.audio.interfaces.IAudioEnhanced"
+      permission="zope2.View"
+      />
+
+  <page
+      name="media-config.html"
+      for="p4a.audio.interfaces.IPossibleAudioContainer"
+      permission="cmf.ModifyPortalContent"
+      class=".media.ToggleEnhancementsView"
+      />
+
+  <page
+      name="media-config.html"
+      for="p4a.audio.interfaces.IPossibleAudio"
+      permission="cmf.ModifyPortalContent"
+      class=".media.ToggleEnhancementsView"
+      />
+
+  <page
+      name="atct_edit"
+      for="p4a.audio.interfaces.IAudioEnhanced"
+      permission="cmf.ModifyPortalContent"
+      class=".audio.AudioEditForm"
+      />
+
+  <page
+      name="stream.m3u"
+      for="p4a.audio.interfaces.IAudioEnhanced"
+      permission="zope2.View"
+      class=".audio.AudioStreamerView"
+      />
+
+  <page
+      name="popup-play.html"
+      for="p4a.audio.interfaces.IAudioEnhanced"
+      permission="zope2.View"
+      class=".audio.PopupAudioPageView"
+      template="popup-play.pt"
+      />
+
+  <menuItem
+      menu="object_buttons"
+      for="p4a.audio.interfaces.IAnyAudioCapable"
+      title="Deactivate Audio"
+      action="${object_url}/media-config.html"
+      filter="object/@@p4aaudiosupport/can_deactivate_audio"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <menuItem
+      menu="object_buttons"
+      for="p4a.audio.interfaces.IAnyAudioCapable"
+      title="Activate Audio"
+      action="${object_url}/media-config.html"
+      filter="object/@@p4aaudiosupport/can_activate_audio"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <zope:adapter 
+        factory=".displays.AudioContainerDynamicViews"
+        />
+
+  <page
+      name="p4aaudiosupport"
+      for="*"
+      class=".support.Support"
+      permission="zope.Public"
+      allowed_interface=".support.IContextualAudioSupport"
+      />
+
+</configure>

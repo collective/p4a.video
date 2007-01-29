@@ -3,7 +3,7 @@ import sys, os
 
 version = '0.1'
 
-setup(name='p4a.video',
+setup(name='p4a.audio',
       version=version,
       description="",
       long_description="""\

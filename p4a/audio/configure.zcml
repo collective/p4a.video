@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <include package=".browser" />
+  <include package=".mp3" />
+  <include package=".ogg" />
+
+  <include package="zope.app.annotation" />
+
+  <adapter
+      for=".interfaces.IPossibleAudio"
+      provides="zope.app.annotation.interfaces.IAnnotations"
+      factory="zope.app.annotation.attribute.AttributeAnnotations"
+      />
+
+  <utility
+      factory=".migration.Migrator"
+      />
+
+</configure>
