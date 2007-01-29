@@ -4,13 +4,13 @@
     xmlns:zcml="http://namespaces.zope.org/zcml">
 
   <include package=".browser" />
-  <include package=".mp3" />
-  <include package=".ogg" />
+  <include package=".mov" />
+  <include package=".flv" />
 
   <include package="zope.app.annotation" />
 
   <adapter
-      for=".interfaces.IPossibleAudio"
+      for=".interfaces.IPossibleVideo"
       provides="zope.app.annotation.interfaces.IAnnotations"
       factory="zope.app.annotation.attribute.AttributeAnnotations"
       />

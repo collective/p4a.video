@@ -89,20 +89,20 @@ class MetadataBlock(object):
 class StreamInfo(MetadataBlock):
     """FLAC stream information.
 
-    This contains information about the audio data in the FLAC file.
+    This contains information about the video data in the FLAC file.
     Unlike most stream information objects in Mutagen, changes to this
     one will rewritten to the file when it is saved. Unless you are
-    actually changing the audio stream itself, don't change any
+    actually changing the video stream itself, don't change any
     attributes of this block.
 
     Attributes:
-    min_blocksize -- minimum audio block size
-    max_blocksize -- maximum audio block size
-    sample_rate -- audio sample rate in Hz
-    channels -- audio channels (1 for mono, 2 for stereo)
+    min_blocksize -- minimum video block size
+    max_blocksize -- maximum video block size
+    sample_rate -- video sample rate in Hz
+    channels -- video channels (1 for mono, 2 for stereo)
     bits_per_sample -- bits per sample
     total_samples -- total samples in file
-    length -- audio length in seconds
+    length -- video length in seconds
     """
 
     code = 0
@@ -204,7 +204,7 @@ class Padding(MetadataBlock):
         return "<%s (%d bytes)>" % (type(self).__name__, self.length)
 
 class FLAC(FileType):
-    """A FLAC audio file."""
+    """A FLAC video file."""
 
     METADATA_BLOCKS = [StreamInfo, Padding, None, None, VCFLACDict]
     """Known metadata block types, indexed by ID."""
@@ -288,7 +288,7 @@ class FLAC(FileType):
         self.metadata_blocks.append(Padding('\x00' * 1020))
         MetadataBlock.group_padding(self.metadata_blocks)
 
-        available = self.__find_audio_offset(f) - 4 # "fLaC"
+        available = self.__find_video_offset(f) - 4 # "fLaC"
         data = MetadataBlock.writeblocks(self.metadata_blocks)
 
         if len(data) > available:
@@ -314,7 +314,7 @@ class FLAC(FileType):
         f.seek(4)
         f.write(data)
 
-    def __find_audio_offset(self, fileobj):
+    def __find_video_offset(self, fileobj):
         if fileobj.read(4) != "fLaC":
             raise FLACNoHeaderError("%r is not a FLAC file" % fileobj.name)
         byte = 0x00

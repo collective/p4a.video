@@ -1,8 +1,8 @@
-.audio_popup_play p, .audio_embedded_play p {
+.video_popup_play p, .video_embedded_play p {
     display: inline;
 }
 
-.audio_popup_play a span, .audio_embedded_play span {
+.video_popup_play a span, .video_embedded_play span {
     display: none;
 }
 */
@@ -20,16 +20,16 @@
     background-color: #efefef;
     position: relative;
 }
-#audio_metadata {
+#video_metadata {
     float: right;
     width: 33%;
     padding-top: 1em;
     font-size: 90%;
 }
-#audio_metadata div {
+#video_metadata div {
     line-height: 1.6em;
 }
-#audio_metadata span {
+#video_metadata span {
     width: 45%
 }
 #playback_widgets {
@@ -43,17 +43,17 @@
 #play_icon {
     display: block;
     width: 16px; height: 16px;
-    background: transparent url(../++resource++audioimages/play_icon.png) no-repeat left top;
+    background: transparent url(../++resource++videoimages/play_icon.png) no-repeat left top;
 }
 #download_icon {
     display: block;
     width: 16px; height: 16px;
-    background: transparent url(../++resource++audioimages/download_icon.png) no-repeat left top;
+    background: transparent url(../++resource++videoimages/download_icon.png) no-repeat left top;
 }
 #popup_play_icon {
     display: block;
     width: 16px; height: 16px;
-    background: transparent url(../++resource++audioimages/popup_play_icon.png) no-repeat left top;
+    background: transparent url(../++resource++videoimages/popup_play_icon.png) no-repeat left top;
 }
 .widget_icon {
     margin-bottom: 8px;

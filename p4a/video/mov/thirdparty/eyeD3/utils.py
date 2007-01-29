@@ -17,7 +17,7 @@
 #
 #  $Id: utils.py,v 1.11.2.1 2005/12/02 03:18:42 travis Exp $
 ################################################################################
-from p4a.audio.mp3.thirdparty.eyeD3 import *;
+from p4a.video.mp3.thirdparty.eyeD3 import *;
 
 def versionsToConstant(v):
    major = v[0];

@@ -1,19 +1,19 @@
 from zope import component
 from zope import interface
 from zope import schema
-from p4a.audio import interfaces
+from p4a.video import interfaces
 
-class IContextualAudioSupport(interfaces.IBasicAudioSupport):
-    can_activate_audio = schema.Bool(title=u'Can Activate Audio',
+class IContextualVideoSupport(interfaces.IBasicVideoSupport):
+    can_activate_video = schema.Bool(title=u'Can Activate Video',
                                      readonly=True)
-    can_deactivate_audio = schema.Bool(title=u'Can Deactivate Audio',
+    can_deactivate_video = schema.Bool(title=u'Can Deactivate Video',
                                        readonly=True)
 
 class Support(object):
     """A view that returns certain information regarding p4acal status.
     """
 
-    interface.implements(IContextualAudioSupport)
+    interface.implements(IContextualVideoSupport)
     
     def __init__(self, context, request):
         self.context = context
@@ -21,11 +21,11 @@ class Support(object):
         
     @property
     def support_enabled(self):
-        """Check to make sure an IAudioSupport utility is available and
+        """Check to make sure an IVideoSupport utility is available and
         if so, query it to determine if support is enabled.
         """
         
-        support = component.queryUtility(interfaces.IAudioSupport)
+        support = component.queryUtility(interfaces.IVideoSupport)
         if support is None:
             return False
 
@@ -36,13 +36,13 @@ class Support(object):
         if not self.support_enabled:
             return False
 
-        if not interfaces.IAnyAudioCapable.providedBy(self.context):
+        if not interfaces.IAnyVideoCapable.providedBy(self.context):
             return False
 
         return True
 
     @property
-    def can_activate_audio(self):
+    def can_activate_video(self):
         if not self._basic_can:
             return False
         
@@ -51,7 +51,7 @@ class Support(object):
         return not mediaconfig.media_activated
 
     @property
-    def can_deactivate_audio(self):
+    def can_deactivate_video(self):
         if not self._basic_can:
             return False
         

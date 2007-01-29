@@ -20,8 +20,8 @@
 ################################################################################
 import sys, os, os.path, re, zlib, StringIO, time, mimetypes;
 from StringIO import StringIO;
-from p4a.audio.mp3.thirdparty.eyeD3.utils import *;
-from p4a.audio.mp3.thirdparty.eyeD3.binfuncs import *;
+from p4a.video.mp3.thirdparty.eyeD3.utils import *;
+from p4a.video.mp3.thirdparty.eyeD3.binfuncs import *;
 
 # Valid time stamp formats per ISO 8601 and used by time.strptime.
 timeStampFormats = ["%Y",
@@ -87,9 +87,9 @@ OBSOLETE_RECORDING_DATE_FID  = "TRDA";
 DATE_FIDS          = ["TDRL", "TDOR", "TDRC", OBSOLETE_YEAR_FID,
                       OBSOLETE_DATE_FID];
 
-frameDesc = { "AENC": "Audio encryption",
+frameDesc = { "AENC": "Video encryption",
               "APIC": "Attached picture",
-              "ASPI": "Audio seek point index",
+              "ASPI": "Video seek point index",
 
               "COMM": "Comments",
               "COMR": "Commercial frame",
@@ -175,9 +175,9 @@ frameDesc = { "AENC": "Audio encryption",
 
               "WCOM": "Commercial information",
               "WCOP": "Copyright/Legal information",
-              "WOAF": "Official audio file webpage",
+              "WOAF": "Official video file webpage",
               "WOAR": "Official artist/performer webpage",
-              "WOAS": "Official audio source webpage",
+              "WOAS": "Official video source webpage",
               "WORS": "Official Internet radio station homepage",
               "WPAY": "Payment",
               "WPUB": "Publishers official webpage",
@@ -222,9 +222,9 @@ TAGS2_2_TO_TAGS_2_3_AND_4 = {
     "TOA" : "TOPE", # ORIGARTIST original artist(s)/performer(s)
     "TOL" : "TOLY", # ORIGLYRICIST original lyricist(s)/text writer(s)
     "TXX" : "TXXX", # USERTEXT user defined text information frame
-    "WAF" : "WOAF", # WWWAUDIOFILE official audio file webpage
+    "WAF" : "WOAF", # WWWAUDIOFILE official video file webpage
     "WAR" : "WOAR", # WWWARTIST official artist/performer webpage
-    "WAS" : "WOAS", # WWWAUDIOSOURCE official audion source webpage
+    "WAS" : "WOAS", # WWWAUDIOSOURCE official videon source webpage
     "WCM" : "WCOM", # WWWCOMMERCIALINFO commercial information
     "WCP" : "WCOP", # WWWCOPYRIGHT copyright/legal information
     "WPB" : "WPUB", # WWWPUBLISHER publishers official webpage
@@ -246,7 +246,7 @@ TAGS2_2_TO_TAGS_2_3_AND_4 = {
     "CNT" : "PCNT", # PLAYCOUNTER play counter
     "POP" : "POPM", # POPULARIMETER popularimeter
     "BUF" : "RBUF", # BUFFERSIZE recommended buffer size
-    "CRA" : "AENC", # AUDIOCRYPTO audio encryption
+    "CRA" : "AENC", # AUDIOCRYPTO video encryption
     "LNK" : "LINK", # LINKEDINFO linked information
     # Extension workarounds i.e., ignore them
     "TCP" : "TCP ", # iTunes "extension" for compilation marking
@@ -1553,7 +1553,7 @@ class FrameSet(list):
 
    # Read frames starting from the current read position of the file object.
    # Returns the amount of padding which occurs after the tag, but before the
-   # audio content.  A return valule of 0 DOES NOT imply an error.
+   # video content.  A return valule of 0 DOES NOT imply an error.
    def parse(self, f, tagHeader):
       self.tagHeader = tagHeader;
       paddingSize = 0;

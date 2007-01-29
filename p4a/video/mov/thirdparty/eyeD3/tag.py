@@ -20,11 +20,11 @@
 import re, os, string, stat, shutil, tempfile, binascii;
 import mimetypes;
 from stat import *;
-from p4a.audio.mp3.thirdparty.eyeD3 import *;
-from p4a.audio.mp3.thirdparty.eyeD3 import utils;
-from p4a.audio.mp3.thirdparty.eyeD3 import mp3;
-from p4a.audio.mp3.thirdparty.eyeD3.frames import *;
-from p4a.audio.mp3.thirdparty.eyeD3.binfuncs import *;
+from p4a.video.mp3.thirdparty.eyeD3 import *;
+from p4a.video.mp3.thirdparty.eyeD3 import utils;
+from p4a.video.mp3.thirdparty.eyeD3 import mp3;
+from p4a.video.mp3.thirdparty.eyeD3.frames import *;
+from p4a.video.mp3.thirdparty.eyeD3.binfuncs import *;
 import math;
 
 ID3_V1_COMMENT_DESC = "ID3 v1 Comment";
@@ -1234,9 +1234,9 @@ class Tag:
       else:
          # Open original
          tagFile = file(self.linkedFile.name, "rb");
-         # Read all audio data
+         # Read all video data
          tagFile.seek(currTagSize);
-         audioData = tagFile.read();
+         videoData = tagFile.read();
          tagFile.close();
 
          # Open tmp file
@@ -1244,7 +1244,7 @@ class Tag:
          tmpFile = file(tmpName, "w+b");
          TRACE_MSG("Writing %d bytes of tag data" % len(tagData));
          tmpFile.write(tagData);
-         tmpFile.write(audioData);
+         tmpFile.write(videoData);
          tmpFile.close();
 
          # Move tmp to orig.
@@ -1476,15 +1476,15 @@ class Genre:
       return s;
 
 ################################################################################
-class InvalidAudioFormatException(Exception):
-   '''Problems with audio format'''
+class InvalidVideoFormatException(Exception):
+   '''Problems with video format'''
 
 ################################################################################
 class TagFile:
    fileName = str("");
    fileSize = int(0);
    tag      = None;
-   # Number of seconds required to play the audio file.
+   # Number of seconds required to play the video file.
    play_time = int(0);
 
    def __init__(self, fileName):
@@ -1528,10 +1528,10 @@ class TagFile:
 
 
 ################################################################################
-class Mp3AudioFile(TagFile):
+class Mp3VideoFile(TagFile):
    header         = mp3.Header();
    xingHeader     = None;
-   invalidFileExc = InvalidAudioFormatException("File is not mp3");
+   invalidFileExc = InvalidVideoFormatException("File is not mp3");
 
    def __init__(self, fileName, tagVersion = ID3_ANY_VERSION):
       TagFile.__init__(self, fileName);
@@ -1553,7 +1553,7 @@ class Mp3AudioFile(TagFile):
       f.seek(framePos);
       bString = f.read(4);
       if len(bString) < 4:
-         raise InvalidAudioFormatException("Unable to find a valid mp3 "\
+         raise InvalidVideoFormatException("Unable to find a valid mp3 "\
                                            "frame");
       frameHead = bin2dec(bytes2bin(bString));
       header = mp3.Header();
@@ -1568,7 +1568,7 @@ class Mp3AudioFile(TagFile):
              f.seek(f.tell() + 128); 
              bString = f.read(4);
              if len(bString) < 4:
-                raise InvalidAudioFormatException("Unable to find a valid mp3 "\
+                raise InvalidVideoFormatException("Unable to find a valid mp3 "\
                                                   "frame");
              frameHead = bin2dec(bytes2bin(bString));
              it_count = 0;
@@ -1577,7 +1577,7 @@ class Mp3AudioFile(TagFile):
          frameHead <<= 8;
          bString = f.read(1);
          if len(bString) != 1:
-            raise InvalidAudioFormatException("Unable to find a valid mp3 "\
+            raise InvalidVideoFormatException("Unable to find a valid mp3 "\
                                               "frame");
          frameHead |= ord(bString[0]);
          it_count += 1;
@@ -1594,11 +1594,11 @@ class Mp3AudioFile(TagFile):
          if mp3Frame.find("Xing") != -1:
             xingHeader = mp3.XingHeader();
             if not xingHeader.decode(mp3Frame):
-               raise InvalidAudioFormatException("Corrupt Xing header");
+               raise InvalidVideoFormatException("Corrupt Xing header");
          else:
             xingHeader = None;
       except mp3.Mp3Exception, ex:
-         raise InvalidAudioFormatException(str(ex));
+         raise InvalidVideoFormatException(str(ex));
 
       # Compute track play time.
       tpf = mp3.computeTimePerFrame(header);
@@ -1646,7 +1646,7 @@ class Mp3AudioFile(TagFile):
 ################################################################################
 def isMp3File(fileName):
     (type, enc) = mimetypes.guess_type(fileName);
-    return type == "audio/mpeg";
+    return type == "video/mpeg";
 
 ################################################################################
 class GenreMap(list):
@@ -1865,10 +1865,10 @@ class LinkedFile:
            self.name = fileName;
 
 def tagToUserTune(tag):
-    audio_file = None;
-    if isinstance(tag, Mp3AudioFile):
-        audio_file = tag;
-        tag = audio_file.getTag();
+    video_file = None;
+    if isinstance(tag, Mp3VideoFile):
+        video_file = tag;
+        tag = video_file.getTag();
         
     tune =  u"<tune xmlns='http://jabber.org/protocol/tune'>\n";
     if tag.getArtist():
@@ -1880,8 +1880,8 @@ def tagToUserTune(tag):
     tune += "  <track>" +\
             "file://" + unicode(os.path.abspath(tag.linkedFile.name)) +\
             "</track>\n";
-    if audio_file:
-        tune += "  <length>" + unicode(audio_file.getPlayTime()) +\
+    if video_file:
+        tune += "  <length>" + unicode(video_file.getPlayTime()) +\
                 "</length>\n";
     tune += "</tune>\n";
     return tune;

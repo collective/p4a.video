@@ -6,9 +6,9 @@
 #
 # $Id: m4a.py 3775 2006-08-09 21:38:41Z piman $
 
-"""Read and write MPEG-4 audio files with iTunes metadata.
+"""Read and write MPEG-4 video files with iTunes metadata.
 
-This module will read MPEG-4 audio information and metadata,
+This module will read MPEG-4 video information and metadata,
 as found in Apple's M4A (aka MP4, M4B, M4P) files.
 
 There is no official specification for this format. The source code
@@ -399,7 +399,7 @@ class M4AInfo(object):
         hdlr = atoms["moov.trak.mdia.hdlr"]
         fileobj.seek(hdlr.offset)
         if "soun" not in fileobj.read(hdlr.length):
-            raise M4AStreamInfoError("track has no audio data")
+            raise M4AStreamInfoError("track has no video data")
 
         mdhd = atoms["moov.trak.mdia.mdhd"]
         fileobj.seek(mdhd.offset)
@@ -424,14 +424,14 @@ class M4AInfo(object):
             pass
 
     def pprint(self):
-        return "MPEG-4 audio, %.2f seconds, %d bps" % (
+        return "MPEG-4 video, %.2f seconds, %d bps" % (
             self.length, self.bitrate)
 
 class M4A(FileType):
-    """An MPEG-4 audio file, probably containing AAC.
+    """An MPEG-4 video file, probably containing AAC.
 
     If more than one track is present in the file, the first is used.
-    Only audio ('soun') tracks will be read.
+    Only video ('soun') tracks will be read.
     """
 
     def load(self, filename):

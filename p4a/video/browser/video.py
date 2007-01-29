@@ -9,16 +9,16 @@ from zope.app.event import objectevent
 from zope.app.i18n import ZopeMessageFactory as _
 from zope.i18n import translate
 
-from p4a.audio import genre
-from p4a.audio import interfaces
-from p4a.audio.browser import media
-from p4a.audio.browser import widget
+from p4a.video import genre
+from p4a.video import interfaces
+from p4a.video.browser import media
+from p4a.video.browser import widget
 
 from p4a.common import formatting
 
 from Products.CMFCore import utils as cmfutils
 
-class IAudioView(interface.Interface):
+class IVideoView(interface.Interface):
     def title(): pass
     def artist(): pass
     def album(): pass
@@ -29,57 +29,57 @@ class IAudioView(interface.Interface):
     def bit_rate(): pass
     def frequency(): pass
     def length(): pass
-    def audio_type(): pass
+    def video_type(): pass
     def has_media_player(): pass
 
 
-class AudioView(object):
+class VideoView(object):
     """
     """
     
     def __init__(self, context, request):
-        self.audio_info = interfaces.IAudio(context)
+        self.video_info = interfaces.IVideo(context)
 
         mime_type = unicode(context.get_content_type())
-        self.media_player = component.queryAdapter(self.audio_info.file,
+        self.media_player = component.queryAdapter(self.video_info.file,
                                                    interfaces.IMediaPlayer,
                                                    mime_type)
 
-    def title(self): return self.audio_info.title
-    def artist(self): return self.audio_info.artist
-    def album(self): return self.audio_info.album
-    def year(self): return self.audio_info.year
-    def comment(self): return self.audio_info.comment
-    def variable_bit_rate(self): return self.audio_info.variable_bit_rate
-    def audio_type(self): return self.audio_info.audio_type
+    def title(self): return self.video_info.title
+    def artist(self): return self.video_info.artist
+    def album(self): return self.video_info.album
+    def year(self): return self.video_info.year
+    def comment(self): return self.video_info.comment
+    def variable_bit_rate(self): return self.video_info.variable_bit_rate
+    def video_type(self): return self.video_info.video_type
     def has_media_player(self): return self.media_player is not None
 
     def genre(self): 
-        g = self.audio_info.genre
+        g = self.video_info.genre
         if g in genre.GENRE_VOCABULARY:
             return genre.GENRE_VOCABULARY.getTerm(g).title
         return u''
 
     def frequency(self): 
-        if not self.audio_info.frequency:
+        if not self.video_info.frequency:
             return 'N/A'
-        return '%i Khz' % (self.audio_info.frequency / 1000)
+        return '%i Khz' % (self.video_info.frequency / 1000)
 
     def bit_rate(self): 
-        return '%i Kbps' % (self.audio_info.bit_rate / 1000)
+        return '%i Kbps' % (self.video_info.bit_rate / 1000)
 
     def length(self):
-        return formatting.fancy_time_amount(self.audio_info.length)
+        return formatting.fancy_time_amount(self.video_info.length)
 
-class AudioPageView(media.BaseMediaDisplayView):
-    """Page for displaying audio.
+class VideoPageView(media.BaseMediaDisplayView):
+    """Page for displaying video.
     """
 
-    adapted_interface = interfaces.IAudio
+    adapted_interface = interfaces.IVideo
     media_field = 'file'
 
-    form_fields = form.FormFields(interfaces.IAudio)
-    label = u'View Audio Info'
+    form_fields = form.FormFields(interfaces.IVideo)
+    label = u'View Video Info'
     
     def has_contentlicensing_support(self):
         try:
@@ -94,15 +94,15 @@ class AudioPageView(media.BaseMediaDisplayView):
 
         return True
 
-class PopupAudioPageView(media.BaseMediaDisplayView):
-    """Page for displaying audio.
+class PopupVideoPageView(media.BaseMediaDisplayView):
+    """Page for displaying video.
     """
 
-    adapted_interface = interfaces.IAudio
+    adapted_interface = interfaces.IVideo
     media_field = 'file'
 
     form_fields = ()
-    label = u'Popup Audio Player'
+    label = u'Popup Video Player'
 
 def applyChanges(context, form_fields, data, adapters=None):
     if adapters is None:
@@ -130,19 +130,19 @@ def applyChanges(context, form_fields, data, adapters=None):
 
     return changed
 
-class AudioEditForm(form.EditForm):
-    """Form for editing audio fields.
+class VideoEditForm(form.EditForm):
+    """Form for editing video fields.
     """
     
-    form_fields = form.FormFields(interfaces.IAudio)
-    label = u'Edit Audio Data'
+    form_fields = form.FormFields(interfaces.IVideo)
+    label = u'Edit Video Data'
     
     @form.action(_("Apply"), condition=form.haveInputWidgets)
     def handle_edit_action(self, action, data):
         changed = applyChanges(
             self.context, self.form_fields, data, self.adapters)
         if changed:
-            attrs = objectevent.Attributes(interfaces.IAudio, *changed)
+            attrs = objectevent.Attributes(interfaces.IVideo, *changed)
             event.notify(
                 objectevent.ObjectModifiedEvent(self.context, attrs)
                 )
@@ -154,8 +154,8 @@ class AudioEditForm(form.EditForm):
         msg = urllib.quote(translate(self.status))
         redirect(self.context.absolute_url()+'/view?portal_status_message=%s' % msg)
     
-class AudioStreamerView(object):
-    """View for streaming audio file as M3U.
+class VideoStreamerView(object):
+    """View for streaming video file as M3U.
     """
     
     def __init__(self, context, request):
@@ -169,37 +169,37 @@ class AudioStreamerView(object):
             file_sans_ext = file_sans_ext[:pos]
         
         response = self.request.response
-        response.setHeader('Content-Type', 'audio/x-mpegurl')
+        response.setHeader('Content-Type', 'video/x-mpegurl')
         response.setHeader('Content-Disposition', 
                            'attachment; filename="%s.m3u"' % file_sans_ext)
         return self.request.URL1 + '\n'
 
 
-class AudioContainerView(object):
-    """View for audio containers.
+class VideoContainerView(object):
+    """View for video containers.
     """
     
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self._audio_items = None
+        self._video_items = None
         self._total_length = None
         
         self._build_info()
 
     def _build_info(self):
-        provider = interfaces.IAudioProvider(self.context)
+        provider = interfaces.IVideoProvider(self.context)
         
         # cheating here by getting file properties we need by looking
         # up context attribute which isn't in the interface contract
-        self._audio_items = []
+        self._video_items = []
         self._total_length = 0
         
-        for x in provider.audio_items:
+        for x in provider.video_items:
             aFile = x.context
             field = aFile.getFile()
             w = self._widget(x)
-            self._audio_items.append( \
+            self._video_items.append( \
                 {'title': x.title,
                  'url': aFile.absolute_url(),
                  'size': formatting.fancy_data_size(field.get_size()),
@@ -210,13 +210,13 @@ class AudioContainerView(object):
                  })
             self._total_length += x.length
 
-    def _widget(self, audio):
-        field = interfaces.IAudio['file'].bind(audio)
+    def _widget(self, video):
+        field = interfaces.IVideo['file'].bind(video)
         w = widget.MediaPlayerWidget(field, self.request)
         return w()
         
-    def audio_items(self):
-        return self._audio_items
+    def video_items(self):
+        return self._video_items
     
     def total_length(self):
         return formatting.fancy_time_amount(self._total_length)

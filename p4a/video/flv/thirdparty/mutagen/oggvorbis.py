@@ -21,8 +21,8 @@ __all__ = ["OggVorbis", "Open", "delete"]
 
 import struct
 
-from p4a.audio.ogg.thirdparty.mutagen._vorbis import VCommentDict
-from p4a.audio.ogg.thirdparty.mutagen.ogg import OggPage, OggFileType, error as OggError
+from p4a.video.ogg.thirdparty.mutagen._vorbis import VCommentDict
+from p4a.video.ogg.thirdparty.mutagen.ogg import OggPage, OggFileType, error as OggError
 
 class error(OggError): pass
 class OggVorbisHeaderError(error): pass

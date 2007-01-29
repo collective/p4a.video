@@ -5,121 +5,121 @@
     i18n_domain="Plone4Artists">
 
   <resourceDirectory
-      name="audiostyles"
-      directory="resources/audiostyles"
+      name="videostyles"
+      directory="resources/videostyles"
       permission="zope.Public"
       />
 
   <resourceDirectory
-      name="audioimages"
-      directory="resources/audioimages"
+      name="videoimages"
+      directory="resources/videoimages"
       permission="zope.Public"
       />
 
   <page
-      name="audio-container.html"
-      for="p4a.audio.interfaces.IAudioContainerEnhanced"
+      name="video-container.html"
+      for="p4a.video.interfaces.IVideoContainerEnhanced"
       permission="zope2.View"
-      template="audio-container.pt"
-      class=".audio.AudioContainerView"
+      template="video-container.pt"
+      class=".video.VideoContainerView"
       />
 
   <page
-      name="audiocd-popup.html"
-      for="p4a.audio.interfaces.IAudioContainerEnhanced"
+      name="videocd-popup.html"
+      for="p4a.video.interfaces.IVideoContainerEnhanced"
       permission="zope2.View"
-      template="audiocd-popup.pt"
-      class=".audio.AudioContainerView"
+      template="videocd-popup.pt"
+      class=".video.VideoContainerView"
       />
 
   <page
       name="cd_playlist.xspf"
-      for="p4a.audio.interfaces.IAudioContainerEnhanced"
+      for="p4a.video.interfaces.IVideoContainerEnhanced"
       permission="zope2.View"
       template="cd_playlist.xspf.pt"
-      class=".audio.AudioContainerView"
+      class=".video.VideoContainerView"
       />
 
   <page
       name="file_view"
-      template="audio.pt"
-      for="p4a.audio.interfaces.IAudioEnhanced"
-      class=".audio.AudioPageView"
+      template="video.pt"
+      for="p4a.video.interfaces.IVideoEnhanced"
+      class=".video.VideoPageView"
       permission="zope2.View"
       />
 
   <page
-      name="audio_view"
-      class=".audio.AudioView"
-      allowed_interface=".audio.IAudioView"
-      for="p4a.audio.interfaces.IAudioEnhanced"
+      name="video_view"
+      class=".video.VideoView"
+      allowed_interface=".video.IVideoView"
+      for="p4a.video.interfaces.IVideoEnhanced"
       permission="zope2.View"
       />
 
   <page
       name="media-config.html"
-      for="p4a.audio.interfaces.IPossibleAudioContainer"
+      for="p4a.video.interfaces.IPossibleVideoContainer"
       permission="cmf.ModifyPortalContent"
       class=".media.ToggleEnhancementsView"
       />
 
   <page
       name="media-config.html"
-      for="p4a.audio.interfaces.IPossibleAudio"
+      for="p4a.video.interfaces.IPossibleVideo"
       permission="cmf.ModifyPortalContent"
       class=".media.ToggleEnhancementsView"
       />
 
   <page
       name="atct_edit"
-      for="p4a.audio.interfaces.IAudioEnhanced"
+      for="p4a.video.interfaces.IVideoEnhanced"
       permission="cmf.ModifyPortalContent"
-      class=".audio.AudioEditForm"
+      class=".video.VideoEditForm"
       />
 
   <page
       name="stream.m3u"
-      for="p4a.audio.interfaces.IAudioEnhanced"
+      for="p4a.video.interfaces.IVideoEnhanced"
       permission="zope2.View"
-      class=".audio.AudioStreamerView"
+      class=".video.VideoStreamerView"
       />
 
   <page
       name="popup-play.html"
-      for="p4a.audio.interfaces.IAudioEnhanced"
+      for="p4a.video.interfaces.IVideoEnhanced"
       permission="zope2.View"
-      class=".audio.PopupAudioPageView"
+      class=".video.PopupVideoPageView"
       template="popup-play.pt"
       />
 
   <menuItem
       menu="object_buttons"
-      for="p4a.audio.interfaces.IAnyAudioCapable"
-      title="Deactivate Audio"
+      for="p4a.video.interfaces.IAnyVideoCapable"
+      title="Deactivate Video"
       action="${object_url}/media-config.html"
-      filter="object/@@p4aaudiosupport/can_deactivate_audio"
+      filter="object/@@p4avideosupport/can_deactivate_video"
       permission="cmf.ModifyPortalContent"
       />
 
   <menuItem
       menu="object_buttons"
-      for="p4a.audio.interfaces.IAnyAudioCapable"
-      title="Activate Audio"
+      for="p4a.video.interfaces.IAnyVideoCapable"
+      title="Activate Video"
       action="${object_url}/media-config.html"
-      filter="object/@@p4aaudiosupport/can_activate_audio"
+      filter="object/@@p4avideosupport/can_activate_video"
       permission="cmf.ModifyPortalContent"
       />
 
   <zope:adapter 
-        factory=".displays.AudioContainerDynamicViews"
+        factory=".displays.VideoContainerDynamicViews"
         />
 
   <page
-      name="p4aaudiosupport"
+      name="p4avideosupport"
       for="*"
       class=".support.Support"
       permission="zope.Public"
-      allowed_interface=".support.IContextualAudioSupport"
+      allowed_interface=".support.IContextualVideoSupport"
       />
 
 </configure>

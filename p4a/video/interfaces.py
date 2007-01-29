@@ -2,31 +2,31 @@ from zope import interface
 from zope import schema
 from p4a.fileimage import file as p4afile
 from p4a.fileimage import image as p4aimage
-from p4a.audio import genre
+from p4a.video import genre
 
-class IAnyAudioCapable(interface.Interface):
-    """Any aspect of audio/content capable.
+class IAnyVideoCapable(interface.Interface):
+    """Any aspect of video/content capable.
     """
 
-class IPossibleAudio(IAnyAudioCapable):
+class IPossibleVideo(IAnyVideoCapable):
     """All objects that should have the ability to be converted to some
-    form of audio should implement this interface.
+    form of video should implement this interface.
     """
 
-class IAudioEnhanced(interface.Interface):
+class IVideoEnhanced(interface.Interface):
     """All objects that have their media features activated/enhanced
     should have this marker interface applied.
     """
 
-class IAudio(interface.Interface):
-    """Objects which have audio information.
+class IVideo(interface.Interface):
+    """Objects which have video information.
     """
     
-    title = schema.TextLine(title=u'Audio Title', required=False)
+    title = schema.TextLine(title=u'Video Title', required=False)
     file = p4afile.FileField(title=u'File', required=False)
     artist = schema.TextLine(title=u'Artist', required=False)
     album = schema.TextLine(title=u'Album', required=False)
-    audio_image = p4aimage.ImageField(title=u'Audio Image', required=False,
+    video_image = p4aimage.ImageField(title=u'Video Image', required=False,
                                       preferred_dimensions=(150, 150))
     year = schema.Int(title=u'Year', required=False)
     genre = schema.Choice(title=u'Genre', required=False, 
@@ -42,15 +42,15 @@ class IAudio(interface.Interface):
     length = schema.Int(title=u'Length',
                         readonly=True)
 
-    audio_type = schema.TextLine(title=u'Audio Type', 
+    video_type = schema.TextLine(title=u'Video Type', 
                                  required=True, 
                                  readonly=True)
 
-class IAudioDataAccessor(interface.Interface):
-    """Audio implementation accessor (ie mp3, ogg, etc).
+class IVideoDataAccessor(interface.Interface):
+    """Video implementation accessor (ie mp3, ogg, etc).
     """
     
-    audio_type = schema.TextLine(title=u'Audio Type', 
+    video_type = schema.TextLine(title=u'Video Type', 
                                  required=True, 
                                  readonly=True)
     
@@ -64,36 +64,36 @@ class IMediaPlayer(interface.Interface):
     """
     
     def __call__(downloadurl):
-        """Return the HTML required to play the audio content located
+        """Return the HTML required to play the video content located
         at *downloadurl*.
         """
 
-class IPossibleAudioContainer(IAnyAudioCapable):
-    """Any folderish entity tha can be turned into an actual audio 
+class IPossibleVideoContainer(IAnyVideoCapable):
+    """Any folderish entity tha can be turned into an actual video 
     container.
     """
 
-class IAudioContainerEnhanced(interface.Interface):
-    """Any folderish entity that has had it's IAudioContainer features
+class IVideoContainerEnhanced(interface.Interface):
+    """Any folderish entity that has had it's IVideoContainer features
     enabled.
     """
 
-class IAudioProvider(interface.Interface):
-    """Provide audio.
+class IVideoProvider(interface.Interface):
+    """Provide video.
     """
     
-    audio_items = schema.List(title=u'Audio Items',
+    video_items = schema.List(title=u'Video Items',
                               required=True,
                               readonly=True)
 
-class IBasicAudioSupport(interface.Interface):
-    """Provides certain information about audio support.
+class IBasicVideoSupport(interface.Interface):
+    """Provides certain information about video support.
     """
 
-    support_enabled = schema.Bool(title=u'Audio Support Enabled?',
+    support_enabled = schema.Bool(title=u'Video Support Enabled?',
                                   required=True,
                                   readonly=True)
 
-class IAudioSupport(IBasicAudioSupport):
-    """Provides full information about audio support.
+class IVideoSupport(IBasicVideoSupport):
+    """Provides full information about video support.
     """

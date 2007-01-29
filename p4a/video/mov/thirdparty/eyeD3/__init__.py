@@ -39,8 +39,8 @@ LOCAL_ENCODING = locale.getpreferredencoding();
 if not LOCAL_ENCODING or LOCAL_ENCODING == "ANSI_X3.4-1968":
     LOCAL_ENCODING = 'latin1';
 
-from p4a.audio.mp3.thirdparty.eyeD3 import frames;
-from p4a.audio.mp3.thirdparty.eyeD3 import mp3;
-from p4a.audio.mp3.thirdparty.eyeD3 import tag;
-from p4a.audio.mp3.thirdparty.eyeD3.tag import *;
-from p4a.audio.mp3.thirdparty.eyeD3 import utils;
+from p4a.video.mp3.thirdparty.eyeD3 import frames;
+from p4a.video.mp3.thirdparty.eyeD3 import mp3;
+from p4a.video.mp3.thirdparty.eyeD3 import tag;
+from p4a.video.mp3.thirdparty.eyeD3.tag import *;
+from p4a.video.mp3.thirdparty.eyeD3 import utils;

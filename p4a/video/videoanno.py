@@ -4,44 +4,44 @@ from zope import event
 from zope import interface
 from zope.app.annotation import interfaces as annointerfaces
 from zope.app.event import objectevent
-from p4a.audio import interfaces
+from p4a.video import interfaces
 from p4a.fileimage import DictProperty
 
-class AudioAnnotationAddedEvent(objectevent.ObjectEvent):
-    """Annotations added to an object for audio metadata.
+class VideoAnnotationAddedEvent(objectevent.ObjectEvent):
+    """Annotations added to an object for video metadata.
     """
 
-class AnnotationAudio(object):
-    """An IAudio adapter designed to handle ATCT based file content.
+class AnnotationVideo(object):
+    """An IVideo adapter designed to handle ATCT based file content.
     """
     
-    interface.implements(interfaces.IAudio)
+    interface.implements(interfaces.IVideo)
 
-    ANNO_KEY = 'p4a.audio.audioanno.AnnotationAudio'
+    ANNO_KEY = 'p4a.video.videoanno.AnnotationVideo'
 
     def __init__(self, context):
         self.context = context
         annotations = annointerfaces.IAnnotations(context)
-        self.audio_data = annotations.get(self.ANNO_KEY, None)
-        if self.audio_data is None:
-            self.audio_data = PersistentDict()
-            annotations[self.ANNO_KEY] = self.audio_data
-            event.notify(AudioAnnotationAddedEvent(self))
+        self.video_data = annotations.get(self.ANNO_KEY, None)
+        if self.video_data is None:
+            self.video_data = PersistentDict()
+            annotations[self.ANNO_KEY] = self.video_data
+            event.notify(VideoAnnotationAddedEvent(self))
 
 
-    title = DictProperty(interfaces.IAudio['title'], 'audio_data')
-    artist = DictProperty(interfaces.IAudio['artist'], 'audio_data')
-    album = DictProperty(interfaces.IAudio['album'], 'audio_data')
-    year = DictProperty(interfaces.IAudio['year'], 'audio_data')
-    genre = DictProperty(interfaces.IAudio['genre'], 'audio_data')
-    comment = DictProperty(interfaces.IAudio['comment'], 'audio_data')
+    title = DictProperty(interfaces.IVideo['title'], 'video_data')
+    artist = DictProperty(interfaces.IVideo['artist'], 'video_data')
+    album = DictProperty(interfaces.IVideo['album'], 'video_data')
+    year = DictProperty(interfaces.IVideo['year'], 'video_data')
+    genre = DictProperty(interfaces.IVideo['genre'], 'video_data')
+    comment = DictProperty(interfaces.IVideo['comment'], 'video_data')
 
-    variable_bit_rate = DictProperty(interfaces.IAudio['variable_bit_rate'], 
-                                     'audio_data')
-    bit_rate = DictProperty(interfaces.IAudio['bit_rate'], 'audio_data')
-    frequency = DictProperty(interfaces.IAudio['frequency'], 'audio_data')
-    length = DictProperty(interfaces.IAudio['length'], 'audio_data')
-    file = DictProperty(interfaces.IAudio['file'], 'audio_data')
-    audio_image = DictProperty(interfaces.IAudio['audio_image'], 'audio_data')
+    variable_bit_rate = DictProperty(interfaces.IVideo['variable_bit_rate'], 
+                                     'video_data')
+    bit_rate = DictProperty(interfaces.IVideo['bit_rate'], 'video_data')
+    frequency = DictProperty(interfaces.IVideo['frequency'], 'video_data')
+    length = DictProperty(interfaces.IVideo['length'], 'video_data')
+    file = DictProperty(interfaces.IVideo['file'], 'video_data')
+    video_image = DictProperty(interfaces.IVideo['video_image'], 'video_data')
 
-    audio_type = DictProperty(interfaces.IAudio['audio_type'], 'audio_data')
+    video_type = DictProperty(interfaces.IVideo['video_type'], 'video_data')

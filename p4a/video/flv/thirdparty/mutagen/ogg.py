@@ -22,8 +22,8 @@ import zlib
 
 from cStringIO import StringIO
 
-from p4a.audio.ogg.thirdparty.mutagen import FileType
-from p4a.audio.ogg.thirdparty.mutagen._util import cdata, insert_bytes, delete_bytes
+from p4a.video.ogg.thirdparty.mutagen import FileType
+from p4a.video.ogg.thirdparty.mutagen._util import cdata, insert_bytes, delete_bytes
 
 class error(IOError):
     """Ogg stream parsing errors."""

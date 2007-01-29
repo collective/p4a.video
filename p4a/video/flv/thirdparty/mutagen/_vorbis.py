@@ -18,8 +18,8 @@ import sys
 
 from cStringIO import StringIO
 
-from p4a.audio.ogg.thirdparty import mutagen
-from p4a.audio.ogg.thirdparty.mutagen._util import DictMixin, cdata
+from p4a.video.ogg.thirdparty import mutagen
+from p4a.video.ogg.thirdparty.mutagen._util import DictMixin, cdata
 
 try: set
 except NameError:

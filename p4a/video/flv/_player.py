@@ -1,9 +1,9 @@
 from zope import interface
 from zope import component
-from p4a.audio import interfaces
+from p4a.video import interfaces
 from Products.CMFCore import utils as cmfutils
 
-class OggAudioPlayer(object):
+class OggVideoPlayer(object):
     interface.implements(interfaces.IMediaPlayer)
     component.adapts(object)
     
@@ -25,7 +25,7 @@ class OggAudioPlayer(object):
               <param name="local" value="false"/>
               <param name="duration" value="00352"/>
               <param name="video" value="false"/>
-              <param name="audio" value="true"/>
+              <param name="video" value="true"/>
               <param name="bufferSize" value="200"/>
               <param name="debug" value="3" />
             </applet>

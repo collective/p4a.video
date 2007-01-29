@@ -5,7 +5,7 @@
 # it under the terms of version 2 of the GNU General Public License as
 # published by the Free Software Foundation.
 
-"""MPEG audio stream information and tags."""
+"""MPEG video stream information and tags."""
 
 import os
 import struct
@@ -17,25 +17,25 @@ class HeaderNotFoundError(error, IOError): pass
 class InvalidMPEGHeader(error, IOError): pass
 
 class MPEGInfo(object):
-    """MPEG audio stream information
+    """MPEG video stream information
 
-    Parse information about an MPEG audio file. This also reads the
+    Parse information about an MPEG video file. This also reads the
     Xing VBR header format.
 
     This code was implemented based on the format documentation at
     http://www.dv.co.yu/mpgscript/mpeghdr.htm.
 
     Useful attributes:
-    length -- audio length, in seconds
-    bitrate -- audio bitrate, in bits per second
-    sketchy -- if true, the file may not be valid MPEG audio
+    length -- video length, in seconds
+    bitrate -- video bitrate, in bits per second
+    sketchy -- if true, the file may not be valid MPEG video
 
     Useless attributes:
     version -- MPEG version (1, 2, 2.5)
     layer -- 1, 2, or 3
     protected -- whether or not the file is "protected"
-    padding -- whether or not audio frames are padded
-    sample_rate -- audio sample rate, in Hz
+    padding -- whether or not video frames are padded
+    sample_rate -- video sample rate, in Hz
     """
 
     # Map (version, layer) tuples to bitrates.
@@ -171,7 +171,7 @@ class MPEGInfo(object):
             xing = data[:-4].index("Xing")
         except ValueError: pass
         else:
-            # If a Xing header was found, this is definitely MPEG audio.
+            # If a Xing header was found, this is definitely MPEG video.
             self.sketchy = False
             flags = struct.unpack('>I', data[xing + 4:xing + 8])[0]
             if flags & 0x1:
@@ -190,7 +190,7 @@ class MPEGInfo(object):
         return s
 
 class MP3(ID3FileType):
-    """An MPEG audio (usually MPEG-1 Layer 3) file."""
+    """An MPEG video (usually MPEG-1 Layer 3) file."""
 
     _Info = MPEGInfo
 

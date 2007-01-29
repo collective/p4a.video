@@ -1,9 +1,9 @@
 from zope import interface
 from zope import component
-from p4a.audio import interfaces
+from p4a.video import interfaces
 from Products.CMFCore import utils as cmfutils
 
-class MP3AudioPlayer(object):
+class MP3VideoPlayer(object):
     interface.implements(interfaces.IMediaPlayer)
     component.adapts(object)
     

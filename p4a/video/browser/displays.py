@@ -1,13 +1,13 @@
 from zope import interface
 from zope import component
-from p4a.audio import interfaces
+from p4a.video import interfaces
 
 from Products.CMFDynamicViewFTI import interfaces as cmfdynifaces
 
-class AudioContainerDynamicViews(object):
+class VideoContainerDynamicViews(object):
     
     interface.implements(cmfdynifaces.IDynamicallyViewable)
-    component.adapts(interfaces.IAudioContainerEnhanced)
+    component.adapts(interfaces.IVideoContainerEnhanced)
 
     def __init__(self, context):
         self.context = context # Actually ignored...
@@ -20,9 +20,9 @@ class AudioContainerDynamicViews(object):
     def getDefaultViewMethod(self):
         """Get the default view method name
         """
-        return "audio-container.html"
+        return "video-container.html"
 
     def getAvailableLayouts(self):
         """Get the layouts registered for this object.
         """        
-        return (("audio-container.html", "Audio view"),)
+        return (("video-container.html", "Video view"),)

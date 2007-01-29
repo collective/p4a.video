@@ -1,6 +1,6 @@
 from zope import component
 from zope.app.form.browser import widget
-from p4a.audio import interfaces
+from p4a.video import interfaces
 from p4a.fileimage import file
 
 class MediaPlayerWidget(file.FileDownloadWidget):

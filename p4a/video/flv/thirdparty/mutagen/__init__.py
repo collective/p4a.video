@@ -26,7 +26,7 @@ version_string = ".".join(map(str, version))
 
 import warnings
 
-from p4a.audio.ogg.thirdparty.mutagen import _util
+from p4a.video.ogg.thirdparty.mutagen import _util
 
 class Metadata(dict):
     """An abstract dict-like object.
@@ -48,7 +48,7 @@ class Metadata(dict):
         raise NotImplementedError
 
 class FileType(_util.DictMixin):
-    """An abstract object wrapping tags and audio stream information.
+    """An abstract object wrapping tags and video stream information.
 
     Attributes:
     info -- stream information (length, bitrate, sample rate)
@@ -150,18 +150,18 @@ def File(filename, options=None):
     """
 
     if options is None:
-        from p4a.audio.ogg.thirdparty.mutagen.apev2 import APEv2File
-        from p4a.audio.ogg.thirdparty.mutagen.flac import FLAC
-        from p4a.audio.ogg.thirdparty.mutagen.id3 import ID3FileType
-        from p4a.audio.ogg.thirdparty.mutagen.mp3 import MP3
-        from p4a.audio.ogg.thirdparty.mutagen.oggflac import OggFLAC
-        from p4a.audio.ogg.thirdparty.mutagen.oggspeex import OggSpeex
-        from p4a.audio.ogg.thirdparty.mutagen.oggtheora import OggTheora
-        from p4a.audio.ogg.thirdparty.mutagen.oggvorbis import OggVorbis
-        from p4a.audio.ogg.thirdparty.mutagen.trueaudio import TrueAudio
-        from p4a.audio.ogg.thirdparty.mutagen.wavpack import WavPack
-        from p4a.audio.ogg.thirdparty.mutagen.m4a import M4A
-        options = [MP3, TrueAudio, OggTheora, OggSpeex, OggVorbis, OggFLAC,
+        from p4a.video.ogg.thirdparty.mutagen.apev2 import APEv2File
+        from p4a.video.ogg.thirdparty.mutagen.flac import FLAC
+        from p4a.video.ogg.thirdparty.mutagen.id3 import ID3FileType
+        from p4a.video.ogg.thirdparty.mutagen.mp3 import MP3
+        from p4a.video.ogg.thirdparty.mutagen.oggflac import OggFLAC
+        from p4a.video.ogg.thirdparty.mutagen.oggspeex import OggSpeex
+        from p4a.video.ogg.thirdparty.mutagen.oggtheora import OggTheora
+        from p4a.video.ogg.thirdparty.mutagen.oggvorbis import OggVorbis
+        from p4a.video.ogg.thirdparty.mutagen.truevideo import TrueVideo
+        from p4a.video.ogg.thirdparty.mutagen.wavpack import WavPack
+        from p4a.video.ogg.thirdparty.mutagen.m4a import M4A
+        options = [MP3, TrueVideo, OggTheora, OggSpeex, OggVorbis, OggFLAC,
                    FLAC, APEv2File, M4A, ID3FileType, WavPack]
 
     if not options:

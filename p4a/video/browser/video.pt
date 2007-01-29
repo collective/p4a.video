@@ -5,13 +5,13 @@
 
 <body>
 <div metal:fill-slot="css_slot">
-<link rel="stylesheet" href="audio.css"
-      tal:attributes="href string:$portal_url/++resource++audiostyles/audio.css"
+<link rel="stylesheet" href="video.css"
+      tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
       />
 </div>
 
 <div metal:fill-slot="main"
-     tal:define="audio_info context/@@audio_view;
+     tal:define="video_info context/@@video_view;
                  context_url string:${context/absolute_url};
                  mime_type context/content_type;
      ">
@@ -22,7 +22,7 @@
             Document actions (print, sendto etc)
         </div>
 
-        <h1 tal:content="audio_info/title" class="documentFirstHeading">
+        <h1 tal:content="video_info/title" class="documentFirstHeading">
             Title or id
         </h1>
 
@@ -31,7 +31,7 @@
         </div>
 
         <div id="summary_wrapper">
-            <div id="audio_metadata">
+            <div id="video_metadata">
                 <div><strong i18n:translate="label_size">Size:</strong>
                     <span tal:condition="size" tal:content="size">257 KB</span>
                     <span tal:condition="python:size is None or size < 1" i18n:translate="no_file_uploaded">
@@ -39,16 +39,16 @@
                     </span>
                 </div>
                 <div><strong i18n:translate="label_file_type">File type:</strong>
-                    <span tal:content="string:${audio_info/audio_type} ($mime_type)">Content type</span>
+                    <span tal:content="string:${video_info/video_type} ($mime_type)">Content type</span>
                 </div>    
                 <div><strong i18n:translate="label_bitrate">Bit rate:</strong>
-                    <span tal:content="audio_info/bit_rate">Bitrate</span>
+                    <span tal:content="video_info/bit_rate">Bitrate</span>
                 </div>
                 <div><strong i18n:translate="label_frequency">Frequency:</strong>
-                    <span tal:content="audio_info/frequency">Frequency</span>
+                    <span tal:content="video_info/frequency">Frequency</span>
                 </div>
                 <div><strong i18n:translate="label_track_length">Track length:</strong>
-                    <span tal:content="audio_info/length">Track length</span>
+                    <span tal:content="video_info/length">Track length</span>
                 </div>
 
             </div>
@@ -57,7 +57,7 @@
                 <div id="playback_widgets">
                     <div tal:replace="structure view/widgets/media_player"></div>
 
-            <a tal:condition="audio_info/has_media_player" id="popup_play_icon"
+            <a tal:condition="video_info/has_media_player" id="popup_play_icon"
                href="#" title="Play in popup window" class="widget_icon"
                tal:attributes="href string:javascript:void window.open('${context/absolute_url}/popup-play.html', '', 'width=200, height=45, toolbar=no, location=no, directories=no, status=no, menubar=no')">
             </a>
@@ -68,30 +68,30 @@
 
                 </div>
 
-            <div class="audio-images">
-              <img tal:replace="structure view/widgets/audio_image" />
+            <div class="video-images">
+              <img tal:replace="structure view/widgets/video_image" />
             </div>
 
                 <div id="object_metadata">
                     <p>
                       <strong>Artist:</strong>
-                      <span tal:condition="audio_info/artist|nothing" tal:content="audio_info/artist">Artist</span>
+                      <span tal:condition="video_info/artist|nothing" tal:content="video_info/artist">Artist</span>
                     </p>
                     <p>
                       <strong>Album:</strong> 
-                      <span tal:condition="audio_info/album | nothing" tal:content="audio_info/album">Album</span>
+                      <span tal:condition="video_info/album | nothing" tal:content="video_info/album">Album</span>
                     </p>
                     <p>
                       <strong>Year:</strong> 
-                      <span tal:condition="audio_info/year | nothing" tal:content="audio_info/year">Year</span>
+                      <span tal:condition="video_info/year | nothing" tal:content="video_info/year">Year</span>
                     </p>
                     <p>
                         <strong>Genre:</strong>
-                        <span tal:content="audio_info/genre|nothing" ></span>
+                        <span tal:content="video_info/genre|nothing" ></span>
                     </p>
                     <p>
                       <strong>Comment:</strong>
-                      <span tal:condition="audio_info/comment | nothing" tal:content="audio_info/comment">Comment</span>
+                      <span tal:condition="video_info/comment | nothing" tal:content="video_info/comment">Comment</span>
                     </p>
 
 			        <tal:block tal:condition="view/has_contentlicensing_support">

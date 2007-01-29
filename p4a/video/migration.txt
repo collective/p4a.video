@@ -32,7 +32,7 @@ adaptation.
 We also need to setup the standard IMigrator utility, but for example
 here we simply need to instantiate our utility class.
 
-  >>> from p4a.audio import migration
+  >>> from p4a.video import migration
   >>> migrator = migration.Migrator()
   
 So now we go ahead and setup some basic structures.

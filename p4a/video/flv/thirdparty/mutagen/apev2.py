@@ -25,7 +25,7 @@ are flagged as one of text, binary, or an external reference (usually
 a URI).
 
 Based off the format specification found at
-http://wiki.hydrogenaudio.org/index.php?title=APEv2_specification.
+http://wiki.hydrogenvideo.org/index.php?title=APEv2_specification.
 """
 
 __all__ = ["APEv2", "APEv2File", "Open", "delete"]
@@ -49,8 +49,8 @@ class APENoHeaderError(error, ValueError): pass
 class APEUnsupportedVersionError(error, ValueError): pass
 class APEBadItemError(error, ValueError): pass
 
-from p4a.audio.ogg.thirdparty.mutagen import Metadata, FileType
-from p4a.audio.ogg.thirdparty.mutagen._util import DictMixin, cdata, utf8, delete_bytes
+from p4a.video.ogg.thirdparty.mutagen import Metadata, FileType
+from p4a.video.ogg.thirdparty.mutagen._util import DictMixin, cdata, utf8, delete_bytes
 
 class _APEv2Data(object):
     # Store offsets of the important parts of the file.

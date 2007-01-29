@@ -8,8 +8,8 @@
                   portal_url portal/absolute_url">
   <title tal:content="view/label"></title>
 
-  <link rel="stylesheet" href="audio.css"
-        tal:attributes="href string:$portal_url/++resource++audiostyles/audio.css"
+  <link rel="stylesheet" href="video.css"
+        tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
         />
 </head>
 

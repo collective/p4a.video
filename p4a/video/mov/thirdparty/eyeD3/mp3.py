@@ -17,8 +17,8 @@
 #  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 ################################################################################
-from p4a.audio.mp3.thirdparty.eyeD3.binfuncs import *;
-from p4a.audio.mp3.thirdparty.eyeD3.utils import *;
+from p4a.video.mp3.thirdparty.eyeD3.binfuncs import *;
+from p4a.video.mp3.thirdparty.eyeD3.utils import *;
 
 #######################################################################
 class Mp3Exception(Exception):
@@ -118,9 +118,9 @@ class Header:
 
    # This may throw an Mp3Exception if the header is malformed.
    def decode(self, header):
-      # MPEG audio version from bits 19 and 20.
+      # MPEG video version from bits 19 and 20.
       if not header & (1 << 20) and header & (1 << 19):
-         raise Mp3Exception("Illegal MPEG audio version");
+         raise Mp3Exception("Illegal MPEG video version");
       elif not header & (1 << 20) and not header & (1 << 19):
          self.version = 2.5;
       else:
@@ -130,7 +130,7 @@ class Header:
             self.version = 1.0;
 
       
-      # MPEG audio layer from bits 18 and 17.
+      # MPEG video layer from bits 18 and 17.
       if not header & (1 << 18) and not header & (1 << 17):
          raise Mp3Exception("Illegal MPEG layer value");
       elif not header & (1 << 18) and header & (1 << 17):
@@ -232,8 +232,8 @@ class Header:
          self.frameLength = int(((144 * br) / sf) + p);
 
       # Dump the state.
-      TRACE_MSG("MPEG audio version: " + str(self.version));
-      TRACE_MSG("MPEG audio layer: " + ("I" * self.layer));
+      TRACE_MSG("MPEG video version: " + str(self.version));
+      TRACE_MSG("MPEG video layer: " + ("I" * self.layer));
       TRACE_MSG("MPEG sampling frequency: " + str(self.sampleFreq));
       TRACE_MSG("MPEG bit rate: " + str(self.bitRate));
       TRACE_MSG("MPEG channel mode: " + self.mode);

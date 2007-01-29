@@ -1206,7 +1206,7 @@ class TCOP(TextFrame): "Copyright (c)"
 class TDAT(TextFrame): "Date of recording (DDMM)"
 class TDEN(TimeStampTextFrame): "Encoding Time"
 class TDOR(TimeStampTextFrame): "Original Release Time"
-class TDLY(NumericTextFrame): "Audio Delay (ms)"
+class TDLY(NumericTextFrame): "Video Delay (ms)"
 class TDRC(TimeStampTextFrame): "Recording Time"
 class TDRL(TimeStampTextFrame): "Release Time"
 class TDTG(TimeStampTextFrame): "Tagging Time"
@@ -1218,8 +1218,8 @@ class TIT1(TextFrame): "Content group description"
 class TIT2(TextFrame): "Title"
 class TIT3(TextFrame): "Subtitle/Description refinement"
 class TKEY(TextFrame): "Starting Key"
-class TLAN(TextFrame): "Audio Languages"
-class TLEN(NumericTextFrame): "Audio Length (ms)"
+class TLAN(TextFrame): "Video Languages"
+class TLEN(NumericTextFrame): "Video Length (ms)"
 class TMED(TextFrame): "Source Media Type"
 class TMOO(TextFrame): "Mood"
 class TOAL(TextFrame): "Original Album"
@@ -1239,7 +1239,7 @@ class TRCK(NumericPartTextFrame): "Track Number"
 class TRDA(TextFrame): "Recording Dates"
 class TRSN(TextFrame): "Internet Radio Station Name"
 class TRSO(TextFrame): "Internet Radio Station Owner"
-class TSIZ(NumericTextFrame): "Size of audio data (bytes)"
+class TSIZ(NumericTextFrame): "Size of video data (bytes)"
 class TSOA(TextFrame): "Album Sort Order key"
 class TSOP(TextFrame): "Perfomer Sort Order key"
 class TSOT(TextFrame): "Title Sort Order key"
@@ -1384,9 +1384,9 @@ class RVA2(Frame):
 
     Attributes:
     desc -- description or context of this adjustment
-    channel -- audio channel to adjust (master is 1)
+    channel -- video channel to adjust (master is 1)
     gain -- a + or - dB gain relative to some reference level
-    peak -- peak of the audio as a floating point number, [0, 1]
+    peak -- peak of the video as a floating point number, [0, 1]
 
     When storing ReplayGain tags, use descriptions of 'album' and
     'track' on channel 1.
@@ -1526,7 +1526,7 @@ class RBUF(FrameOpt):
     def __pos__(self): return self.size
 
 class AENC(FrameOpt):
-    """Audio encryption.
+    """Video encryption.
 
     Attributes:
     owner -- key identifying this encryption type
@@ -1604,7 +1604,7 @@ class USER(Frame):
     Attributes:
     encoding -- text encoding
     lang -- ISO three letter language code
-    text -- licensing terms for the audio
+    text -- licensing terms for the video
     """
     _framespec = [ EncodingSpec('encoding'), StringSpec('lang', 3),
         EncodedTextSpec('text') ]
@@ -1686,7 +1686,7 @@ class SEEK(Frame):
     def __eq__(self, other): return self.offset == other
 
 class ASPI(Frame):
-    """Audio seek point index.
+    """Video seek point index.
 
     Attributes: S, L, N, b, and Fi. For the meaning of these, see
     the ID3v2.4 specification. Fi is a list of integers.
@@ -1713,7 +1713,7 @@ class TP3(TPE3): "Conductor"
 class TP4(TPE4): "Interpreter/Remixer/Modifier"
 class TCM(TCOM): "Composer"
 class TXT(TEXT): "Lyricist"
-class TLA(TLAN): "Audio Language(s)"
+class TLA(TLAN): "Video Language(s)"
 class TCO(TCON): "Content Type (Genre)"
 class TAL(TALB): "Album"
 class TPA(TPOS): "Part of set"
@@ -1731,9 +1731,9 @@ class TPB(TPUB): "Publisher"
 class TEN(TENC): "Encoder"
 class TSS(TSSE): "Encoder settings"
 class TOF(TOFN): "Original Filename"
-class TLE(TLEN): "Audio Length (ms)"
-class TSI(TSIZ): "Audio Data size (bytes)"
-class TDY(TDLY): "Audio Delay (ms)"
+class TLE(TLEN): "Video Length (ms)"
+class TSI(TSIZ): "Video Data size (bytes)"
+class TDY(TDLY): "Video Delay (ms)"
 class TKE(TKEY): "Starting Key"
 class TOT(TOAL): "Original Album"
 class TOA(TOPE): "Original Artist/Perfomer"
@@ -1781,7 +1781,7 @@ class CRM(Frame):
                    BinaryDataSpec('data') ]
     def __eq__(self, other): return self.data == other
 
-class CRA(AENC): "Audio encryption"
+class CRA(AENC): "Video encryption"
 
 class LNK(LINK):
     """Linked information"""

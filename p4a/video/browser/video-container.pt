@@ -6,7 +6,7 @@
   <body>
 
     <div metal:fill-slot="main"
-         tal:define="audio_items view/audio_items">
+         tal:define="video_items view/video_items">
     <metal:main-macro define-macro="main">
 
         <div metal:use-macro="here/document_actions/macros/document_actions">
@@ -25,12 +25,12 @@
         <a href=""
            tal:condition="view/has_syndication"
            tal:attributes="href string:${context/absolute_url}/rss.xml"
-           ><img src="" tal:attributes="src string:$portal_url/++resource++audioimages/feed-icon.png" /></a>
+           ><img src="" tal:attributes="src string:$portal_url/++resource++videoimages/feed-icon.png" /></a>
         <tal:foldercontents>
 
-        <p tal:condition="not: audio_items"
+        <p tal:condition="not: video_items"
            i18n:translate="description_no_visible_items_add_paste">
-          This CD has no audio files added to it.
+          This CD has no video files added to it.
         </p>
 
         <dl>
@@ -38,7 +38,7 @@
           <dd tal:content="view/total_length"></dd>
         </dl>
 
-        <tal:listing condition="audio_items">
+        <tal:listing condition="video_items">
           <table id="tracklisting"
                  class="listing" 
                  summary="Content listing"
@@ -58,9 +58,9 @@
 
             <metal:block>
               <tbody>
-                <metal:block tal:repeat="item audio_items">
+                <metal:block tal:repeat="item video_items">
                   <tr tal:define="oddrow repeat/item/odd">
-                    <td class="private audio_embedded_play"><tal:widget  tal:replace="structure item/widget" />
+                    <td class="private video_embedded_play"><tal:widget  tal:replace="structure item/widget" />
 
                     </td>
                                         

@@ -28,9 +28,9 @@ class WavPackInfo(object):
     """WavPack stream information.
 
     Attributes:
-    channels - number of audio channels (1 or 2)
+    channels - number of video channels (1 or 2)
     length - file length in seconds, as a float
-    sample_rate - audio sampling rate in Hz
+    sample_rate - video sampling rate in Hz
     version - WavPack stream version
     """
 
