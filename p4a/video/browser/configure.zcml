@@ -25,22 +25,6 @@
       />
 
   <page
-      name="videocd-popup.html"
-      for="p4a.video.interfaces.IVideoContainerEnhanced"
-      permission="zope2.View"
-      template="videocd-popup.pt"
-      class=".video.VideoContainerView"
-      />
-
-  <page
-      name="cd_playlist.xspf"
-      for="p4a.video.interfaces.IVideoContainerEnhanced"
-      permission="zope2.View"
-      template="cd_playlist.xspf.pt"
-      class=".video.VideoContainerView"
-      />
-
-  <page
       name="file_view"
       template="video.pt"
       for="p4a.video.interfaces.IVideoEnhanced"
@@ -75,13 +59,6 @@
       for="p4a.video.interfaces.IVideoEnhanced"
       permission="cmf.ModifyPortalContent"
       class=".video.VideoEditForm"
-      />
-
-  <page
-      name="stream.m3u"
-      for="p4a.video.interfaces.IVideoEnhanced"
-      permission="zope2.View"
-      class=".video.VideoStreamerView"
       />
 
   <page
