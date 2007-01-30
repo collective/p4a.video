@@ -30,7 +30,7 @@ def write_video_image(id3tags, video_image):
                 id3tags.frames[index] = frame
                 break
 
-class MOVVideoDataAccessor(object):
+class WMVVideoDataAccessor(object):
     interface.implements(interfaces.IVideoDataAccessor)
     
     def __init__(self, context):
@@ -38,7 +38,7 @@ class MOVVideoDataAccessor(object):
 
     @property
     def video_type(self):
-        return 'MOV'
+        return 'WMV'
 
     @property
     def _video(self):
