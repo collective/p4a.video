@@ -6,6 +6,7 @@
   <include package=".browser" />
   <include package=".mov" />
   <include package=".flv" />
+  <include package=".wmv" />
 
   <include package="zope.app.annotation" />
 
