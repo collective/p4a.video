@@ -15,7 +15,7 @@ class RealVideoPlayer(object):
         site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
         
         # playerurl = "%s/++resource++flashmp3player/musicplayer.swf?song_url=%s"
-        url = ''.join(contentobj.absolute_url(),'?embed'
+        url = ''.join(contentobj.absolute_url(),'?embed')
         # mime_type = contentobj.mime_type()
         
         return """
