@@ -20,10 +20,10 @@ class WMVVideoPlayer(object):
         
         return """
         <div class="hVlog" style="text-align: center">
-          <a href="%(url)s" class="hVlogTarget" type="video/x-ms-wmv" onclick="vPIPPlay(this, 'width=800, height=600, name=myname', '', 'active=true, caption=thinkbox caption'); return false;">
+          <a href="%(url)s" class="hVlogTarget" type="video/x-ms-wmv" onclick="vPIPPlay(this, '', '', 'active=true, controller=true'); return false;">
               <img src="http://www.plone.org/logo.jpg" /></a>
         <br />
-          <a href="%(url)s" type="video/x-ms-wmv" onclick="vPIPPlay(this, 'width=800, height=600, name=myname', '', 'active=true, caption=ThickBox Caption'); return false;">
+          <a href="%(url)s" type="video/x-ms-wmv" onclick="vPIPPlay(this, '', '', 'active=true, controller=true'); return false;">
         Play WindowsMedia version</a>
         </div>        
         """ % {'url': url}
