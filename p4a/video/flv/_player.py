@@ -19,15 +19,23 @@ class FLVVideoPlayer(object):
         downloadurl = contentobj.absolute_url()
         
         return """
-        <div class="flowplayer">
-            <object type="application/x-shockwave-flash" data="%(player)s" 
-            	width="320" height="263" id="FlowPlayer">
-            	<param name="allowScriptAccess" value="sameDomain" />
-            	<param name="movie" value="%(player)s" />
-            	<param name="quality" value="high" />
-            	<param name="scale" value="noScale" />
-            	<param name="wmode" value="transparent" />
-            	<param name="flashvars" value="config={videoFile: '%(url)s'}" />
-            </object>
+        <div class="hVlog" style="text-align: center">
+          <a href="" class="hVlogTarget" type="" onclick="vPIPPlay(this, '', '', ''); return false;">
+              <img src="http://www.plone.org/logo.jpg" /></a>
+        <br />
+          <a href="%(url)s" type="application/x-shockwave-flash" onclick="vPIPPlay(this, 'flv=true', 'FLVbuffer=15', 'active=true, caption=Play in ThickBox'); return false;">
+        Play Flash version</a>
         </div>
         """ % {'player': player, 'url': downloadurl}
+
+        # <div class="flowplayer">
+        #     <object type="application/x-shockwave-flash" data="%(player)s" 
+        #     	width="320" height="263" id="FlowPlayer">
+        #     	<param name="allowScriptAccess" value="sameDomain" />
+        #     	<param name="movie" value="%(player)s" />
+        #     	<param name="quality" value="high" />
+        #     	<param name="scale" value="noScale" />
+        #     	<param name="wmode" value="transparent" />
+        #     	<param name="flashvars" value="config={videoFile: '%(url)s'}" />
+        #     </object>
+        # </div>
