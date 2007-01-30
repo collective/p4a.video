@@ -30,18 +30,18 @@ class AnnotationVideo(object):
 
 
     title = DictProperty(interfaces.IVideo['title'], 'video_data')
-    artist = DictProperty(interfaces.IVideo['artist'], 'video_data')
-    album = DictProperty(interfaces.IVideo['album'], 'video_data')
-    year = DictProperty(interfaces.IVideo['year'], 'video_data')
-    genre = DictProperty(interfaces.IVideo['genre'], 'video_data')
-    comment = DictProperty(interfaces.IVideo['comment'], 'video_data')
+    # artist = DictProperty(interfaces.IVideo['artist'], 'video_data')
+    # album = DictProperty(interfaces.IVideo['album'], 'video_data')
+    # year = DictProperty(interfaces.IVideo['year'], 'video_data')
+    # genre = DictProperty(interfaces.IVideo['genre'], 'video_data')
+    # comment = DictProperty(interfaces.IVideo['comment'], 'video_data')
 
-    variable_bit_rate = DictProperty(interfaces.IVideo['variable_bit_rate'], 
-                                     'video_data')
-    bit_rate = DictProperty(interfaces.IVideo['bit_rate'], 'video_data')
-    frequency = DictProperty(interfaces.IVideo['frequency'], 'video_data')
-    length = DictProperty(interfaces.IVideo['length'], 'video_data')
+    # variable_bit_rate = DictProperty(interfaces.IVideo['variable_bit_rate'], 
+    #                                  'video_data')
+    # bit_rate = DictProperty(interfaces.IVideo['bit_rate'], 'video_data')
+    # frequency = DictProperty(interfaces.IVideo['frequency'], 'video_data')
+    # length = DictProperty(interfaces.IVideo['length'], 'video_data')
     file = DictProperty(interfaces.IVideo['file'], 'video_data')
-    video_image = DictProperty(interfaces.IVideo['video_image'], 'video_data')
+    # video_image = DictProperty(interfaces.IVideo['video_image'], 'video_data')
 
     video_type = DictProperty(interfaces.IVideo['video_type'], 'video_data')

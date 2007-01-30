@@ -24,23 +24,23 @@ class IVideo(interface.Interface):
     
     title = schema.TextLine(title=u'Video Title', required=False)
     file = p4afile.FileField(title=u'File', required=False)
-    artist = schema.TextLine(title=u'Artist', required=False)
-    album = schema.TextLine(title=u'Album', required=False)
-    video_image = p4aimage.ImageField(title=u'Video Image', required=False,
-                                      preferred_dimensions=(150, 150))
-    year = schema.Int(title=u'Year', required=False)
-    genre = schema.Choice(title=u'Genre', required=False, 
-                          vocabulary=genre.GENRE_VOCABULARY)
-    comment = schema.Text(title=u'Comment', required=False)
-
-    variable_bit_rate = schema.Bool(title=u'Variable Bit Rate',
-                                    readonly=True)
-    bit_rate = schema.Int(title=u'Bit Rate',
-                          readonly=True)
-    frequency = schema.Int(title=u'Frequency',
-                           readonly=True)
-    length = schema.Int(title=u'Length',
-                        readonly=True)
+    # artist = schema.TextLine(title=u'Artist', required=False)
+    # album = schema.TextLine(title=u'Album', required=False)
+    # video_image = p4aimage.ImageField(title=u'Video Image', required=False,
+    #                                   preferred_dimensions=(150, 150))
+    # year = schema.Int(title=u'Year', required=False)
+    # genre = schema.Choice(title=u'Genre', required=False, 
+    #                       vocabulary=genre.GENRE_VOCABULARY)
+    # comment = schema.Text(title=u'Comment', required=False)
+    # 
+    # variable_bit_rate = schema.Bool(title=u'Variable Bit Rate',
+    #                                 readonly=True)
+    # bit_rate = schema.Int(title=u'Bit Rate',
+    #                       readonly=True)
+    # frequency = schema.Int(title=u'Frequency',
+    #                        readonly=True)
+    # length = schema.Int(title=u'Length',
+    #                     readonly=True)
 
     video_type = schema.TextLine(title=u'Video Type', 
                                  required=True, 

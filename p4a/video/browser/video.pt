@@ -3,11 +3,23 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
+<head>
+	<div metal:fill-slot="javascript_head_slot">
+		<script tal:attributes="src string:$portal_url/++resource++vPIP/vpip.js" type="text/javascript"></script>
+		<script tal:attributes="src string:$portal_url/++resource++vPIP/jquery.js" type="text/javascript"></script>
+	</div>
+</head>
+
 <body>
+
 <div metal:fill-slot="css_slot">
-<link rel="stylesheet" href="video.css"
-      tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
-      />
+	<link rel="stylesheet" href="vPIPBox.css"
+	      tal:attributes="href string:$portal_url/++resource++vPIP/vPIPBox.css"
+	      />
+
+	<link rel="stylesheet" href="video.css"
+	      tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
+	      />
 </div>
 
 <div metal:fill-slot="main"

@@ -16,6 +16,12 @@
       permission="zope.Public"
       />
 
+  <resourceDirectory
+      name="vPIP"
+      directory="resources/vPIP"
+      permission="zope.Public"
+      />
+
   <page
       name="video-container.html"
       for="p4a.video.interfaces.IVideoContainerEnhanced"

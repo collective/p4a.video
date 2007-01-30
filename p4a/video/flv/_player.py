@@ -16,6 +16,8 @@ class FLVVideoPlayer(object):
         
         player = "%s/++resource++flowplayer/FlowPlayer.swf" % site.absolute_url()
         
+        downloadurl = contentobj.absolute_url()
+        
         return """
         <div class="flowplayer">
             <object type="application/x-shockwave-flash" data="%(player)s" 

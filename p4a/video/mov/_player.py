@@ -15,18 +15,14 @@ class MOVVideoPlayer(object):
         site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
         
         playerurl = "%s/++resource++flashmp3player/musicplayer.swf?song_url=%s"
-        playerurl = playerurl % (site.absolute_url(), downloadurl)
-
+        url = contentobj.absolute_url()
+        
         return """
-        <div class="mp3-player">
-            <object type="application/x-shockwave-flash"
-                    data="%(playerurl)s"
-                    style="margin-top: 2px"
-                    width="17" 
-                    height="17">
-                    <param name="movie"
-                           value="%(playerurl)s"
-                    />
-            </object>
-        </div>
-        """ % {'playerurl': playerurl}
+        <div class="hVlog" style="text-align: center">
+          <a href="%(url)s" class="hVlogTarget" type="video/quicktime" onclick="vPIPPlay(this, '', '', ''); return false;">
+              <img src="http://www.plone.org/logo.jpg" /></a>
+        <br />
+          <a href="%(url)s" type="video/quicktime" onclick="vPIPPlay(this, '', '', ''); return false;">
+        Play Quicktime version</a>
+        </div>        
+        """ % {'url': url}

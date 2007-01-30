@@ -18,7 +18,7 @@ class FLVVideoDataAccessor(object):
 
     @property
     def video_type(self):
-        return 'Ogg Vorbis'
+        return 'Flash FLV File'
 
     @property
     def _video(self):

@@ -15,10 +15,10 @@
       name="video/x-flv"
       />
 
-  <!-- <browser:resourceDirectory -->
-  <!--     name="oggplayer" -->
-  <!--     directory="oggplayer" -->
-  <!--     permission="zope.Public" -->
-  <!--     /> -->
+  <browser:resourceDirectory 
+      name="flowplayer" 
+      directory="flowplayer" 
+      permission="zope.Public" 
+      /> 
 
 </configure>
