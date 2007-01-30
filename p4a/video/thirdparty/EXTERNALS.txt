@@ -2,5 +2,6 @@
 # file. Afterwards, run:
 # svn propset svn:externals -F EXTERNALS.txt .
 
-hachoir-core svn://hachoir.org/hachoir/trunk/hachoir-core
-hachoir-metadata svn://hachoir.org/hachoir/trunk/hachoir-metadata
+hachoir_core svn://hachoir.org/hachoir/trunk/hachoir-core
+hachoir_parser svn://hachoir.org/hachoir/trunk/hachoir-parser
+hachoir_metadata svn://hachoir.org/hachoir/trunk/hachoir-metadata

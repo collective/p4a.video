@@ -20,15 +20,9 @@ from Products.CMFCore import utils as cmfutils
 
 class IVideoView(interface.Interface):
     def title(): pass
-    # def artist(): pass
-    # def album(): pass
-    # def year(): pass
-    # def genre(): pass
-    # def comment(): pass
-    # def variable_bit_rate(): pass
-    # def bit_rate(): pass
-    # def frequency(): pass
-    # def length(): pass
+    def width(): pass
+    def height(): pass
+    def duration(): pass
     def video_type(): pass
     def has_media_player(): pass
 
@@ -45,12 +39,10 @@ class VideoView(object):
                                                    interfaces.IMediaPlayer,
                                                    mime_type)
 
-    def title(self): return 'video file'
-    # def artist(self): return self.video_info.artist
-    # def album(self): return self.video_info.album
-    # def year(self): return self.video_info.year
-    # def comment(self): return self.video_info.comment
-    # def variable_bit_rate(self): return self.video_info.variable_bit_rate
+    def title(self): return 'video file XXX'
+    def width(self): return self.video_info.width
+    def height(self): return self.video_info.height
+    def duration(self): return self.video_info.duration
     def video_type(self): return self.video_info.video_type
     def has_media_player(self): return self.media_player is not None
 

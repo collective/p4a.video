@@ -1,6 +1,7 @@
 from zope.app.annotation import interfaces as annointerfaces
 from zope import interface
 from p4a.video import interfaces
+from p4a.video import metadataextractor
 
 def _safe(v):
     if isinstance(v, list) or isinstance(v, tuple):
@@ -30,13 +31,13 @@ class FLVVideoDataAccessor(object):
         return annotations.get(self._video.ANNO_KEY, None)
 
     def load(self, filename):
-        pass
         
-        # oggfile = openvideo(filename)
-        # 
-        # self._video_data['title'] = _safe(oggfile['title'])
-        # self._video_data['artist'] = _safe(oggfile['artist'])
-        # self._video_data['album'] = _safe(oggfile['album'])
+        metadata = metadataextractor.extract(filename)
+        
+        self._video_data['title'] = 'flash file'
+        self._video_data['height'] = str(metadata.height[0])
+        self._video_data['width'] = str(metadata.width[0])
+        self._video_data['duration'] = str(metadata.duration[0])
         # 
         # self._video_data['bit_rate'] = long(oggfile.info.bitrate)
         # self._video_data['length'] = long(oggfile.info.length)

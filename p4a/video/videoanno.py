@@ -30,8 +30,9 @@ class AnnotationVideo(object):
 
 
     title = DictProperty(interfaces.IVideo['title'], 'video_data')
-    # artist = DictProperty(interfaces.IVideo['artist'], 'video_data')
-    # album = DictProperty(interfaces.IVideo['album'], 'video_data')
+    height = DictProperty(interfaces.IVideo['height'], 'video_data')
+    width = DictProperty(interfaces.IVideo['width'], 'video_data')
+    duration = DictProperty(interfaces.IVideo['duration'], 'video_data')
     # year = DictProperty(interfaces.IVideo['year'], 'video_data')
     # genre = DictProperty(interfaces.IVideo['genre'], 'video_data')
     # comment = DictProperty(interfaces.IVideo['comment'], 'video_data')

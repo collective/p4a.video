@@ -15,6 +15,17 @@
       name="video/quicktime"
       />
       
+  <adapter
+      for="p4a.video.interfaces.IPossibleVideo"
+      factory="._videodata.MOVVideoDataAccessor"
+      provides="p4a.video.interfaces.IVideoDataAccessor"
+      name="video/mp4"
+      />
+
+  <adapter
+      factory="._player.MOVVideoPlayer"
+      name="video/mp4"
+      />
     
 
   <!-- <browser:resourceDirectory -->

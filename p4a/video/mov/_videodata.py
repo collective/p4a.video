@@ -4,8 +4,7 @@ from zope.app.annotation import interfaces as annointerfaces
 from zope import interface
 from OFS import Image as ofsimage
 from p4a.video import interfaces
-# from p4a.video.mp3.thirdparty import eyeD3
-# from p4a.video.mp3.thirdparty.eyeD3 import frames
+from p4a.video import metadataextractor
 from p4a.fileimage import utils as fileutils
 
 def write_video_image(id3tags, video_image):
@@ -54,12 +53,17 @@ class MOVVideoDataAccessor(object):
         return annotations.get(self._video.ANNO_KEY, None)
 
     def load(self, filename):
-        pass
+
+        # import pdb; pdb.set_trace()
+ 
+        metadata = metadataextractor.extract(filename)
         
-        # id3tags = eyeD3.Tag()
-        # id3tags.link(filename)
-        # 
-        # self._video_data['title'] = id3tags.getTitle()
+        # import pdb; pdb.set_trace()
+        self._video_data['height'] = str(getattr(metadata,'height',[None])[0])
+        self._video_data['width'] = str(getattr(metadata,'width',[None])[0])
+        self._video_data['duration'] = str(metadata.duration[0])
+                 
+        # self._video_data['title'] = metadata.getTitle()
         # self._video_data['artist'] = id3tags.getArtist()
         # self._video_data['album'] = id3tags.getAlbum()
         # self._video_data['year'] = id3tags.getYear()

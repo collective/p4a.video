@@ -53,15 +53,15 @@
                 <div><strong i18n:translate="label_file_type">File type:</strong>
                     <span tal:content="string:${video_info/video_type} ($mime_type)">Content type</span>
                 </div>    
-                <!-- <div><strong i18n:translate="label_bitrate">Bit rate:</strong>
-                    <span tal:content="video_info/bit_rate">Bitrate</span>
+                <div><strong i18n:translate="label_height">Height:</strong>
+                    <span tal:content="video_info/height">Height</span>
                 </div>
-                <div><strong i18n:translate="label_frequency">Frequency:</strong>
-                    <span tal:content="video_info/frequency">Frequency</span>
+                <div><strong i18n:translate="label_width">Width:</strong>
+                    <span tal:content="video_info/width">Width</span>
                 </div>
-                <div><strong i18n:translate="label_track_length">Track length:</strong>
-                    <span tal:content="video_info/length">Track length</span>
-                </div> -->
+                <div><strong i18n:translate="label_duration">Duration:</strong>
+                    <span tal:content="video_info/duration">Duration</span>
+                </div>
 
             </div>
 
