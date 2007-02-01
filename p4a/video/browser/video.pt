@@ -80,9 +80,9 @@
 
                 </div>
 
-            <!-- <div class="video-images">
+            <div class="video-images">
               <img tal:replace="structure view/widgets/video_image" />
-            </div> -->
+            </div>
 
                 <div id="object_metadata">
 			<!--

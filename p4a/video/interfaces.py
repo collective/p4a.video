@@ -28,8 +28,8 @@ class IVideo(interface.Interface):
     height = schema.TextLine(title=u'Height', required=False, readonly=True)
     duration = schema.TextLine(title=u'Duration', required=False, readonly=True)
     
-    # video_image = p4aimage.ImageField(title=u'Video Image', required=False,
-    #                                   preferred_dimensions=(150, 150))
+    video_image = p4aimage.ImageField(title=u'Video Image', required=False,
+                                      preferred_dimensions=(320, 240))
     # year = schema.Int(title=u'Year', required=False)
     # genre = schema.Choice(title=u'Genre', required=False, 
     #                       vocabulary=genre.GENRE_VOCABULARY)

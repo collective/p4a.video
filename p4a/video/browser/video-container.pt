@@ -30,13 +30,8 @@
 
         <p tal:condition="not: video_items"
            i18n:translate="description_no_visible_items_add_paste">
-          This CD has no video files added to it.
+          This folder has no video files added to it.
         </p>
-
-        <dl>
-          <dt>Total Length</dt>
-          <dd tal:content="view/total_length"></dd>
-        </dl>
 
         <tal:listing condition="video_items">
           <table id="tracklisting"
@@ -49,7 +44,7 @@
               <metal:block>
                 <tr>
                   <th class="nosort">&nbsp;<tal:play i18n:translate="listingheader_embedded_play"></tal:play>&nbsp;</th>
-                  <th class="nosort">&nbsp;<tal:title i18n:translate="listingheader_title">Track Title</tal:title>&nbsp;</th>
+                  <th class="nosort">&nbsp;<tal:title i18n:translate="listingheader_title">Video Title</tal:title>&nbsp;</th>
                   <th class="nosort">&nbsp;<tal:size i18n:translate="listingheader_size">Size</tal:size>&nbsp;</th>
                   <th class="nosort">&nbsp;<tal:length i18n:translate="listingheader_length">Length</tal:length>&nbsp;</th>
                 </tr>
@@ -79,7 +74,7 @@
 						5.5 MB
                     </td>
 
-                    <td tal:content="item/length">
+                    <td tal:content="item/duration">
                         track length
                     </td>
 

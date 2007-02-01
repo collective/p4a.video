@@ -26,7 +26,6 @@ class IVideoView(interface.Interface):
     def video_type(): pass
     def has_media_player(): pass
 
-
 class VideoView(object):
     """
     """
@@ -38,14 +37,15 @@ class VideoView(object):
         self.media_player = component.queryAdapter(self.video_info.file,
                                                    interfaces.IMediaPlayer,
                                                    mime_type)
-
-    def title(self): return 'video file XXX'
+                                                       
+    def title(self): return self.video_info.title
     def width(self): return self.video_info.width
     def height(self): return self.video_info.height
     def duration(self): return self.video_info.duration
     def video_type(self): return self.video_info.video_type
     def has_media_player(self): return self.media_player is not None
-
+        
+        
     # def genre(self): 
     #     g = self.video_info.genre
     #     if g in genre.GENRE_VOCABULARY:
@@ -85,6 +85,7 @@ class VideoPageView(media.BaseMediaDisplayView):
             return False
 
         return True
+
 
 class PopupVideoPageView(media.BaseMediaDisplayView):
     """Page for displaying video.

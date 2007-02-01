@@ -4,8 +4,6 @@ from zope.app.annotation import interfaces as annointerfaces
 from zope import interface
 from OFS import Image as ofsimage
 from p4a.video import interfaces
-# from p4a.video.mp3.thirdparty import eyeD3
-# from p4a.video.mp3.thirdparty.eyeD3 import frames
 from p4a.fileimage import utils as fileutils
 
 def write_video_image(id3tags, video_image):
@@ -54,66 +52,15 @@ class RealVideoDataAccessor(object):
         return annotations.get(self._video.ANNO_KEY, None)
 
     def load(self, filename):
-        pass
+
+        metadata = metadataextractor.extract(filename)
         
-        # id3tags = eyeD3.Tag()
-        # id3tags.link(filename)
-        # 
-        # self._video_data['title'] = id3tags.getTitle()
-        # self._video_data['artist'] = id3tags.getArtist()
-        # self._video_data['album'] = id3tags.getAlbum()
-        # self._video_data['year'] = id3tags.getYear()
-        # 
-        # image_frames = id3tags.getImages()
-        # image_frame = None
-        # if len(image_frames)>0:
-        #     image_frame = image_frames[0]
-        # if image_frame is not None and image_frame.imageData:
-        #     mime_type = image_frame.mimeType
-        #     ext = mimetypes.guess_extension(mime_type) or '.jpg'
-        #     kwargs = dict(id=os.path.basename(filename)+ext, 
-        #                   title='', 
-        #                   file=image_frame.imageData)
-        #     if image_frame.mimeType:
-        #         kwargs['content_type'] = image_frame.mimeType
-        #     image = ofsimage.Image(**kwargs)
-        #     self._video_data['video_image'] = image
-        # 
-        # genre = id3tags.getGenre()
-        # if genre and genre.getId() is not None:
-        #     self._video_data['genre'] = int(genre.getId())
-        # 
-        # self._video_data['comment'] = id3tags.getComment()
-        # 
-        # mp3_header = eyeD3.Mp3VideoFile(filename)
-        # variable, bit_rate = mp3_header.getBitRate()
-        # bit_rate = bit_rate * 1000  # id3 bit_rate info is in Kbps
-        # self._video_data['variable_bit_rate'] = bool(variable)
-        # self._video_data['bit_rate'] = bit_rate
-        # self._video_data['frequency'] = mp3_header.getSampleFreq()
-        # self._video_data['length'] = mp3_header.getPlayTime()
+        # import pdb; pdb.set_trace()
+        self._video_data['height'] = str(getattr(metadata,'height',[None])[0])
+        self._video_data['width'] = str(getattr(metadata,'width',[None])[0])
+        self._video_data['duration'] = str(metadata.duration[0])
+
 
     def store(self, filename):
-        content_type = self._filecontent.get_content_type()
-
-        # id3tags = eyeD3.Tag()
-        # id3tags.link(filename)
-        # id3tags.setVersion(eyeD3.ID3_V2_4)
-        # id3tags.setTextEncoding(eyeD3.frames.UTF_8_ENCODING)
-        # 
-        # id3tags.setTitle(self._video.title or u'')
-        # id3tags.setArtist(self._video.artist or u'')
-        # id3tags.setAlbum(self._video.album or u'')
-        # id3tags.setDate(self._video.year or 0)
-        # id3tags.setGenre(self._video.genre)
-        # 
-        # for c in id3tags.frames['COMM']:
-        #     id3tags.frames.remove(c)
-        # if self._video.comment:
-        #     id3tags.addComment(self._video.comment)
-        # 
-        # # saving the image(s)
-        # if self._video.video_image is not None:
-        #     write_video_image(id3tags, self._video.video_image)
-        # 
-        # id3tags.update(version=eyeD3.ID3_V2_4)
+        # content_type = self._filecontent.get_content_type()
+        pass

@@ -17,17 +17,23 @@ class FLVVideoPlayer(object):
         player = "%s/++resource++flowplayer/FlowPlayer.swf" % site.absolute_url()
         
         downloadurl = contentobj.absolute_url()
+        title = contentobj.title
+        
+        videoobj = interfaces.IVideo(contentobj) 
+        width = videoobj.width
+        height = videoobj.height
         
         return """
-        <div class="hVlog" style="text-align: center">
+        <div class="hVlog">
           <a href="" class="hVlogTarget" type="" onclick="vPIPPlay(this, '', '', ''); return false;">
               <img src="http://www.plone.org/logo.jpg" /></a>
         <br />
-          <a href="%(url)s" type="application/x-shockwave-flash" onclick="vPIPPlay(this, 'flv=true', 'FLVbuffer=15', 'active=true, caption=Play in ThickBox'); return false;">
+          <a href="%(url)s" type="application/x-shockwave-flash" onclick="vPIPPlay(this, 'width=%(width)s, height=%(height)s, name=%(title)s, quality=High, bgcolor=#FFFFFF, revert=true, flv=true', ''FLVbuffer=15', 'active=true, caption=%(title)s'); return false;">
         Play Flash version</a>
         </div>
-        """ % {'player': player, 'url': downloadurl}
+        """ % {'player': player, 'url': downloadurl, 'title': title, 'width': width, 'height': height}
 
+        
         # <div class="flowplayer">
         #     <object type="application/x-shockwave-flash" data="%(player)s" 
         #     	width="320" height="263" id="FlowPlayer">
