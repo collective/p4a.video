@@ -66,9 +66,10 @@
             </div>
 
             <div id="objmetadata_pbwidgets_wrapper">
+                  
+                   
                 <div id="playback_widgets">
-                    <div tal:replace="structure view/widgets/media_player"></div>
-
+                   
             <a tal:condition="video_info/has_media_player" id="popup_play_icon"
                href="#" title="Play in popup window" class="widget_icon"
                tal:attributes="href string:javascript:void window.open('${context/absolute_url}/popup-play.html', '', 'width=200, height=45, toolbar=no, location=no, directories=no, status=no, menubar=no')">
@@ -79,6 +80,7 @@
                            tal:attributes="href string:$context_url" title="Download file"></a>
 
                 </div>
+                <div tal:replace="structure view/widgets/media_player"></div>
 
             <div class="video-images">
               <img tal:replace="structure view/widgets/video_image" />

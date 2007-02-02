@@ -30,7 +30,7 @@ class WMVVideoPlayer(object):
 
         
         return """
-        <div class="hVlog" style="text-align: center">
+        <div class="hVlog">
           <a href="%(url)s" class="hVlogTarget" type="video/x-ms-wmv" onclick="vPIPPlay(this, '', '', 'active=true, controller=true'); return false;">
               %(imagewidget)s
               </a>

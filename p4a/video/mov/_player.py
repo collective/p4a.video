@@ -18,7 +18,7 @@ class MOVVideoPlayer(object):
         url = contentobj.absolute_url()
         
         return """
-        <div class="hVlog" style="text-align: center">
+        <div class="hVlog" >
           <a href="%(url)s" class="hVlogTarget" type="video/quicktime" onclick="vPIPPlay(this, '', '', ''); return false;">
               <img src="http://www.plone.org/logo.jpg" /></a>
         <br />
