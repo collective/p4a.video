@@ -10,7 +10,7 @@ class MOVVideoPlayer(object):
     def __init__(self, context):
         self.context = context
     
-    def __call__(self, downloadurl):
+    def __call__(self, downloadurl, imageurl):
         contentobj = self.context.context.context
         site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
         

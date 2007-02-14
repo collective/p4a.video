@@ -24,24 +24,24 @@ class FLVVideoPlayer(object):
         height = videoobj.height
         
         return """
-        <div class="hVlog">
-          <a href="" class="hVlogTarget" type="" onclick="vPIPPlay(this, '', '', ''); return false;">
-              <img src="http://www.plone.org/logo.jpg" /></a>
-        <br />
-          <a href="%(url)s" type="application/x-shockwave-flash" onclick="vPIPPlay(this, 'width=%(width)s, height=%(height)s, name=%(title)s, quality=High, bgcolor=#FFFFFF, revert=true, flv=true', ''FLVbuffer=15', 'active=true, caption=%(title)s'); return false;">
-        Play Flash version</a>
+        <div class="flowplayer">
+            <object type="application/x-shockwave-flash" data="%(player)s" 
+            	width="320" height="263" id="FlowPlayer">
+            	<param name="allowScriptAccess" value="sameDomain" />
+            	<param name="movie" value="%(player)s" />
+            	<param name="quality" value="high" />
+            	<param name="scale" value="noScale" />
+            	<param name="wmode" value="transparent" />
+            	<param name="flashvars" value="config={videoFile: '%(url)s'}" />
+            </object>
         </div>
         """ % {'player': player, 'url': downloadurl, 'title': title, 'width': width, 'height': height}
 
-        
-        # <div class="flowplayer">
-        #     <object type="application/x-shockwave-flash" data="%(player)s" 
-        #     	width="320" height="263" id="FlowPlayer">
-        #     	<param name="allowScriptAccess" value="sameDomain" />
-        #     	<param name="movie" value="%(player)s" />
-        #     	<param name="quality" value="high" />
-        #     	<param name="scale" value="noScale" />
-        #     	<param name="wmode" value="transparent" />
-        #     	<param name="flashvars" value="config={videoFile: '%(url)s'}" />
-        #     </object>
+        # <div class="hVlog">
+        #   <a href="" class="hVlogTarget" type="" onclick="vPIPPlay(this, '', '', ''); return false;">
+        #       <img src="http://www.plone.org/logo.jpg" /></a>
+        # <br />
+        #   <a href="%(url)s" type="application/x-shockwave-flash" onclick="vPIPPlay(this, 'width=%(width)s, height=%(height)s, name=%(title)s, quality=High, bgcolor=#FFFFFF, revert=true, flv=true', ''FLVbuffer=15', 'active=true, caption=%(title)s'); return false;">
+        # Play Flash version</a>
         # </div>
+        

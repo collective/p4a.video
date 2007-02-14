@@ -2,6 +2,7 @@ from zope import component
 from zope.app.form.browser import widget
 from p4a.video import interfaces
 from p4a.fileimage import file
+from p4a.fileimage.image._widget import ImageURLWidget
 
 class MediaPlayerWidget(file.FileDownloadWidget):
     """Widget which produces some form of media player.
@@ -21,9 +22,15 @@ class MediaPlayerWidget(file.FileDownloadWidget):
                                         cssClass='media-absent media-player',
                                         contents='No media to play')
         
+        import pdb ; pdb.set_trace( )
+        
+        field = interfaces.IVideo['video_image'].bind(self)
+        imageurl = ImageURLWidget(field, self.request)
+
         field = self.context
         contentobj = field.context.context
 
+        
         mime_type = unicode(contentobj.get_content_type())
         media_player = component.queryAdapter(field,
                                               interface=interfaces.IMediaPlayer,
@@ -34,4 +41,4 @@ class MediaPlayerWidget(file.FileDownloadWidget):
                                         cssClass='player-not-available media-player',
                                         contents='No available player for mime type "%s"' % mime_type)
         
-        return u"""<div class="media-player">%s</div>""" % media_player(url)
+        return u"""<div class="media-player">%s</div>""" % media_player(url, imageurl)

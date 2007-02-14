@@ -65,9 +65,9 @@ class IMediaPlayer(interface.Interface):
     """Media player represented as HTML.
     """
     
-    def __call__(downloadurl):
+    def __call__(downloadurl, imageurl):
         """Return the HTML required to play the video content located
-        at *downloadurl*.
+        at *downloadurl* with the *imageurl* representing the video.
         """
 
 class IPossibleVideoContainer(IAnyVideoCapable):
