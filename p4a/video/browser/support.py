@@ -47,7 +47,7 @@ class Support(object):
             return False
         
         mediaconfig = component.getMultiAdapter((self.context, self.request),
-                                                name='media-config.html')
+                                                name='video-config.html')
         return not mediaconfig.media_activated
 
     @property
@@ -56,5 +56,5 @@ class Support(object):
             return False
         
         mediaconfig = component.getMultiAdapter((self.context, self.request),
-                                                name='media-config.html')
+                                                name='video-config.html')
         return mediaconfig.media_activated
