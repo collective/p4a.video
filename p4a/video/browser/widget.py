@@ -22,8 +22,6 @@ class MediaPlayerWidget(file.FileDownloadWidget):
                                         cssClass='media-absent media-player',
                                         contents='No media to play')
         
-        import pdb ; pdb.set_trace( )
-        
         field = interfaces.IVideo['video_image'].bind(self)
         imageurl = ImageURLWidget(field, self.request)
 

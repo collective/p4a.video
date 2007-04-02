@@ -47,14 +47,14 @@
       />
 
   <page
-      name="media-config.html"
+      name="video-config.html"
       for="p4a.video.interfaces.IPossibleVideoContainer"
       permission="cmf.ModifyPortalContent"
       class=".media.ToggleEnhancementsView"
       />
 
   <page
-      name="media-config.html"
+      name="video-config.html"
       for="p4a.video.interfaces.IPossibleVideo"
       permission="cmf.ModifyPortalContent"
       class=".media.ToggleEnhancementsView"
@@ -79,7 +79,7 @@
       menu="object_buttons"
       for="p4a.video.interfaces.IAnyVideoCapable"
       title="Deactivate Video"
-      action="${object_url}/media-config.html"
+      action="${object_url}/video-config.html"
       filter="object/@@p4avideosupport/can_deactivate_video"
       permission="cmf.ModifyPortalContent"
       />
@@ -88,7 +88,7 @@
       menu="object_buttons"
       for="p4a.video.interfaces.IAnyVideoCapable"
       title="Activate Video"
-      action="${object_url}/media-config.html"
+      action="${object_url}/video-config.html"
       filter="object/@@p4avideosupport/can_activate_video"
       permission="cmf.ModifyPortalContent"
       />
