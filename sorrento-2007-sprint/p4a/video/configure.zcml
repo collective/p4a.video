@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <include package=".browser" />
+  <include package=".mov" />
+  <include package=".flv" />
+  <include package=".wmv" />
+  <include package=".real-media" />
+
+  <include package="zope.app.annotation" />
+
+  <adapter
+      for=".interfaces.IPossibleVideo"
+      provides="zope.app.annotation.interfaces.IAnnotations"
+      factory="zope.app.annotation.attribute.AttributeAnnotations"
+      />
+
+  <utility
+      factory=".migration.Migrator"
+      />
+
+</configure>

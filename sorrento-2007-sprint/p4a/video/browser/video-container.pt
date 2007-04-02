@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="plone"
+      metal:use-macro="here/main_template/macros/master">
+
+  <body>
+
+    <div metal:fill-slot="main"
+         tal:define="video_items view/video_items">
+    <metal:main-macro define-macro="main">
+
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+          Document actions (print, sendto etc)
+        </div>
+
+        <h1 tal:content="object_title" class="documentFirstHeading">
+          CD Title
+        </h1>
+
+        <div class="documentDescription"
+             tal:content="here/Description"
+             tal:condition="here/Description">
+          Description
+        </div>
+        <a href=""
+           tal:condition="view/has_syndication"
+           tal:attributes="href string:${context/absolute_url}/rss.xml"
+           ><img src="" tal:attributes="src string:$portal_url/++resource++videoimages/feed-icon.png" /></a>
+        <tal:foldercontents>
+
+        <p tal:condition="not: video_items"
+           i18n:translate="description_no_visible_items_add_paste">
+          This folder has no video files added to it.
+        </p>
+
+        <tal:listing condition="video_items">
+          <table id="tracklisting"
+                 class="listing" 
+                 summary="Content listing"
+                 cellpadding="0" cellspacing="0">
+
+            <thead>
+
+              <metal:block>
+                <tr>
+                  <th class="nosort">&nbsp;<tal:play i18n:translate="listingheader_embedded_play"></tal:play>&nbsp;</th>
+                  <th class="nosort">&nbsp;<tal:title i18n:translate="listingheader_title">Video Title</tal:title>&nbsp;</th>
+                  <th class="nosort">&nbsp;<tal:size i18n:translate="listingheader_size">Size</tal:size>&nbsp;</th>
+                  <th class="nosort">&nbsp;<tal:length i18n:translate="listingheader_length">Length</tal:length>&nbsp;</th>
+                </tr>
+              </metal:block>
+            </thead>
+
+            <metal:block>
+              <tbody>
+                <metal:block tal:repeat="item video_items">
+                  <tr tal:define="oddrow repeat/item/odd">
+                    <td class="private video_embedded_play"><tal:widget  tal:replace="structure item/widget" />
+
+                    </td>
+                                        
+                    <td>
+
+                      <a href="#" tal:attributes="href string:${item/url}/view; 
+                                                  title item/description">
+
+                        <img tal:attributes="src item/icon"
+                             />&nbsp;<span tal:replace="item/title">Title</span>
+                      </a>
+
+                    </td>
+
+                    <td tal:content="item/size">
+						5.5 MB
+                    </td>
+
+                    <td tal:content="item/duration">
+                        track length
+                    </td>
+
+                  </tr>
+                </metal:block>
+              </tbody>
+            </metal:block>
+          </table>
+          </tal:listing>
+          </tal:foldercontents>
+
+    </metal:main-macro>
+
+    </div>
+
+
+  </body>
+</html>
