@@ -27,7 +27,7 @@ We begin by defining the required adapter.
   ...     adapts(object)
   ...     def __init__(self, context):
   ...         self.context = context
-  ...     def __call__(self, downloadurl):
+  ...     def __call__(self, downloadurl, imageurl):
   ...         return '<div>My Player for Foo Media</div>'
 
   >>> provideAdapter(FooMediaPlayer, name=u'text/foobar')
@@ -68,7 +68,7 @@ that.
 
   >>> widget = MediaPlayerWidget(field, None)
   >>> widget()
-  u'<span class="media-absent media-player">No media to play</span>'
+  u'<span class="player-not-available media-player">No available player for mime type "application/none-set"</span>'
 
 If there is no available IMediaPlayer adapter available for the content
 type (which in this case the content defaults to 'application/none-set')

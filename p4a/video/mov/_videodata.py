@@ -53,17 +53,15 @@ class MOVVideoDataAccessor(object):
         return annotations.get(self._video.ANNO_KEY, None)
 
     def load(self, filename):
-
-        # import pdb; pdb.set_trace()
- 
         metadata = metadataextractor.extract(filename)
-        
-        # import pdb; pdb.set_trace()
+
         self._video_data['height'] = str(getattr(metadata,'height',[None])[0])
         self._video_data['width'] = str(getattr(metadata,'width',[None])[0])
-        self._video_data['duration'] = str(metadata.duration[0])
-                 
-    def store(self, filename):
-        # content_type = self._filecontent.get_content_type()
-        pass
 
+        v = getattr(metadata,'duration', None)
+        if v != None:
+            v = str(v)
+        self._video_data['duration'] = v
+
+    def store(self, filename):
+        raise NotImplementedError('Write support not yet implemented')

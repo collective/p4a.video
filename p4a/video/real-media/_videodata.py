@@ -54,8 +54,7 @@ class RealVideoDataAccessor(object):
     def load(self, filename):
 
         metadata = metadataextractor.extract(filename)
-        
-        # import pdb; pdb.set_trace()
+
         self._video_data['height'] = str(getattr(metadata,'height',[None])[0])
         self._video_data['width'] = str(getattr(metadata,'width',[None])[0])
         self._video_data['duration'] = str(metadata.duration[0])

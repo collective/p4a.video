@@ -8,14 +8,14 @@ from hachoir_core.stream import InputStreamError
 
 def extract(filename):
     """Extract the metadata from the media file"""
-    
+
     filename = unicode(filename)
-    
+
     try:
         parser = createParser(filename)
     except InputStreamError, err:
         logger.error("stream error! %s\n" % unicode(err))
-    
+
     if not parser:
         logger.error("Unable to create parser.\n")
         return False
