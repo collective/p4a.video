@@ -21,13 +21,13 @@ class IVideoEnhanced(interface.Interface):
 class IVideo(interface.Interface):
     """Objects which have video information.
     """
-    
+
     title = schema.TextLine(title=u'Video Title', required=False)
     file = p4afile.FileField(title=u'File', required=False)
-    width = schema.TextLine(title=u'Width', required=False, readonly=True)
-    height = schema.TextLine(title=u'Height', required=False, readonly=True)
-    duration = schema.TextLine(title=u'Duration', required=False, readonly=True)
-    
+    width = schema.Int(title=u'Width', required=False, readonly=True)
+    height = schema.Int(title=u'Height', required=False, readonly=True)
+    duration = schema.Float(title=u'Duration', required=False, readonly=True)
+
     video_image = p4aimage.ImageField(title=u'Video Image', required=False,
                                       preferred_dimensions=(320, 240))
     # year = schema.Int(title=u'Year', required=False)

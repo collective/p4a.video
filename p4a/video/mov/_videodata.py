@@ -1,10 +1,4 @@
-import mimetypes
-import os
-from zope.app.annotation import interfaces as annointerfaces
-from zope import interface
-from OFS import Image as ofsimage
-from p4a.video import interfaces
-from p4a.video import metadataextractor
+from p4a.video import utils
 from p4a.fileimage import utils as fileutils
 
 def write_video_image(id3tags, video_image):
@@ -29,39 +23,7 @@ def write_video_image(id3tags, video_image):
                 id3tags.frames[index] = frame
                 break
 
-class MOVVideoDataAccessor(object):
-    interface.implements(interfaces.IVideoDataAccessor)
-    
-    def __init__(self, context):
-        self._filecontent = context
+VIDEO_TYPE = u'MOV'
 
-    @property
-    def video_type(self):
-        return 'MOV'
-
-    @property
-    def _video(self):
-        video = getattr(self, '__cached_video', None)
-        if video is not None:
-            return video
-        self.__cached_video = interfaces.IVideo(self._filecontent)
-        return self.__cached_video
-
-    @property
-    def _video_data(self):
-        annotations = annointerfaces.IAnnotations(self._filecontent)
-        return annotations.get(self._video.ANNO_KEY, None)
-
-    def load(self, filename):
-        metadata = metadataextractor.extract(filename)
-
-        self._video_data['height'] = str(getattr(metadata,'height',[None])[0])
-        self._video_data['width'] = str(getattr(metadata,'width',[None])[0])
-
-        v = getattr(metadata,'duration', None)
-        if v != None:
-            v = str(v)
-        self._video_data['duration'] = v
-
-    def store(self, filename):
-        raise NotImplementedError('Write support not yet implemented')
+class MOVVideoDataAccessor(utils.AbstractDataAccessor):
+    video_type = VIDEO_TYPE
