@@ -10,7 +10,7 @@ class FLVVideoPlayer(object):
     def __init__(self, context):
         self.context = context
     
-    def __call__(self, downloadurl):
+    def __call__(self, downloadurl, imageurl):
         contentobj = self.context.context.context
         site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
         
@@ -19,10 +19,12 @@ class FLVVideoPlayer(object):
         downloadurl = contentobj.absolute_url()
         title = contentobj.title
         
+        # how do we get the imageurl?
+        # 
         videoobj = interfaces.IVideo(contentobj) 
         width = videoobj.width
         height = videoobj.height
-        
+                
         return """
         <div class="flowplayer">
             <object type="application/x-shockwave-flash" data="%(player)s" 
@@ -32,10 +34,12 @@ class FLVVideoPlayer(object):
             	<param name="quality" value="high" />
             	<param name="scale" value="noScale" />
             	<param name="wmode" value="transparent" />
-            	<param name="flashvars" value="config={videoFile: '%(url)s'}" />
+            	<param name="flashvars" value="config={
+            	    splashImageFile: '%(imageurl)s',
+            	    videoFile: '%(url)s'}" />
             </object>
         </div>
-        """ % {'player': player, 'url': downloadurl, 'title': title, 'width': width, 'height': height}
+        """ % {'player': player, 'url': downloadurl, 'imageurl': imageurl, 'title': title, 'width': width, 'height': height}
 
         # <div class="hVlog">
         #   <a href="" class="hVlogTarget" type="" onclick="vPIPPlay(this, '', '', ''); return false;">
