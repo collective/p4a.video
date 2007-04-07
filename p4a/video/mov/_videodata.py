@@ -23,7 +23,5 @@ def write_video_image(id3tags, video_image):
                 id3tags.frames[index] = frame
                 break
 
-VIDEO_TYPE = u'MOV'
-
 class MOVVideoDataAccessor(utils.AbstractDataAccessor):
-    video_type = VIDEO_TYPE
+    video_type = u'MOV'

@@ -5,6 +5,16 @@ from p4a.video import metadataextractor
 
 DEFAULT_CHARSET = 'utf-8'
 
+def td_to_seconds(td):
+    """
+    """
+    
+    total = td.days * 24 * 60 * 60
+    total += td.seconds
+    total = float(total) + (float(td.microseconds) * 0.000001)
+
+    return total
+
 def unicodestr(v, charset=DEFAULT_CHARSET):
     """Return the unicode object representing the value passed in an
     as error-immune manner as possible.
@@ -45,16 +55,21 @@ class AbstractDataAccessor(object):
         return annotations.get(self._video.ANNO_KEY, None)
 
     def _setup_data(self, metadata, attr, type_):
-        self._video_data[attr] = getattr(metadata, attr, MISSING)[0]
-        if self._video_data[attr] != None:
-            self._video_data[attr] = type_(self._video_data[attr])
+        try:
+            data = metadata.getItems(attr)
+        except ValueError, e:
+            # no valid data
+            return
+
+        if len(data) >= 1:
+            self._video_data[attr] = type_(data[0].value)
 
     def load(self, filename):
         metadata = metadataextractor.extract(filename)
 
         self._setup_data(metadata, 'height', int)
         self._setup_data(metadata, 'width', int)
-        self._setup_data(metadata, 'duration', float)
+        self._setup_data(metadata, 'duration', td_to_seconds)
 
     def store(self, filename):
         raise NotImplementedError('Write support not yet implemented')
