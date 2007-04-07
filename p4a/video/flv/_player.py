@@ -39,7 +39,12 @@ class FLVVideoPlayer(object):
             	    videoFile: '%(url)s'}" />
             </object>
         </div>
-        """ % {'player': player, 'url': downloadurl, 'imageurl': imageurl, 'title': title, 'width': width, 'height': height}
+        """ % {'player': player,
+               'url': downloadurl,
+               'imageurl': imageurl,
+               'title': title,
+               'width': width,
+               'height': height}
 
         # <div class="hVlog">
         #   <a href="" class="hVlogTarget" type="" onclick="vPIPPlay(this, '', '', ''); return false;">
