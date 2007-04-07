@@ -18,9 +18,10 @@ class ToggleEnhancementsView(object):
     _video_activated = feature.FeatureProperty(interfaces.IPossibleVideo,
                                                interfaces.IVideoEnhanced,
                                                'context')
-    _video_container_activated = feature.FeatureProperty(interfaces.IPossibleVideoContainer,
-                                                         interfaces.IVideoContainerEnhanced,
-                                                         'context')
+    _video_container_activated = feature.FeatureProperty \
+                                 (interfaces.IPossibleVideoContainer,
+                                  interfaces.IVideoContainerEnhanced,
+                                  'context')
     
     def media_activated(self, v=_marker):
         if v is _marker:
@@ -47,7 +48,8 @@ class ToggleEnhancementsView(object):
         else:
             activated = 'Media+activated'
         
-        response.redirect(self.context.absolute_url()+'/view?portal_status_message='+activated)
+        response.redirect(self.context.absolute_url() + \
+                          '/view?portal_status_message='+activated)
 
 class BaseMediaDisplayView(form.PageDisplayForm):
     """Base view for displaying media.
