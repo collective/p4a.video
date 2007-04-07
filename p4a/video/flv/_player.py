@@ -3,6 +3,16 @@ from zope import component
 from p4a.video import interfaces
 from Products.CMFCore import utils as cmfutils
 
+def generate_config(**kw):
+    text = 'config={'
+    for key, value in kw.items():
+        if value is not None:
+            text += "%s: '%s', " % (key, value)
+    if text.endswith(', '):
+        text = text[:-2]
+    text += ' }'
+    return text
+
 class FLVVideoPlayer(object):
     interface.implements(interfaces.IMediaPlayer)
     component.adapts(object)
@@ -12,19 +22,23 @@ class FLVVideoPlayer(object):
     
     def __call__(self, downloadurl, imageurl):
         contentobj = self.context.context.context
-        site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
-        
-        player = "%s/++resource++flowplayer/FlowPlayer.swf" % site.absolute_url()
-        
+        portal_tool = cmfutils.getToolByName(contentobj, 'portal_url')
+        portal_url = portal_tool.getPortalObject().absolute_url()
+
+        player = portal_url + "/++resource++flowplayer/FlowPlayer.swf"
+
         downloadurl = contentobj.absolute_url()
         title = contentobj.title
-        
+
         # how do we get the imageurl?
         # 
         videoobj = interfaces.IVideo(contentobj) 
         width = videoobj.width
         height = videoobj.height
-                
+
+        config = generate_config(videoFile=downloadurl,
+                                 splashImageFile=imageurl)
+
         return """
         <div class="flowplayer">
             <object type="application/x-shockwave-flash" data="%(player)s" 
@@ -34,14 +48,11 @@ class FLVVideoPlayer(object):
             	<param name="quality" value="high" />
             	<param name="scale" value="noScale" />
             	<param name="wmode" value="transparent" />
-            	<param name="flashvars" value="config={
-            	    splashImageFile: '%(imageurl)s',
-            	    videoFile: '%(url)s'}" />
+            	<param name="flashvars" value="%(config)s" />
             </object>
         </div>
         """ % {'player': player,
-               'url': downloadurl,
-               'imageurl': imageurl,
+               'config': config,
                'title': title,
                'width': width,
                'height': height}

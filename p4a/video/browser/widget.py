@@ -4,6 +4,9 @@ from p4a.video import interfaces
 from p4a.fileimage import file
 from p4a.fileimage.image._widget import ImageURLWidget
 
+from zope.i18nmessageid import MessageFactory
+_ = MessageFactory('plone4artists')
+
 class MediaPlayerWidget(file.FileDownloadWidget):
     """Widget which produces some form of media player.
     """
@@ -20,14 +23,16 @@ class MediaPlayerWidget(file.FileDownloadWidget):
         if not file_present:
             return widget.renderElement(u'span',
                                         cssClass='media-absent media-player',
-                                        contents='No media to play')
+                                        contents=_('No media to play'))
 
-        field = interfaces.IVideo['video_image'].bind(self)
-        imageurl = ImageURLWidget(field, self.request)
+        imageurl = None
+        video = self.context.context
+        if video.video_image is not None:
+            field = interfaces.IVideo['video_image'].bind(video)
+            imageurl = ImageURLWidget(field, self.request).url or None
 
         field = self.context
         contentobj = field.context.context
-
 
         mime_type = unicode(contentobj.get_content_type())
         media_player = component.queryAdapter(field,
@@ -35,8 +40,11 @@ class MediaPlayerWidget(file.FileDownloadWidget):
                                               name=mime_type)
 
         if media_player is None:
-            return widget.renderElement(u'span',
-                                        cssClass='player-not-available media-player',
-                                        contents='No available player for mime type "%s"' % mime_type)
+            return widget.renderElement \
+                   (u'span',
+                    cssClass='player-not-available media-player',
+                    contents=_('No available player for mime type "%s"'
+                               % mime_type))
         
-        return u"""<div class="media-player">%s</div>""" % media_player(url, imageurl)
+        return u'<div class="media-player">%s</div>' \
+               % media_player(url, imageurl)
