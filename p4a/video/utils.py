@@ -54,7 +54,7 @@ class AbstractDataAccessor(object):
         annotations = annointerfaces.IAnnotations(self._filecontent)
         return annotations.get(self._video.ANNO_KEY, None)
 
-    def _setup_data(self, metadata, attr, type_):
+    def _setup_data(self, metadata, attr, convert_func):
         try:
             data = metadata.getItems(attr)
         except ValueError, e:
@@ -62,7 +62,7 @@ class AbstractDataAccessor(object):
             return
 
         if len(data) >= 1:
-            self._video_data[attr] = type_(data[0].value)
+            self._video_data[attr] = convert_func(data[0].value)
 
     def load(self, filename):
         metadata = metadataextractor.extract(filename)
