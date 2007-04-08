@@ -1,0 +1,421 @@
+<div class="hVlog"  style="float: right; border: outset #333333; text-align: center; padding: 4px">
+  <a href="http://blip.tv/uploadedFiles/Enric-WidowMaker114.mov" class="hVlogTarget" type="video/quicktime" onclick="vPIPPlay(this, '', '', ''); return false;">
+      <img src="http://www.cirne.com/vlog/images/WidowMakerPoster.jpg" />
+  </a>
+<br />
+  <a href="http://blip.tv/uploadedFiles/Enric-WidowMaker114.mov" type="video/quicktime" onclick="vPIPPlay(this, '', '', 'active=true, caption=Widow Maker'); return false;">
+Play in ThickBox</a>
+</div>
+
+<h3>vPIP release 0.15 Beta</h3>
+<hr style="height: 2px">
+
+<p>vPIP (video Playing In Place) dynamically embeds a video after the viewer clicks on the link.  Click on the video to your right to see it in action.</p>  
+<p>The results are that the page loads quickly with just image and text links.  Then when the viewer clicks one of the video links, it's replaced with the embedded video.  Clicking on another video link closes the prior embedded video and opens the new one selected.</p>
+
+<p>The supported video (and audio) formats are:
+<ul>
+   <li>Quicktime
+        <ul>
+             <li>.mov (video)</li>
+             <li>.mp4 (video)</li>
+             <li>.mp3 (audio)</li>
+             <li>.smi or .smil (dynamic video)</li>
+            <li>.3gp (video & audio)</li>
+        </ul></li>
+   <li>Windows Media
+        <ul>
+             <li>.avi (video)</li>
+             <li>.wmv (video)</li>
+             <li>.asf (video)</li>
+             <li>.wma (audio)</li>
+        </ul></li>
+   <li>Flash
+        <ul>
+             <li>.swf (video application)</li>
+             <li>.flv (video)</li>
+        </ul></li>
+</ul>
+</p>
+
+
+<br />Click on the image below for a introduction and comparison to vPIP
+<div class="hVlog" style="text-align: left">
+  <a href="http://blip.tv/file/get/Enric-WhatIsVPIP126.mov" class="hVlogTarget" type="video/quicktime" onclick="vPIPPlay(this, '', '', ''); return false;">
+      <img src="http://utilities.cinegage.com/media/WhatIsvPIP.jpg" /></a>
+<br />
+  <a href="http://blip.tv/file/get/Enric-WhatIsVPIP126.mov" type="video/quicktime" onclick="vPIPPlay(this, '', '', 'active=true, caption=Introduction to vPIP'); return false;" style="text-align: center">
+Play in ThickBox</a>
+</div>
+
+
+<p>To begin using vPIP to to the section below for it's installation and usage:
+
+
+<ul>
+   <li>If you have a Blogger.com account, go to the <a href="javascript: openAnchor('#divBloggerInstall', 'imgBloggerInstall', '#BloggerInstall', 1);"  >Blogger Installation</a> section.</li>
+   <li>If you have Wordpress installed on a server, go to the <a href="javascript: openAnchor('#divWordpressInstall', 'imgWordpressInstall', '#WordpressInstall', 2);"  >Wordpress Installation</a> section.</li>
+   <li>For all other web installs go to the <a href="javascript: openAnchor('#divGeneralInstall', 'imgGeneralInstall', '#GeneralInstall', 3);" >General Installation</a> section.</li>
+</ul>
+<ul>
+   <li>If you've completed the install, go the the <a href="javascript: openAnchor('#divUsingvPIP', 'imgUsingvPIP', '#Usage', 4);" >Using vPIP</a> section.</li>
+</ul>
+
+For the current bugs found in this release, go to the <a href="#Caveats">Caveats</a> section.  For new features go to the <a href="#NewFeatures">New Features</a> section.
+</p>
+<br /><br />
+<a href="javascript: void%200;" onclick="javascript: openCloseAnchor('#divBloggerInstall', 'imgBloggerInstall', 1);"  style='border: none; background: transparent;' name="BloggerInstall" ><img src="http://utilities.cinegage.com/images/expand.gif"title="Expand" id="imgBloggerInstall" style='border: none; background: transparent;' >
+
+<h2 style="display:inline;">Blogger Installation</h2></a>
+
+<div id="divBloggerInstall">
+<ol>
+   <li>Download by right clicking the --> <a href="http://utilities.cinegage.com/downloads/vPIP0.15/vPIP.zip">vPIP link</a> <-- and Save ... As "vpip.zip" to a location on your computer.
+
+<p><img src="http://utilities.cinegage.com/downloads/vPIP0.15/images/SaveAs.gif" /></p></li>
+   <li>Extract <em>vPIP.zip</em> to create the <strong>vPIP</strong> folder</li>
+   <li>Upload either the <strong>vPIP</strong> folder or it's contents to an accessible internet location.  It can be on any file sharing system or other server that can be accessed as a URL through HTML.<br />
+Note:  If you don't have a internet location to upload to, alternate locations will be specified in the steps below.</li>
+   <li>From the Blogger Dashboard click on the "Change Settings" icon and choose the "Template" tab.</li>
+   <li>Scroll down just before the closing &lt;/head> tag  and copy & paste the following lines in:
+<p><textarea cols='100' rows='4' readonly='readonly'>
+<script src="http://[url where vPIP was uploaded to]/vpip.js" type="text/javascript"></script>
+<style type="text/css" media="all">@import "http://[url where vPIP was uploaded to]/vPIPBox.css";</style>
+<script src="http://[url where vPIP was uploaded to]/jquery.js" type="text/javascript"></script>
+</textarea><br />
+Replace <em>[url where vPIP was uploaded to]</em> with the web server location you uploaded the vPIP content to in step 2 above.<br />
+Note:  If you don't have a internet location to upload to, use the following alternate locations:
+</p>
+<p><textarea cols='100' rows='6' readonly='readonly'>
+<script src="http://utilities.cinegage.com/downloads/vPIP0.15/vpip.js" type="text/javascript"></script>
+<style type="text/css" media="all">@import "http://utilities.cinegage.com/downloads/vPIP0.15/vPIPBox.css";</style>
+<script src="http://utilities.cinegage.com/downloads/vPIP0.15/jquery.js" type="text/javascript"></script>
+</textarea></p>
+<p>Or the server locations kindly provided by --> <a href="http://www.vlogassist.com/viewtopic.php?t=225&start=0&postdays=0&postorder=asc&highlight=" target="_blank">VlogAssist</a> <--.</p>
+</p>
+<p><img src="http://utilities.cinegage.com/downloads/vPIP0.15/images/Blogger.gif" style="border:3px outset #666666;" /></p></li>
+
+<li>Click the "Save Template Changes" button and then the "Republish" button</li>
+</ol>
+<p>
+
+That's it.  You are now ready to use vPIP in writing your blog posts.  To get information on doing that, go to the <a href="javascript: openAnchor('#divUsingvPIP', 'imgUsingvPIP', '#Usage', 4);" >Using vPIP</a> section.
+<!--Note:  for vPIP to take effect you'll need to choose once the "Republish Entire Blog" button.-->
+</div>
+<p>&nbsp;</p>
+
+<a href="javascript: void%200;" onclick="javascript: openCloseAnchor('#divWordpressInstall', 'imgWordpressInstall', 2);"  style='border: none; background: transparent;' name="WordpressInstall" ><img src="http://utilities.cinegage.com/images/expand.gif" title="Expand" id="imgWordpressInstall" style='border: none; background: transparent;' >
+
+<h2 style="display:inline;">Wordpress Installation</h2></a>
+<div id="divWordpressInstall">
+The vPIP Wordpress Plugin installs the vPIP scripts and style sheet into the header section of blog the page.  With that, the Generate vPIP HTML Code app will be available below the blog post that is being written.</p>
+
+<p>To install vPIP, follow these steps:
+<ol>
+  <li>Download vPIPwp.zip by right clicking the --> <a href="http://utilities.cinegage.com/downloads/vPIP0.15/vPIPwp.zip">vPIP link</a> <-- and Save ... As to a location on your hard disk.
+
+<p><img src="http://utilities.cinegage.com/downloads/vPIP0.15/images/SaveAsWP.gif" /></p></li>
+
+   <li>Extract <em>vPIPwp.zip</em> to create the vPIP folder and upload it to your <em>../wp-content/plugins</em> location of your Wordpress installation.</li>
+   <ul><li>If your using <strong>Wordpress 1.5</strong>, in admin mode go to <em>Options->Writing</em> and uncheck "<em>WordPress should correct invalidly nested XHTML automatically</em>".
+<p><img src="/vPIP/images/nestedXHTMLautomatically.gif" style="border:3px outset #666666;" /></p></li>
+</li>  
+<li>If your using <strong>Wordpress 2.x</strong>, as Admin go to <em>Users->Your Profile</em> and uncheck "<em>Use the visual rich editor when writing</em>".  Then go to <em>Options->Writing</em> and uncheck "<em>WordPress should correct invalidly nested XHTML automatically</em>".  If your users will also be using the vPIP plugin, also uncheck <em>Users should use the visual rich editor by default</em>.
+<p><img src="/vPIP/images/VisualRichEditor.gif" style="border:3px outset #666666;" /></p></li></ul>
+<li>Go to <em>Plugins</em> and activate vPIP.
+<p><img src="/vPIP/images/activatevPIP.gif" style="border:2px outset #666666;" /></p></li>
+<li>If using Word 2.x, clear the persistent cache under ../wp-content/cache/ by deleting all the filed and folders under it.  They'll be recreated with any changes when the blog is accessed by users.
+<p><img src="http://utilities.cinegage.com/downloads/vPIP0.15/images/WPpersistentCache.gif" /></p></li>
+<li>Below where you'll be writing your post, the "Generate vPIP HTML code" helper app is available.  
+
+<p><img src="http://utilities.cinegage.com/downloads/vPIP0.15/images/vPIPCodeGen.gif"  style="border:2px outset #666666;" /></p>
+
+From this you can specify the movie files (Quicktime, Windows Media and/or Flash) and their display parameter.  Then the "Generate Code" button will provide the vPIP HTML code to paste into your blog entry.<br />
+Note:  This Flash app will sometimes hold the cursor from typing back in the write box.  In that case open the app externally with the "Open in external window: vPIP" button.</li>
+<li>You are now ready to use vPIP in writing blog posts and pages.  To do that, go to the <a href="javascript: openAnchor('#divUsingvPIP', 'imgUsingvPIP', '#Usage', 4);" >Using vPIP</a> section.</li>
+<li>If vPIP doesn't work, then your theme header template probably doesn't support inserting the script from the plugin.  In that case, manually put in the reference to the script by 
+<ol><li>going to <em>Presentation->Theme Editor</em></li>
+<li>Select the <em>Header</em> template.</li>
+<li>Place the following line before &lt;/head>:<br />
+
+<p><textarea cols='100'  rows='4' readonly='readonly'>
+<script src="http://[url where vPIP was uploaded to]/vpip.js" type="text/javascript"></script>
+<style type="text/css" media="all">@import "http://[url where vPIP was uploaded to]/vPIPBox.css";</style>
+<script src="http://[url where vPIP was uploaded to]/jquery.js" type="text/javascript"></script>
+</textarea><br />
+Replace <em>[url where vPIP was uploaded to]</em> with the Wordpress directory location you uploaded vpip.js to in step 2 above.  For example, a location could be <em>http://mysever/wp/wp-content/plugins/vPIP/vpip.js</em></p>
+<p><img src="http://utilities.cinegage.com/downloads/vPIP0.15/images/vPIPreference.gif" style="border:3px outset #666666;" /></p></li>
+
+</ol></li></ol>
+For the HTML structure that vPIP uses, read the <a href="javascript: openAnchor('#divUsingvPIP', 'imgUsingvPIP', '#Usage', 4);" >Using vPIP</a> section.
+</div>
+<p>&nbsp;</p>
+
+<a href="javascript: void%200;" onclick="javascript: openCloseAnchor('#divGeneralInstall', 'imgGeneralInstall', 3);"  style="border: none; background: transparent;" name="GeneralInstall" ><img src="http://utilities.cinegage.com/images/expand.gif" title="Expand" id="imgGeneralInstall" style='border: none; background: transparent;' >
+
+<h2 style="display:inline;">General Installation</a></h2>
+<div id="divGeneralInstall">
+
+<p>vPIP is a script (javascript) file that should work on any blogging software and website.  These are the steps to install vPIP:
+<ol>
+   <li>Download by right clicking the --> <a href="http://utilities.cinegage.com/downloads/vPIP0.15/vPIP.zip">vPIP link</a> <-- and Save ... As "vpip.zip" to a location on your computer.
+
+<p><img src="http://utilities.cinegage.com/downloads/vPIP0.15/images/SaveAs.gif" /></p></li>
+   <li>Extract <em>vPIP.zip</em> to create the <strong>vPIP</strong> folder</li>
+   <li>Upload either the <strong>vPIP</strong> folder or it's contents to an accessible internet location.  It can be on any file sharing or other server that can be accessed through HTML.<br />
+Note:  If you don't have a internet location to upload to, alternate locations will be specified in the steps below.</li>
+   <li>Place the following lines in the &lt;head>...&lt;/head> section of your blogging software template or web page (normally this would go before &lt;/head>):
+
+<p><textarea cols='100' rows='4' readonly='readonly'>
+<script src="http://[url where vPIP was uploaded to]/vpip.js" type="text/javascript"></script>
+<style type="text/css" media="all">@import "http://[url where vPIP was uploaded to]/vPIPBox.css";</style>
+<script src="http://[url where vPIP was uploaded to]/jquery.js" type="text/javascript"></script>
+</textarea><br />
+Replace <em>[url where vPIP was uploaded to]</em> with the web server location you uploaded the vPIP content to in step 2 above.</p>
+<p>Note:  If you don't have a internet location to upload to, use these alternate alternate locations:
+<textarea cols='100' rows='6' readonly='readonly'>
+<script src="http://utilities.cinegage.com/downloads/vPIP0.15/vpip.js" type="text/javascript"></script>
+<style type="text/css" media="all">@import "http://utilities.cinegage.com/downloads/vPIP0.15/vPIPBox.css";</style>
+<script src="http://utilities.cinegage.com/downloads/vPIP0.15/jquery.js" type="text/javascript"></script>
+</textarea></p></li>
+
+</ol>
+<p>Or the server locations kindly provided by --> <a href="http://www.vlogassist.com/viewtopic.php?t=225&start=0&postdays=0&postorder=asc&highlight=" target="_blank">VlogAssist</a> <--.</p>
+
+<p>That's it.  You are now ready to use vPIP in writing blog posts and creating web pages.  For instructions, go to the <a href="javascript: openAnchor('#divUsingvPIP', 'imgUsingvPIP', '#Usage', 4);" >Using vPIP</a> section.</p>
+</div>
+<p>&nbsp;</p>
+
+<a href="javascript: void%200;" onclick="javascript: openCloseAnchor('#divUsingvPIP', 'imgUsingvPIP', 4);"  style="border: none; background: transparent;" name="Usage" ><img src="http://utilities.cinegage.com/images/expand.gif" title="Expand" id="imgUsingvPIP" style='border: none; background: transparent;' >
+
+<h2 style="display:inline;">Using vPIP</a></h2>
+<div id="divUsingvPIP">
+<h3>Quick Start</h3>
+
+<p>Click on the image below to open the vPIP code generator.  There you can specify the type of movie you have -- Quicktime, Windows Media or Flash movie -- and the display options.  (For Flash, just the .SWF files are currently supported.)  Once specified, hitting the [Generate Code] button allows you to paste the vPIP code in the web location your movie will play:</p>
+<p align="center"><a href="javascript: void%200" onclick="openBrWindow('http://utilities.cinegage.com/downloads/vPIP0.15/GenvPIP0-06a.php','vPIPHelperApp0-06a','scrollbars=yes,resizable=yes,width=660,height=320,left=10,top=10'); return false;"  ><img src="http://utilities.cinegage.com/downloads/vPIP0.15/images/vPIPLink.gif" /></a></p>
+<p>If you'd like to host the "Generate vPIP HTML code" app:
+<ol>
+   <li>Right click on --><a href="http://utilities.cinegage.com/downloads/vPIP0.15/GenvPIP0-06a.swf">GenvPIP0-06a.swf</a><-- and Save ... As to a location on your hard disk.</li>
+   <li>Right click on --><a href="http://utilities.cinegage.com/downloads/vPIP0.15/GenvPIP0-06a.html">GenvPIP0-06a.html</a><-- and Save ... As to a location on your hard disk.</li>
+   <li>Copy both GenvPIP0-06a.swf and GenvPIP0-06a.html to the web location you want to run it from.</li>
+   <li>Reference GenvPIP0-06a.html to start the "Generate vPIP HTML code" app.
+</ol>
+
+<p>The following is the HTML coding for vPIP.</p>
+
+<p><a name="hVlogFormat">vPIP uses standard HTML in a specific structure</a> to emded Quicktime, Windows Media and Flash applications (SWF) movies.  The format is a <em>&lt;div class="hvlog"...></em> tag containing a <em>&lt;a href=... rel="enclosure"... onclick="vPIPPlay(this{, '...'}); return false" ...></em> link tag.  Usually the link reference is a poster image for the movie, <em>&lt;img src=...></em> or text description.  An example of a minimal vPIP HTML is:</p>
+
+<p><blockquote>
+&lt;div class=”hvlog”><br />
+&nbsp;&nbsp;&nbsp;&lt;a href=”http://www.myserver.com/media/myMovie.mov” rel=”enclosure” title=”My Movie!” onclick=”vPIPPlay(this); return false;”><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=”http://www.myserver.com/images/myMovie.jpg” /><br />
+&nbsp;&nbsp;&nbsp;&lt;/a><br />
+&lt;/div></blockquote></p>
+<p>Note:  The url for &lt;a href=<strong>"..."</strong> must be enclosed in double quotes, <strong>"..."</strong> per the XML standard.  Single quotes will fail in services like Feedburner.</p>
+
+<h3>Detailed Usage</h3>
+
+<p>The following are examples in Quicktime, Windows Media and Flash (SWF) using variants of all of vPIP's parameters:</p>
+
+<h4>Quicktime example</h4>
+
+<blockquote>
+&lt;div class=”hvlog”><br />
+&nbsp;&nbsp;&nbsp;&lt;a href=”http://www.myserver.com/media/myMovie.mov” rel=”enclosure” class="hVlogTarget" title=”My Movie!” type="video/quicktime" onclick=”vPIPPlay(this, 'width=320, height=260, autostart=true, controller=true, name=MyMovie, revert=true', '', 'active=true, caption=My Grand Movie'); return false;”><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=”http://www.myserver.com/images/myMovie.jpg” /><br />
+&nbsp;&nbsp;&nbsp;&lt;/a><br />
+&lt;/div></blockquote>
+
+<h4>Windows Media example</h4>
+
+<blockquote>
+&lt;div class=”hvlog”><br />
+&nbsp;&nbsp;&nbsp;&lt;a href=”http://www.myserver.com/media/myMovie.wmv” rel=”enclosure” title=”My Movie!” class="hVlogTarget" type="video/x-ms-wmv" onclick=”vPIPPlay(this, 'width=320, height=260, autostart=true, controller=true, name=MyMovie, revert=true'); return false;”><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=”http://www.myserver.com/images/myMovie.jpg” /><br />
+&nbsp;&nbsp;&nbsp;&lt;/a><br />
+&lt;/div></blockquote>
+
+<h4>Flash example</h4>
+
+<blockquote>
+&lt;div class=”hvlog”><br />
+&nbsp;&nbsp;&nbsp;&lt;a href=”http://www.myserver.com/media/myMovie.swf” rel=”enclosure” title=”My Movie!” class="hVlogTarget" type="application/x-shockwave-flash" onclick=”vPIPPlay(this, 'width=320, height=260, name=MyMovie, quality=High, bgcolor=#FFFFFF, revert=true, flv=true', ''FLVbuffer=10', 'active=true, caption=My Sweet Film); return false;”><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=”http://www.myserver.com/images/myMovie.jpg” /><br />
+&nbsp;&nbsp;&nbsp;&lt;/a><br />
+&lt;/div></blockquote>
+<p>Both .swf and .flv files are supported.  FLV files are supported by the included flv viewer, cirneViewer.swf.</p>
+
+<p>The tag heirarchy for vPIP is:<br />
+<blockquote>
+&lt;div ...><br />
+&nbsp;&nbsp;&nbsp;&lt;a ...>...&lt;/a><br />
+&lt;/div>
+</blockquote></p>
+
+<p>The tag parameters follow.<br />
+Optional entries enclosed in <strong>{}</strong>.</p>
+
+<p>The <strong>&lt;div ...></strong> tag has one required parameter:  <strong>&lt;class="hvlog"</strong>.  Do not use the <strong>id=</strong>"..." parameter because vPIP will put in it's own unique ID.</p>
+
+<p>The <strong>&lt;a ...></strong> tag parameters are:
+<ul>
+<li><strong>href=</strong>"[url to videoblog file]"<br />
+<em>This is a required parameter</em>.<br />
+Note:  The url for &lt;a href=<strong>"..."</strong> must be enclosed in double quotes, <strong>"..."</strong> per the XML standard.  Single quotes will fail in services like feedburner.</li>
+<li><strong>rel="enclosure"</strong><br />
+<em>This is a required parameter.</em></li>
+<li><strong>class="hVlogTarget"</strong><br />
+<em>This is an optional parameter, but recommended.</em>  The link with this class -- it should be only one link in the hVlog structure -- will receive the embedded video.  It is usually a image link.  Other links will continue the be available as the embedded video is available.</li>
+<li><strong>type=</strong>"[mime type]"<br />
+This is a <em>optional, but highly recommended parameter</em>.  The mime types supported in this release are:
+<ul> <li>quicktime</li>
+   <ul>
+       <li>mov: video/quicktime</li>
+       <li>mp4: video/mp4</li>
+       <li>m4v:  video/x-m4v</li>
+       <li>mp3: audio/x-mp3</li>
+       <li>smi: application/smil</li>
+       <li>3gp: video/3gpp</li>
+   </ul>
+<li>windows media</li>
+    <ul>
+        <li>avi: video/x-msvideo</li>
+        <li>wmv: video/x-ms-wmv</li>
+        <li>asf:  video/x-ms-asf</li>
+        <li>wma:  audio/x-ms-wma</li>
+    </ul>
+<li>flash</li>
+   <ul>
+      <li>swf: application/x-shockwave-flash</li>
+      <li>fla: application/x-shockwave-flash</li>
+   </ul>
+</ul>
+<li>onclick=vPIPPlay(this, {'<strong>width</strong>=<em>[integer]</em>, <strong>height</strong>=<em>[integer]</em>, <strong>autostart</strong>=<em>[true/false]</em>, <strong>controller</strong>=<em>[true/false]</em>, <strong>name</strong>=<em>[string]</em>, <strong>quality</strong>=<em>[High/AutoLow/AutoHigh]</em>, <strong>bgcolor</strong>=<em>[color value]</em>, <strong>revert</strong>=<em>[true/false]</em>, <strong>flv</strong>=<em>[true/false]</em>', '<strong>FLVbuffer</strong>=<em>number 1-100 percentage to load before playing]</em>', '<strong>activate=</strong>=<em>[true/false]</em>, <strong>caption=</strong>=<em>...</em>}); return false;”<br />
+<strong><em>onclick=vPIPPlay(this, {'...'}); return false;"</em> is a required parameter</strong>.
+   <ul>
+      <li>The <strong>vPIPPlay(this, {...}); return false;</strong> function has one required parameter:  <strong>this</strong>, the reference inside the vPIPPlay javascript function to it's calling link.  The <em>vPIPPlay</em>  functions is followed by <strong>return false;</strong> which deactivates the browser from jumping to it's <em>href</em> link. 
+<p>The first group of optional parameters define the movie's embedding parameters.  Their meaning are:</p>
+   <ul>
+      <li><strong>width</strong> = the integer value for the width of the video/application display area.  This includes the controller.<br />  
+Quicktime, Windows Media and Flash use this parameter.<br />
+<em>The default is <strong>320</strong>.</em></li>
+      <li><strong>height</strong> = the integer value for the height of the video/application display area.  This includes the controller.<br />  
+Quicktime, Windows Media and Flash use this parameter.<br />
+<em>The default is <strong>260</strong>.</em></li>
+      <li><strong>autostart</strong> = the boolean value of "true" or "false" for whether the video starts immediately.<br />  
+Quicktime and Windows Media use this parameter.<br />
+<em>The default is <strong>true</strong>.</em></li>
+      <li><strong>controller</strong> = the boolean value of "true" or "false" for whether the controller is displayed.<br />  
+Quicktime and Windows Media use this parameter.<br />
+<em>The default is <strong>true</strong>.</em></li>
+      <li><strong>name</strong> = the string value for the <em>id</em> of the embedded object.<br />  
+Quicktime, Windows Media and Flash use this parameter.<br />
+<em>The default is <strong>""</strong> (empty string)</em></li>
+      <li><strong>quality</strong> = the current rendering quality of "low/high/autoLow/autoHigh".<br />  
+Flash uses this parameter.<br />
+<em>The default is <strong>high</strong>.</em></li>
+      <li><strong>bgcolor</strong> = Override the background color of a movie.<br />  
+Flash uses this parameter.<br />
+<em>The default is <strong>#FFFFFF</strong> - white.</em></li>
+      <li><strong>revert</strong> = the boolean value of "true" or "false" for whether the movie reverts back to link element that was clicked to initiate it when another link element is clicked.<br />  
+All movie types use this parameter<br />
+<em>The default is <strong>true</strong>.</em></li>
+      <li><strong>flv</strong> = the boolean value of "true" or "false" for whether this flash video is an FLV file.<br />  
+All movie types use this parameter<br />
+<em>The default is <strong>true</strong>.</em></li>
+   </ul>
+</li>
+      <li><p>The second group of optional parameters define the Flash FLV Player paremeters.  Their meaning is.</p>
+   <ul>
+      <li><strong>FLVbuffer</strong> = the number between 1-100 for the amount of video to buffer in the flv viewer, cirneViewer, before the video is automatically played.<br />
+<em>The default is <strong>15</strong>.</em></li>
+      <li><p>The third group of optional parameters define the ThickBox paremeters.  Their meaning are:</p>
+   <ul>
+      <li><strong>activate</strong> = the boolean value of "true" or "false" for whether the movie will play in Thickbox.<br />  
+<em>The default is <strong>false</strong>.</em></li>
+      <li><strong>caption</strong> = the string value of the caption that displays above the movie in Thickbox.<br />  
+<em>The default is an empty string.</em></li>
+   </ul></li>
+</ul>
+</ul>
+The <strong>&lt;img …></strong> tag parameters is highly recommended but optional.  Any item allowed within &lt;a href=...>&lt;/a> can be placed in.  However the &lt;img ...> tag will be used by some aggregators as the display image for the movie.  The form of the &lt;img..> tag is:
+<ul>
+   <li><strong>&lt; img src=</strong>"[url to image file]" <strong>/></strong></li>
+</ul>
+</div>
+
+<p><div style="background:  #AAAAAA; margin: 5px; width:  225px; float: right; border: 4px groove; text-align: center">
+<p>Place one of the vPIP banners on your site:</p>
+<img src="http://utilities.cinegage.com/images/vPIPBanner.gif" />
+<img src="http://utilities.cinegage.com/images/vPIPbutton.png" />
+<p>and point it to <textarea cols='25' rows='2' readonly='readonly'>http://utilities.cinegage.com/videos-playing-in-place/</textarea></p>
+Thanks!
+</div>
+</p>
+
+<h2><a name="Caveats">Caveats</a></h2>
+<ul>
+<li>Mac Safari version 1.3.2 and 2.0 continues playing scripts after they've been replaced with their poster image.  So the vPIP revert capability has been disabled for the Safari browser.</li>
+<li>Tests of Opera on PC and Mac do not correctly display movies in ThickBox.  ThickBox has been disabled for Opera.</li>
+</ul>
+<h2><a name="NewFeatures">New Features</a></h2>
+<ul>
+   <li>3gp phone video and audio files supported for quicktime.</li>
+   <li>If a link with <em>class="hVlogTarget"</em> is used, usually an image link, it will embed the video.  And other links will continue to display while the video is playing.</li>
+   <li>Flv player, cirneViewer.swf, incorporated in vPIP package.</li>
+   <li>vPIP is now licensed under LGPL, except cirneViewer which is fully copyrighted.  cirneViewer is free only for non-commercial use.</li>
+</ul>
+
+<h2><a name="Changelog">Changelog</a></h2>
+<ul>
+     <li>v. 0.15
+      <ul>
+         <li>3gp phone video and audio files supported for quicktime.</li>
+         <li>If a link with <em>class="hVlogTarget"</em> is used, usually an image link, it will embed the video.  And other links will continue to display while the video is playing.</li>
+         <li>Flv player, cirneViewer.swf, incorporated in vPIP package.</li>
+         <li>vPIP is now licensed under LGPL, except cirneViewer which is fully copyrighted.  cirneViewer is free only for non-commercial use.</li>
+       </ul>
+     </li>
+     <li>v. 0.14
+      <ul>
+         <li>Multiple video formats target one link.</li>
+         <li>Support for Quicktime SMIL movies.</li>
+         <li><a href="http://codylindley.com/Javascript/257/thickbox-one-box-to-rule-them-all" target="_blank">ThickBox</a> version of <a href="http://www.huddletogether.com/projects/lightbox/" target="_blank">Lightbox</a> effect incorporated in vPIP script (vpip.js).</li>
+         <li>Close button above the embedded movie:  <a href="javascript: void%200;" onMouseOver="document.ImageClose1.src='http://utilities.cinegage.com/downloads/vPIP0.14/close_hover.gif'" onMouseOut="document.ImageClose1.src='http://utilities.cinegage.com/downloads/vPIP0.14/close_grey.gif'"  style="background: transparent;"><img src="http://utilities.cinegage.com/downloads/vPIP0.14/close_grey.gif" name="ImageClose1" style="border: none;"/></a></li>
+       </ul>
+     </li>
+     <li>v. 0.13
+      <ul>
+         <li>Recursive search from anchor for div tag.</li>
+         <li>vPIP.php wordpress plugin inserts linked vPIP button to activate "Generate vPIP HTML code" utility</li>
+         <li>Errors reported in javascript console with <em>setTimeout("[error]", 0);</em>.  And  if href is available, it's activated with <em>window.open([href], "_self");</em>.</li>
+       </ul>
+     </li>
+     <li>v. 0.12
+      <ul>
+         <li>Replaced the <strong>vPIPPlay(this{, '...'}); return false;</strong> function call in &lt;a href="...".  This is a direct call to the vPIPPlay javascript function that elminates the problem of waiting for the page to fully load.</li>
+         <li>The internal array that holds the <strong>Div</strong> and <strong>Link</strong> information allows multiple links in an <strong>Div</strong>.</li>
+         <li>v. 0.11 <strong>vPIPShow</strong> is supported with mulitple links in the Div.</li>
+      </ul>
+   </li>
+   <li>v. 0.11
+      <ul>
+         <li>Places the vPIPShow({...}) function call in &lt;a href="...".</li>
+         <li>Strip out non-alphanumerics from href and onclick paraemeters of the a tag.</li>
+      </ul>
+  </li>
+  <li>v. 0.10
+      <ul>
+         <li>Replaced &lt;object ...> tag with &lt;div class=”hvlog”>&lt;a href....>&lt;img src=... />&lt;/a>&lt;/div></li>
+         <li>Ability to revert back to the link, usually &lt;img src=... />, when another vPIP link is clicked.<li>
+         <li>Support for Windows Media and Flash embed along with Quicktime.</li>
+         <li>Generalized javascript utility that should work in most browsers, blogging systems and websites</li>
+      </ul>
+   </li>
+   <li>v. 0.02
+      <ul>
+         <li>Replaced &lt;vPIP ...> tag with &lt;object ...> tag.</li>
+      </ul>
+   </li>
+</ul>

@@ -1,0 +1,17 @@
+<receivewait>cvinterface320x300/ReceiveWait.swf,80,80,200,75</receivewait>
+<controlsbackgroundimage>/cvinterface320x300/background.png,0,240,320,20</controlsbackgroundimage>
+<playimage>cvinterface320x300/play.png,2,242,18,17</playimage>
+<pauseimage>cvinterface320x300/pause.png,2,242,18,17</pauseimage>
+<rewindimage>cvinterface320x300/rewind.png,22,242,18,17</rewindimage>
+<timebar> ,13,239,212,12</timebar>
+<videoguideimage>cvinterface320x300/videoguide.png,29,3,182,4</videoguideimage>
+<videosliderimage>cvinterface320x300/videoslider.png,27,1,7,15</videosliderimage>
+<info> ,35,277,185,16</info>
+<timecode> ,186,245,41,13</timecode>
+<timecodenumbers> ,3,0,67,15</timecodenumbers>
+<timecodeimage>cvinterface320x300/timecode.png,0,2,41,13</timecodeimage>
+<soundimage>cvinterface320x300/sound.png,300,242,18,17</soundimage>
+<volumebar> ,231,242,66,15</volumebar>
+<volumebarimage>cvinterface320x300/volumebar.png,0,6,66,9</volumebarimage>
+<volumesliderimage>cvinterface320x300/volumeslider.png,0,3,7,15</volumesliderimage>
+
