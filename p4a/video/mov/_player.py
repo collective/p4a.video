@@ -11,18 +11,17 @@ class MOVVideoPlayer(object):
         self.context = context
     
     def __call__(self, downloadurl, imageurl):
-        contentobj = self.context.context.context
-        site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
-        
-        playerurl = "%s/++resource++flashmp3player/musicplayer.swf?song_url=%s"
+        contentobj = self.context.context.context    
         url = contentobj.absolute_url()
         
         return """
         <div class="hVlog" >
           <a href="%(url)s" class="hVlogTarget" type="video/quicktime" onclick="vPIPPlay(this, '', '', ''); return false;">
-              <img src="http://www.plone.org/logo.jpg" /></a>
+              <img src="%(imageurl)s" /></a>
         <br />
           <a href="%(url)s" type="video/quicktime" onclick="vPIPPlay(this, '', '', ''); return false;">
         Play Quicktime version</a>
         </div>        
-        """ % {'url': url}
+        """ % {'url': url,
+               'imageurl': imageurl}
+        

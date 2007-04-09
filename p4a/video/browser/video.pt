@@ -3,16 +3,16 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
-<head>
-	<div metal:fill-slot="javascript_head_slot">
-		<script tal:attributes="src string:$portal_url/++resource++vPIP/vpip.js" type="text/javascript"></script>
-		<script tal:attributes="src string:$portal_url/++resource++vPIP/jquery.js" type="text/javascript"></script>
-	</div>
-</head>
-
 <body>
 
+<div metal:fill-slot="javascript_head_slot">
+	<script tal:attributes="src string:$portal_url/++resource++vPIP/vpip.js" type="text/javascript"></script>
+	<script tal:attributes="src string:$portal_url/++resource++vPIP/jquery.js" type="text/javascript"></script>
+	<script tal:attributes="src string:$portal_url/++resource++vPIP/vpipit.js" type="text/javascript"></script>
+</div>
+
 <div metal:fill-slot="css_slot">
+<!--	<style type="text/css" media="all">@import "http://[url where vPIP was uploaded to]/vPIPBox.css";</style>-->
 	<link rel="stylesheet" href="vPIPBox.css"
 	      tal:attributes="href string:$portal_url/++resource++vPIP/vPIPBox.css"
 	      />
@@ -82,9 +82,9 @@
                 </div>
                 <div tal:replace="structure view/widgets/media_player"></div>
 
-            <div class="video-images">
+            <!-- <div class="video-images">
               <img tal:replace="structure view/widgets/video_image" />
-            </div>
+            </div> -->
 
                 <div id="object_metadata">
 			<!--

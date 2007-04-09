@@ -37,12 +37,14 @@ class FLVVideoPlayer(object):
         height = videoobj.height
 
         config = generate_config(videoFile=downloadurl,
-                                 splashImageFile=imageurl)
+                                 splashImageFile=imageurl,
+                                 autoPlay='false',
+                                 videoHeight=height)
 
         return """
         <div class="flowplayer">
             <object type="application/x-shockwave-flash" data="%(player)s" 
-            	width="320" height="263" id="FlowPlayer">
+            	width="%(width)s" height="%(height)s" id="FlowPlayer">
             	<param name="allowScriptAccess" value="sameDomain" />
             	<param name="movie" value="%(player)s" />
             	<param name="quality" value="high" />

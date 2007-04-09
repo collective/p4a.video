@@ -13,11 +13,7 @@ class WMVVideoPlayer(object):
     
     def __call__(self, downloadurl, imageurl):
         contentobj = self.context.context.context
-        site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
-        
-        # playerurl = "%s/++resource++flashmp3player/musicplayer.swf?song_url=%s"
         url = contentobj.absolute_url()
-        # mime_type = contentobj.mime_type()
         
         videoobj = interfaces.IVideo(contentobj)
         
@@ -28,11 +24,12 @@ class WMVVideoPlayer(object):
         
         return """
         <div class="hVlog">
-          <a href="%(url)s" class="hVlogTarget" type="video/x-ms-wmv" onclick="vPIPPlay(this, '', '', 'active=true, controller=true'); return false;">
+          <a href="%(url)s" class="hVlogTarget" type="video/x-ms-wmv" onclick="vPIPPlay(this, '', '', ''); return false;">
               <img src="%(imageurl)s" />
               </a>
         <br />
-          <a href="%(url)s" type="video/x-ms-wmv" onclick="vPIPPlay(this, '', '', 'active=true, controller=true'); return false;">
+          <a href="%(url)s" type="video/x-ms-wmv" onclick="vPIPPlay(this, '', '', ''); return false;">
         Play WindowsMedia version</a>
         </div>        
-        """ % {'url': url, 'imageurl': imageurl}
+        """ % {'url': url, 
+               'imageurl': imageurl}
