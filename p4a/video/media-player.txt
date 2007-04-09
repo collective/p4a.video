@@ -11,7 +11,7 @@ to return the HTML used to represent the media player and will be passed
 a the *downloadurl* parameter as the url to the actual media content.
 
 For a concrete example of providing *IMediaPlayer*, please see the
-*p4a.video.mp3* package.  
+*p4a.video.mp3* package.
 
 The most common way of using a defined media player is by using the
 *MediaPlayerWidget* widget.
@@ -21,7 +21,7 @@ We begin by defining the required adapter.
   >>> from zope.interface import implements, Interface
   >>> from zope.component import adapts, provideAdapter
   >>> from p4a.video.interfaces import IMediaPlayer
-  
+
   >>> class FooMediaPlayer(object):
   ...     implements(IMediaPlayer)
   ...     adapts(object)
@@ -42,7 +42,7 @@ We start by defining some mock objects.
 
   >>> class IMockSchema(Interface):
   ...     file = FileField(title=u'mockfilefield')
-  
+
   >>> class MockField(object):
   ...    __name__ = u'mockfield'
   ...    required = False
@@ -50,10 +50,10 @@ We start by defining some mock objects.
   ...    missing_value = None
   ...    interface = IMockSchema
   ...    getName = lambda self: self.__name__
-  
+
   >>> class MockView(object):
-  ...     pass
-  
+  ...     video_image = None
+
   >>> class MockContentObject(object):
   ...     mime_type = 'application/none-set'
   ...     absolute_url = lambda self: 'http://someplace.com/mockland'
@@ -67,16 +67,16 @@ When there is no media content available we should get HTML describing
 that.
 
   >>> widget = MediaPlayerWidget(field, None)
-  >>> widget()
-  u'<span class="player-not-available media-player">No available player for mime type "application/none-set"</span>'
+  >>> 'player-not-available' in widget()
+  True
 
 If there is no available IMediaPlayer adapter available for the content
 type (which in this case the content defaults to 'application/none-set')
 then we should get HTML respective of that.
 
   >>> widget._data = u'helloworld'
-  >>> widget()
-  u'<span class="player-not-available media-player">No available player for mime type "application/none-set"</span>'
+  >>> 'player-not-available' in widget()
+  True
 
 Now we set the data to some value and expect to get back the media player
 HTML.
