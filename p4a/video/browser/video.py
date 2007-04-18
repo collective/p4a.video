@@ -192,16 +192,18 @@ class VideoContainerView(object):
             aFile = x.context
             field = aFile.getFile()
             w = self._widget(x)
+            # IVideo.duration is a float, we need an int
+            duration = int(round(x.duration))
             self._video_items.append( \
                 {'title': x.title,
                  'url': aFile.absolute_url(),
-                 # 'size': formatting.fancy_data_size(field.get_size()),
-                 # 'length': formatting.fancy_time_amount(x.length),
+                 'size': formatting.fancy_data_size(field.get_size()),
+                 'duration': formatting.fancy_time_amount(duration),
                  'description': x.context.Description(),
                  'icon': aFile.getIcon(),
                  'widget': w,
                  })
-            self._total_length += x.length
+            #self._total_length += x.length
 
     def _widget(self, video):
         field = interfaces.IVideo['file'].bind(video)
