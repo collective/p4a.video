@@ -15,17 +15,19 @@ def extract(filename):
         parser = createParser(filename)
     except InputStreamError, err:
         logger.error("stream error! %s\n" % unicode(err))
+        return None
 
     if not parser:
         logger.error("Unable to create parser.\n")
-        return False
+        return None
     try:
         metadata = extractMetadata(parser)
     except HachoirError, err:
         logger.error("stream error! %s\n" % unicode(err))
+        return None
 
     if not metadata:
         logger.error("unable to extract metadata.\n")
-        return False
+        return None
 
     return metadata
