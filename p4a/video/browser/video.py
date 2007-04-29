@@ -176,7 +176,7 @@ class VideoContainerView(object):
         self.context = context
         self.request = request
         self._video_items = None
-        # self._total_length = None
+        self._total_length = 0
         
         self._build_info()
 
@@ -186,7 +186,6 @@ class VideoContainerView(object):
         # cheating here by getting file properties we need by looking
         # up context attribute which isn't in the interface contract
         self._video_items = []
-        # self._total_length = 0
         
         for x in provider.video_items:
             aFile = x.context
@@ -203,7 +202,8 @@ class VideoContainerView(object):
                  'icon': aFile.getIcon(),
                  'widget': w,
                  })
-            #self._total_length += x.length
+            
+            self._total_length += duration
 
     def _widget(self, video):
         field = interfaces.IVideo['file'].bind(video)
