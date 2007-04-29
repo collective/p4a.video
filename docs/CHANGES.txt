@@ -1,5 +1,5 @@
 =================
-p4a.audio Changes
+p4a.video Changes
 =================
 
 p4a.video 1.0alpha1 (2007-04-29)

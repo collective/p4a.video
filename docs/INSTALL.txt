@@ -1,4 +1,4 @@
-p4a.audio Installation
+p4a.video Installation
 =======================
 
 Requirements
@@ -13,14 +13,14 @@ Requirements
 Installation Steps
 ------------------
 
-  1. copy or symlink the ``p4a/audio`` directory into the
+  1. copy or symlink the ``p4a/video`` directory into the
   ``$INSTANCE_HOME/lib/python`` directory
   
-  2. create a file called ``p4a.audio-configure.zcml`` in the
+  2. create a file called ``p4a.video-configure.zcml`` in the
    ``$INSTANCE_HOME/etc/package-includes`` directory.  The file
    should only contain this::
    
-     <include package="p4a.audio" />
+     <include package="p4a.video" />
      
   3. copy or symlink the ``plone/app/form`` directory from the
   plone.app.form distribution into the ``$INSTANCE_HOME/lib/python``
