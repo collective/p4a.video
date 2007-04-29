@@ -2,30 +2,7 @@
 p4a.audio Changes
 =================
 
-p4a.audio 1.0alpha2 (2007-01-15)
+p4a.video 1.0alpha1 (2007-04-29)
 ================================
 
-Miscellaneous
--------------
-
-* Renamed IPossibleMedia to IPossibleAudio (Rocky Burt)
-
-Bugfixes
---------
-
-Features
---------
-
-* New migration functionality for ATAudio -> p4a.audio provided by new
-  view component at ``@@migrate-ataudio-configlet.html`` (Rocky Burt)
-
-* Syndication support as provided by the fatsyndication_ product is
-  now optional (Rocky Burt)
-
-_fatsyndication: http://svn.plone.org/svn/collective/fatsyndication/
-
-
-p4a.audio 1.0alpha1 (2006-10-21)
-================================
-
-* First release with unrecorded set of functionality (Rocky Burt)
+* First release.
