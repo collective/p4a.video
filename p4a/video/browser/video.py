@@ -72,6 +72,10 @@ class VideoPageView(media.BaseMediaDisplayView):
 
     form_fields = form.FormFields(interfaces.IVideo)
     label = u'View Video Info'
+
+    @property
+    def template(self):
+        return self.index
     
     def has_contentlicensing_support(self):
         try:
