@@ -17,6 +17,7 @@ from p4a.video.browser import widget
 from p4a.common import formatting
 
 from Products.CMFCore import utils as cmfutils
+from Products.CMFPlone import PloneMessageFactory as _
 
 class IVideoView(interface.Interface):
     def title(): pass
@@ -90,6 +91,10 @@ class VideoPageView(media.BaseMediaDisplayView):
 
         return True
 
+    def update(self):
+        super(VideoPageView, self).update()        
+        if not interfaces.IVideo(self.context).video_type:
+            self.context.plone_utils.addPortalMessage(_(u'Unsupported video type'))
 
 class PopupVideoPageView(media.BaseMediaDisplayView):
     """Page for displaying video.

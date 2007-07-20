@@ -7,6 +7,13 @@
       for="p4a.video.interfaces.IPossibleVideo"
       factory="._videodata.WMVVideoDataAccessor"
       provides="p4a.video.interfaces.IVideoDataAccessor"
+      name="video/x-msvideo"
+      />
+
+  <adapter
+      for="p4a.video.interfaces.IPossibleVideo"
+      factory="._videodata.WMVVideoDataAccessor"
+      provides="p4a.video.interfaces.IVideoDataAccessor"
       name="video/x-ms-asf"
       />
 
