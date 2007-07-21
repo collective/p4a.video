@@ -1,5 +1,39 @@
-FlowPlayer Version history 
-==========================
+FlowPlayer Version history (latest release on top)
+=================================================
+1.19
+	- Skinning kit
+	- Added all dependencies to the source distribution package
+	Fixes:
+	- videoHeight does not have any effect in full screen mode any more, now resizes to fit the full area
+	- configured progress bar, buffering bar etc. colors were ignored
+
+1.18
+	- Smoothing of FLV videos (antialiasing of scaled video)
+	- Native Flash full screen mode added.
+	- The Long Play version (FlowPlayerLP.swf) now resizes to full screen
+	- Addes mouse over states to buttons.
+	- Added 'overlay' to image clips. Can be used to overlay a play button image on top of another image clip.
+	- Addes a built-in Big Play Button overlay.
+	- Added new clip specific configuration variable 'liveStream' to specify that the clip is a live stream
+	  played from a media server.
+	- Changed the background of the video area to be black. Now the player does not show the video (shows the black
+	  background instead) before the buffer is filled an the playback starts.
+	- Added new clip specific setting 'showOnLoadBegin'. Turn this to false and the video will not be shown
+	  before the buffer has been filled and the playback starts.
+	- All methods of the JavaScript API are now available in LocalConnection API as well. You can now
+	  control FlowPlayer from another Flash movie.
+	- By default the loop button is no longer shown. You have to specify showLoopButton: true to make it visible.
+	- New maximum play count for clips in the playlist. Controlled with a clip specific 'maxPlayCount' setting.
+	Fixes:
+	- Progress bar now better seeks to the end of videos.
+	- The embed area is centered horizontally also in full screen mode.
+	- The time display was corrupted with videos longer than 60 minutes. Now uses a smaller font so that
+	the time values fit properly.
+	- JS full screen works with external config file
+	- Setting showFullScreenButton to False Shortens Progress Bar - now fixed
+	- The Long Play version does not redraw the thumbs strip unnecessarily
+
+Older releases in in version number order:
 
 0.9     Initial public release. All basic features are in place.
 
@@ -82,6 +116,10 @@ FlowPlayer Version history
 	Bug fixes:
 	- Seeking using the dragger button is more accurate. Now it is possible to
 	  seek to the very beginning of a clip.
+	- Stops playing in the launching player when the full screen player is opened. This
+	  way the full screen player can begin buffering the video immediately. Previously
+	  the launching player was paused and continued buffering and it prevented the full
+	  screen player from buffering.
 
 1.6
 	Bug fixes:
@@ -177,6 +215,89 @@ FlowPlayer Version history
 	Fixes:
 	- If loop is off the player stops on the last frame of the clip
 
+1.13
+	- New config options to hide the loop button and the size options menu.
+	- Possibility to disable transport control buttons using a clip specific option.
+	- Possibility to have hyperlinks for clips. Will open the linked URL into the browser when the clip is clicked.
+	- Possibility to disable pause/resume behavior associated to clicking the video area. This is done
+	  by specifying an empty hyperlink URL to a click.
+	- New animation that plays on the progress bar area when the video is buffering
+	- The setConfig() method in the JavaScript API can be used over and over again to replace the configuration
+
+1.14
+	- Two new skins included (black & white)
+	- Initial support for lighttpd
+	- Ability to include Flash movies (swf files) in playlist
+	- Added a type property to playlist clips so that the URLs don't need to have an extension (swf, flv or jpg)
+	  any more.
+	Fixes:
+	- playlist control buttons (next & prev) did not fade out when disabling them for a clip
+
+1.14.1
+	- dragger (scrubber) now causes immediate seeking when it is moved
+	Fixes:
+	- JavaScript API's setConfig() did not work correctly
+	- allows seeking to unbuffered areas when streaming with lighttpd
+	- removed unnecessary error logging
+	- volume slider goes all the way to the right edge
+	- fixed regressions in LP version: Thumbnail scrollbar was not shown, 
+	duration labels did not have the grey background
+
+1.15
+	- Added several event callbacks to the JavaScript API. See javascript.txt for details.
+	- Added a new "thermometer" skin, ends up in FlowPlayerThermo.swf (does not include the playlist
+	  control and loop buttons yet)
+	- Andrew Rice: Faster seeking with lighttpd by using a binary search to find the keyframes.
+	               A fix to the Seek() method in the JavaScript API now works correctly with lighttpd.
+				   
+1.16
+	- Added full screen support. Opens a new browser window that occupies all screen estate.
+	- Added a new view that shows the HTML code for embedding the video in blogs etc.
+	- Changed the looks of the menu. The menu is now shown when the user hovers over the area
+	  where it is displayed. 
+	- Added more event callbacks to the JavaScript API. See javascript.txt for details.
+	- Changed the splash image to use the 'baseURL' variable that is used with all other types of clips.
+	  'skinImagesBaseURL' is only used for external skin images
+	- Removed the playlist view (the list that showed the playlist contents under the control buttons)
+	Fixes:
+	- Volume slider sometimes was errorneusly placed on top of the video area
+	- a SWF in a playlist is not loaded on top of the control button area (new the control area
+	border stays on top of it).
+	- initialScale parameter did not work when the controls were hidden
+	- pause/resume by clicking the video (or the linkUrl behavior) did not work in the upper left
+	  corner of the video area
+	- The player now dynamically resizes itself if the size is changed in the embedding HTML. This
+	  is utilized by the fullscreen feature.
+
+1.16.1
+	Fixes a bug in the new full screen feature, it was not able to dynamically add the required 
+	JavaScript to the opening page's DOM on Internet Explorer.
+
+1.16.2
+	Fixed the embedding feature so that the displayed code works in MySpace.
+
+1.17
+	- Added a button to open the full screen page.
+	- Removed the menu auto-popup.
+	- Added a 'autoRewind' option that is used to rewind to the first clip in the playlist. The old
+	'loop' option keeps the playback looping without returning back to the first splash image
+	(if there is a splash).
+	- Added ability to include png files in playlists. Especially useful for creating transparent splash images
+	that have a big play button image.
+	- Added a per clip parameter 'allowResize' that can be used to override the scaling setting.
+	- Changed the font used in FlowPlayer to be non italics
+	- Added possibility to fix the control buttons area width. Now the controls do not fill the whole
+	  width in the full screen mode.
+	Fixes:
+	- Embed provided hardcoded width and height values. Now it takes those from the parent player.
+
+1.17.1
+	Fixes:
+	- Fixed user interface problems introduced in 1.17 
+	(see: http://sourceforge.net/forum/forum.php?thread_id=1733937&forum_id=453550)
+
+
+	  
 How to use it
 =============
 
@@ -193,10 +314,11 @@ You need to specify locations for these in the build.xml. Modify the file accord
 
 To compile FlowPlayer you need following tools:
 * mtasc compiler (http://www.mtasc.org)
-* swfmill (http://iterative.org/swfmill)
+* swfmill (http://iterative.org/swfmill, you should use swfmill version 0.2.11, will not work with the newer version)
 * Ant (http://ant.apache.org)
 * as2ant (http://www.as2lib.org)
 * as2lib (http://sourceforge.net/projects/as2lib)
+* asunit (http://www.asunit.org)
 
 You need to add a method signature for onCuePoint method into MTASC/std/NetStream.as:
 	function onCuePoint(info:Object):Void;
@@ -212,7 +334,7 @@ To build run: ant build
 To test cd to 'build' directory and open FlowPlayer.html using a browser. 
 Change the parameters in FlowPlayer.html to try with your own videos.
 
-Bug reports, questions, contributing 
-==================================== 
-If you have bug reports, questions or would like to contribute, please send a
-message to: api@iki.fi
+Support, comments, bug reports and feedback:
+--------------------------------------------
+Please post support requests and feedback to the forums at http://sourceforge.net/projects/flowplayer 
+You can also contact the author directly: api@iki.fi

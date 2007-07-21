@@ -41,21 +41,67 @@
 
 	/*
 	 * Playlist is used to publish several videos using one player instance.
-	 * The clips in the playlist may have following properties:
+	 * You can also have images in the playlist. The playback pauses in the
+	 * image unless a 'duration' property is given for the image:
+
+ * 	 * The clips in the playlist may have following properties:
 	 *
 	 * name: Name for the clip to be shown in the playlist view. If this is
 	 *       not given, the clip will be hidden from the view.
 	 *
-	 * start: The start time (seconds) from where to start the playback. A nonzero
-	 * value can only be used when using a streaming server!!
-	 * end: The end time (seconds) where to stop the playback.
+	 * url: The URL used to load the clip.
+	 * 
+	 * type: One of 'flv', 'swf', 'jpg'. Optional, determined from the URL's filename extension
+	 *       if that is present. Defaults to 'flv' if the extension is not present in the URL.
 	 *
-	 * You can also have images in the playlist. The playback pauses in the
-	 * image unless a 'duration' property is given for the image:
+	 * start: The start time (seconds) from where to start the playback. A nonzero
+	 *        value can only be used when using a streaming server!!
+	 * end: The end time (seconds) where to stop the playback.
 	 *
 	 * duration: The duration the image is to be shown. If not given the playback
 	 *           pauses when the image is reached in the list.
+	 * 
+	 * protected: (true/false) Apply inlinine linking protection for this clip?
+	 *            Optional, defaults to false.
+	 * 
+	 * linkUrl: Associates a hyperlink pointing to the specified URL. The linked
+	 *          document will be opened to the browser when the clip area is clicked.
+	 * 			Specifying this parameter will replace the normal pause/resume behavior
+	 * 			that is associated to clicking the display area. If you specify an empty
+	 * 			linkUrl '' the pause/resume behavior is disabled but no hyperlink
+	 * 			is created.
+	 * linkWindow: Specifies the name of the browser window or frame into which to load
+	 *   the linked document. Can be a custom name or one of presets: '_blank', 
+	 *   '_parent', '_self', '_top'. (optional, defaults to '_blank')
+	 * 
+	 * controlEnabled: (true/false) Enable transport control buttons for this clip?
+	 *                 Optional, defaults to true.
 	 *
+	 * allowResize: (true/false) Allow resizing this clip according to the menu selection.
+	 *              Optional, defaults to true.
+	 *              
+	 * overlay: A filename pointing to an image that will be placed on top of this image clip. This
+	 *          is only applicable to image clips (jpg or png files). Essentially this layers two images
+	 *          on top of each other. Typically the image on top is a big play button that is used on
+	 *          top of an image taken from the main movie.
+	 * 
+	 * overlayId: ID that specifies a built-in overlay to be used. Currently the player supports
+	 * 			  one built-in overlay with ID 'play'. It renders a large play button with mouse hover color change.
+	 * 			  You can use this on top of image clips (one clip with both the 'url' property and
+	 * 			  'overlayId' property). 
+	 * 			  You can also specify a clip that only has this ID. In that
+	 * 			  case you should place it immediately before or after a FLV clip. This overlay-only
+	 * 			  clip is then rendered on top of the first or the last frame of the FLV video.
+	 * 
+	 * live: (true/false) Is this a live stream (played from a media server)?
+	 * 
+	 * showOnLoadBegin: (true/false) If true, make this clip visible when the fist bits have been loaded.
+	 * If false, do not show this clip (show the background instead) before the buffer is filled
+	 * and the playback starts. Optional, defaults to true.
+	 * 
+	 * maxPlayCount: The maximum play count for this clip. The clip is removed from the playlist when
+	 * the playcount reaches this amount.
+	 * 
 	 * See also: 'baseURL' is prefixed with each URL
 	 */
 	playList: [
@@ -66,24 +112,22 @@
 	],
 	
 	/*
-	 * Specifies wether the playlist should be shown in the player SWF component or not.
-	 * Optional, defaults to false. 
-	 *
-	 * I think it's better to have the visible part of the playlist in HTML 
-	 * and use JavaScript to control the player (see FlowPlayerJs.html for an example).
-	 */
-	showPlayList: true,
-	
-	/*
 	 * Specifies wether the playlist control buttons should be shown in the player SWF component or not.
 	 * Optional, defaults to the value of showPlayList. 
 	 */
 	showPlayListButtons: true,
 
 	/*
-	 * Streaming server connection URL.
+	 * Streaming server connection URL. 
+	 * You don't need this with lighttpd, just use the streamingServer setting (see below) with it.
 	 */
 //	 streamingServerURL: 'rtmp://localahost:oflaDemo',
+	
+	/*
+	 * Is this a live stream? Only makes sense when using a streaming server.
+	 * Optional, defaults to false.
+	 */
+//	liveStream: true,
 	
 	/* 
 	 * baseURL specifies the URL that is appended in front of different file names
@@ -96,8 +140,7 @@
 	
 	
 	/*
-	 * What kind of streaming server? Currently 'red5' and 'fms' provide different
-	 * kind of timing information with the flv metadata. 
+	 * What kind of streaming server? Available options: 'fms', 'red5', 'lighttpd'
 	 */
 //	streamingServer: 'fms',
 	
@@ -174,20 +217,31 @@
 	 * defaults to true)
 	 */
 	loop: true,
+
+	/*
+	 * Rewind back to the fist clip in the playlist when end of the list has been reached?
+	 * This option only has effect if loop is false (please see loop variable above).
+	 * (optional, defaults to false)
+	 */
+	autoRewind: true,
+	
+	/*
+	 * Specifies wether the loop toggle button should be shown in the player SWF component or not.
+	 * Optional, defaults to false. 
+	 */
+//	showLoopButton: true,
 	
 	/*
 	 * Specifies the height to be allocated for the video display. This is the
 	 * maximum height available for the different resizing options.
-	 *
-	 * Note also that the height of the playlist widget is adjusted so that 
-	 * it will show complete rows. The list widget will not have a weight that
-	 * would make it to show only half of the height of a clip's name. This 
-	 * adjustment may result in some empty space at the bottom of the coponent's
-	 * allocated area. This empty space can be removed by adjusting the allocated
-	 * size (changing the value of object tag's height attribute).
-	 *
 	 */
 	videoHeight: 320,
+	
+	/*
+	 * Specifies the width for the control buttons area. Optiona, defaults to the
+	 * width setting used in the embedding code. 
+	 */
+//	controlsWidth: 480,
 	
 	/*
 	 * Specifies how the video is scaled initially. This can be then changed by
@@ -203,6 +257,11 @@
 	 * 
 	 */
 	initialScale: 'fit',
+	
+	/*
+	 * Specifies if the menu containing the size options should be shown or not.
+	 * (optional, defaults to true)
+//	showMenu: false,
 	
 	/*
 	 * 'hideControls' if set to true, hides all buttons and the progress bar
@@ -258,7 +317,7 @@
 	 * NOTE2: You can also specify the splash in a playlist. This is just
 	 * an alternative way of doing it. It was preserved for backward compatibility.
 	 *
-	 * See also: 'skinImagesBaseURL' that affects this variable
+	 * See also: 'baseURL' that affects this variable
 	 */
 //	splashImageFile: 'main_clickToPlay.jpg',
 	
@@ -271,7 +330,7 @@
 	/*
 	 * 'progressBarColor1' defines the color of the progress bar at the bottom
 	 * and top edges. Specified in hexadecimal triplet form indicating the RGB
-	 * color component values. (optional, defaults to light gray: 0xAAAAAA)
+	 * color component values. (optional)
 	 */
 //	progressBarColor1: 0xFFFFFF,
 
@@ -279,42 +338,101 @@
 	/*
 	 * 'progressBarColor2' defines the color in the middle of the progress bar.
 	 * The value of this and 'progressBarColor1' variables define the gradient
-	 * color fill of the progress bar. (optional, defaults to dark gray: 0x555555)
+	 * color fill of the progress bar. (optional)
 	 */
 //	progressBarColor2: 0xDDFFDD,
 
 	/*
 	 * 'bufferBarColor1' defines the color of the buffer size indicator bar at the bottom
-	 * and top edges. (optional, defaults to 0xAAAAAA)
+	 * and top edges. (optional)
 	 */
 //	bufferBarColor1: 0xFFFFFF,
 
 
 	/*
 	 * 'bufferBarColor2' defines the color of the buffer size indicator bar in the middle
-	 * of the bar. (optional, defaults to 0xDDDDDD)
+	 * of the bar. (optional)
 	 */
 //	bufferBarColor2: 0xDDFFDD,
 
 	/*
 	 * 'progressBarBorderColor1' defines the color of the progress bar's border at the bottom
-	 * and top edges. (optional, defaults to 0xAAAAAA)
+	 * and top edges. (optional)
 	 */
 //	progressBarBorderColor1: 0xDDDDDD,
 
 
 	/*
 	 * 'progressBarBorderColor2' defines the color of the progress bar's border in the middle
-	 * of the bar. (optional, defaults to 0xDDDDDD)
+	 * of the bar. (optional)
 	 */
 //	progressBarBorderColor2: 0xEEEEEE,
+
+	/*
+	 * 'bufferingAnimationColor' defines the color of the moving bars used in the buffering 
+	 * animation. (optional)
+	 */
+//	bufferingAnimationColor: 0x0000FF,
+
+	/*
+	 * 'controlsAreaBorderColor' defines the color of the border behind buttons and progress bar 
+	 * (optional)
+	 */
+//	controlsAreaBorderColor: 0x1234,
+
+	/*
+	 * 'timeDisplayFontColor' defines the color of the progress/duration time display 
+	 * (optional)
+	 */
+//	timeDisplayFontColor: 0xAABBCC,
+
+	/*
+	 * Height of the progress bar. (optional)
+	 */
+//	progressBarHeight: 10,
+
+	/*
+	 * Height of the progress bar area. (optional)
+	 */
+//	progressBarAreaHeight: 10,
 
 	/*
 	 * Name of the authentication code file name that is used to prevent inline linking
 	 * of video and image files. This can be a complete URL or just a file name relative
 	 * to the location from where the player is loaded. (optional, defaults to flowplayer_auth.txt)
 	 */
-//	authFileName: 'http://www.mytube.org/authCode.txt'
+//	authFileName: 'http://www.mytube.org/authCode.txt',
 
+	/*
+	 * The URL pointing to a sctipt that opens the player full screen. 
+	 * If this is not configured explicitly, the default script, 
+	 * http://flowplayer.sourceforge.net/fullscreen.js, is used.
+	 */
+//	fullScreenScriptURL: 'http://mysite.org/fullscreen.js'
+
+	/**
+	 * Specifies which menu items will be show. This is an array that contains a boolean
+	 * value for each of the items. By default shows them all except "full screen".
+	 */
+//	menuItems[
+//		true, // show 'Fit to window'
+//		true, // show 'Half size'
+//		true, // show 'Original size'
+//		true, // show 'Fill window'
+//		true, // show 'Full screen'
+//		false // hide 'Embed...'
+//	],
+
+
+	/*
+	 * Specifies wether the full screen button should be shown in the player SWF component or not.
+	 * Optional, defaults to true. 
+	 */
+//	showFullScreenButton: false,
+
+	/*
+	 * Use the Flash 9 native full screen mode.
+	 */
+//	useNativeFullScreen: true,
 }
 

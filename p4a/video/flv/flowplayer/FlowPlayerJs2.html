@@ -14,14 +14,17 @@ var flowPlayer1;
 function init() {
 	if (document.getElementById) {
 		flowPlayer1 = document.getElementById("FlowPlayer");
-    }
-	setFlowPlayerConfig();
+	}
+	setInitialConfig();
 }
 
 // wait for the page to fully load before initializing
 window.onload = init;
 
-function setFlowPlayerConfig() {
+function setInitialConfig() {
+	fpConf.playList = clips;
+	fpConf.autoPlay = false;
+	fpConf.autoBuffering = false;
 	flowPlayer1.setConfig(fpConf);
 }
 
@@ -35,24 +38,20 @@ function setFlowPlayerConfig() {
  */
 var clips = [                      
 	{ name: 'ClickToPlay', url: 'http://www.kolumbus.fi/apiirain/video/resources/main_clickToPlay.jpg' },
-	{ name: 'Stripper Falling From Poll', url: 'http://zippy1981.is-a-geek.com:8081/flv.php?movie_id=167', start: 0, end: 20},
-	{ name: 'Honda accord', url: 'honda_accord.flv' },
+	{ name: 'Honda accord', url: 'honda_commercial.flv' },
 	{ name: 'Ounasvaara', url: 'ounasvaara.flv', start: 15, end: 23 },
 	{ name: 'Milton Friedmanon', url: 'http://vp.video.google.com/videodownload?version=0&secureurl=twAAAD3Nu3qi35Sq20PncHx_N85T906JGae5xZmkTv_R_ZCcDGA0yTapUR0RwupDbpZcNbjY-MdNMAT-VQC4U0TE9SyMNYYG0fdqwToIx6gMunzvEyDd8gwNyiwY-A1-8c4tpls2xEOIv0BZ7sO-aEEGjzV9j16n4enqCZ8SV5898qQ3MjHGsemiY96XrIp9rFSkbKMspA5IpOwOCT4Ts32UnOwdzUnZWuu38dMIRqG9zK15IjdRYyhoOvEhG-AjiRjlrQ&sigh=6Or8xwTb3TIpQZbydtuiroQ_6fk&begin=0&len=1714578&docid=6813529239937418232'
-		}
+		},
+	{ name: 'Sample Flash ad', url: 'samplead.swf', controlEnabled: false }
 ];
 
 var fpConf = {
-	playList: clips,
 	showPlayList: false,
-	baseURL: 'http://www.kolumbus.fi/apiirain/video',
-	autoPlay: true,
-	autoBuffering: true,
 	bufferLength: 20,
 	loop: false,
 	videoHeight: 300,
 	hideControls: false,
-	showPlayListButtons: false,
+	showPlayListButtons: true,
 	progressBarColor1: 0xFF0000,
 	progressBarColor2: 0xFF0000,
 	bufferBarColor1: 0x00FF00,
@@ -62,7 +61,7 @@ var fpConf = {
 }
 
 /*
- * Event hanlders
+ * JavaScript event hanlders:
  */
 function clipSelected(clipIndex) {
 	flowPlayer1.ToClip(clipIndex);
@@ -111,6 +110,88 @@ function getPercentLoaded() {
 	field.value = value;
 }
 
+function replaceConfig() {
+	// replace the playlist in our configuration
+	fpConf.playList = [                      
+	{ name: 'Honda accord', url: 'honda_accord.flv' } ];
+	fpConf.autoBuffering = true;
+	fpConf.autoPlay = true;
+	flowPlayer1.setConfig(fpConf);
+}
+
+/*
+ * Flash callback handlers. The player calls these on specific events:
+ */
+
+function onClipDone(clip) {
+	addClipEvent("clip done : " + describeClip(clip));
+}
+
+function onClipChanged(clip) {
+	addClipEvent("changed to clip : " + clip.name);
+}
+
+function onLoadBegin(clip) {
+	//addClipEvent("started loading : " + clip.name);
+}
+
+function onStartBuffering(clip) {
+	addClipEvent("started buffering : " + clip.name);
+}
+
+function onBufferFull(clip) {
+	addClipEvent("buffer full for : " + clip.name);
+}
+
+function onBufferFlush(clip) {
+	addClipEvent("buffer flush for : " + clip.name);
+}
+
+function onMetaData(obj) {
+	addClipEvent("metadata received : duration " + obj.duration + ", video data rate " + obj.videodatarate + ", audio data rate " + obj.audiodatarate + ", creation date " + obj.creationdate);
+}
+
+function onStreamNotFound(clip) {
+	addClipEvent("stream not found: " + describeClip(clip));
+}
+
+function onPlay(clip) {
+	addClipEvent("play: " + clip.name);
+}
+
+function onStop(clip) {
+	addClipEvent("stop: " + clip.name);
+}
+
+function onPause(clip) {
+	addClipEvent("paused: " + clip.name);
+}
+
+function onResume(clip) {
+	addClipEvent("resumed: " + clip.name);
+}
+
+function onCuePoint(cuePoint) {
+	addClipEvent("cue point received, time: " + cuePoint.time + ", type '" + cuePoint.type + "', thumb: " + cuePoint.thumb + ", parameters: " + cuePoint.parameters);
+}
+
+/*
+ * Helpers:
+ */
+ 
+function addClipEvent(desc) {
+	var events = document.getElementById("events");
+	events.appendChild(document.createTextNode(desc));
+	events.appendChild(document.createElement("br"));
+}
+
+function describeClip(clip) {
+	return "Name: " + clip.name + ", baseUrl: " + clip.baseUrl + ", fileName: " + clip.fileName + 
+	", start: " + clip.start + ", end: " + clip.end + ", protected: " + clip.protected +
+	", linkUrl: " + clip.linkUrl + ", linkWindow: " + clip.linkWindow + ", controlEnabled: " +
+	clip.controlEnabled;
+}
+
 </script>
 </head>
 <body bgcolor="#CCCCCC">
@@ -121,7 +202,7 @@ function getPercentLoaded() {
 	<script type="text/javascript">
 		// <![CDATA[
 
-	  var fo = new SWFObject("FlowPlayer.swf", "FlowPlayer", "500", "560", "7", "#ffffff", true);
+	  var fo = new SWFObject("FlowPlayerWhite.swf", "FlowPlayer", "468", "350", "7", "#ffffff", true);
       // need this next line for local testing, it's optional if your swf is on the same domain as your html page
       fo.addParam("allowScriptAccess", "always");
 	  fo.addParam("flashVars", "config={configInject: true}");
@@ -135,16 +216,16 @@ function getPercentLoaded() {
 			<td>Splash</td><td><a href="javascript: clipSelected(0)">Go</a></td>
 		</tr>
 		<tr>
-			<td>Stripper</td><td><a href="javascript: clipSelected(1)">Go</a></td>
+			<td>Honda accord</td><td><a href="javascript: clipSelected(1)">Go</a></td>
 		</tr>
 		<tr>
-			<td>Honda accord</td><td><a href="javascript: clipSelected(2)">Go</a></td>
+			<td>Ounasvaara</td><td><a href="javascript: clipSelected(2)">Go</a></td>
 		</tr>
 		<tr>
-			<td>Ounasvaara</td><td><a href="javascript: clipSelected(3)">Go</a></td>
+			<td>Milton</td><td><a href="javascript: clipSelected(3)">Go</a></td>
 		</tr>
 		<tr>
-			<td>Milton</td><td><a href="javascript: clipSelected(4)">Go</a></td>
+			<td>Sample Flash advert</td><td><a href="javascript: clipSelected(4)">Go</a></td>
 		</tr>
 	</table>
 
@@ -173,7 +254,14 @@ function getPercentLoaded() {
 			<td><a href="javascript: getPercentLoaded()">Get % loaded</a></td>
 			<td colspan="2"><input type="text" id="loaded" /></td>
 		</tr>
+		<tr>
+			<td><a href="javascript: replaceConfig()">Replace playlist!</a></td>
+			<td colspan="2"><a href="javascript: setInitialConfig()">Back to original playlist!</a></td>
+		</tr>
 	</table>
+	Events:
+	<div id="events">
+	</div>
 
 </body>
 </html>
