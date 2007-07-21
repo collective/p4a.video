@@ -26,20 +26,23 @@ class FLVVideoPlayer(object):
         portal_url = portal_tool.getPortalObject().absolute_url()
 
         player = portal_url + "/++resource++flowplayer/FlowPlayer.swf"
-
+        if not imageurl:
+            # must replace + with %2b so that the FlowPlayer finds the image
+            imageurl = portal_url + \
+                       "/%2b%2bresource%2b%2bflowplayer/play-button-328x240.jpg"
         downloadurl = contentobj.absolute_url()
         title = contentobj.title
 
         # how do we get the imageurl?
-        # 
-        videoobj = interfaces.IVideo(contentobj) 
+        #
+        videoobj = interfaces.IVideo(contentobj)
         width = videoobj.width
-        height = videoobj.height
-
+        # 22 is added to the height so that FlowPlayer controls fit
+        height = videoobj.height + 22
         config = generate_config(videoFile=downloadurl,
                                  splashImageFile=imageurl,
                                  autoPlay='false',
-                                 videoHeight=height)
+                                 loop='false')
 
         return """
         <div class="flowplayer">
