@@ -25,7 +25,7 @@
         <a href=""
            tal:condition="view/has_syndication"
            tal:attributes="href string:${context/absolute_url}/rss.xml"
-           ><img src="" tal:attributes="src string:$portal_url/++resource++videoimages/feed-icon.png" /></a>
+           ><img src="" tal:attributes="src string:$portal_url/++resource++videoimages/feed-icon.png" alt="RSS Feed" /></a>
         <tal:foldercontents>
 
         <p tal:condition="not: video_items"
@@ -64,7 +64,7 @@
                       <a href="#" tal:attributes="href string:${item/url}/view; 
                                                   title item/description">
 
-                        <img tal:attributes="src item/icon"
+                        <img tal:attributes="src item/icon" alt="Track icon"
                              />&nbsp;<span tal:replace="item/title">Title</span>
                       </a>
 
