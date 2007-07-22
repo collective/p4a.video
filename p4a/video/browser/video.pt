@@ -46,21 +46,24 @@
             <div id="video_metadata">
                 <div><strong i18n:translate="label_size">Size:</strong>
                     <span tal:condition="size" tal:content="size">257 KB</span>
-                    <span tal:condition="python:size is None or size < 1" i18n:translate="no_file_uploaded">
+                    <span tal:condition="python:size is None or size &lt; 1" i18n:translate="no_file_uploaded">
                       (No file has been uploaded yet)
                     </span>
                 </div>
                 <div><strong i18n:translate="label_file_type">File type:</strong>
                     <span tal:content="string:${video_info/video_type} ($mime_type)">Content type</span>
                 </div>    
-                <div><strong i18n:translate="label_height">Height:</strong>
-                    <span tal:content="video_info/height">Height</span>
+                <div tal:condition="video_info/height">
+                  <strong i18n:translate="label_height">Height:</strong>
+                  <span tal:content="video_info/height">Height</span>
                 </div>
-                <div><strong i18n:translate="label_width">Width:</strong>
-                    <span tal:content="video_info/width">Width</span>
+                <div tal:condition="video_info/width">
+                  <strong i18n:translate="label_width">Width:</strong>
+                  <span tal:content="video_info/width">Width</span>
                 </div>
-                <div><strong i18n:translate="label_duration">Duration:</strong>
-                    <span tal:content="video_info/duration">Duration</span>
+                <div tal:condition="video_info/duration">
+                  <strong i18n:translate="label_duration">Duration:</strong>
+                  <span tal:content="video_info/duration">Duration</span>
                 </div>
 
             </div>
