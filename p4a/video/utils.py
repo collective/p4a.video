@@ -63,6 +63,8 @@ class AbstractDataAccessor(object):
 
         if len(data) >= 1:
             self._video_data[attr] = convert_func(data[0].value)
+        else:
+            self._video_data[attr] = 0
 
     def load(self, filename):
         metadata = metadataextractor.extract(filename)

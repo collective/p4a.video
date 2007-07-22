@@ -26,7 +26,7 @@ def extract(filename):
         logger.error("stream error! %s\n" % unicode(err))
         return None
 
-    if not metadata:
+    if metadata is None:
         logger.error("unable to extract metadata.\n")
         return None
 

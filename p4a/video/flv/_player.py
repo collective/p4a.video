@@ -36,6 +36,11 @@ class FLVVideoPlayer(object):
         # how do we get the imageurl?
         #
         videoobj = interfaces.IVideo(contentobj)
+        # let's make sure that we have some values
+        if not videoobj.width:
+            videoobj.width = 0
+        if not videoobj.height:
+            videoobj.height = 0
         width = videoobj.width
         # 22 is added to the height so that FlowPlayer controls fit
         height = videoobj.height + 22
