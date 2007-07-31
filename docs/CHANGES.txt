@@ -2,6 +2,12 @@
 p4a.video Changes
 =================
 
+p4a.video 1.0beta1 (2007-07-31)
+===============================
+
+* Various bug fixes and general improvments.
+
+
 p4a.video 1.0alpha1 (2007-04-29)
 ================================
 
