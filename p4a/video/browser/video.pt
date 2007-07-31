@@ -5,13 +5,13 @@
 
 <body>
 
-<div metal:fill-slot="javascript_head_slot">
+<metal:jsslot fill-slot="javascript_head_slot">
 	<script tal:attributes="src string:$portal_url/++resource++vPIP/vpip.js" type="text/javascript"></script>
 	<script tal:attributes="src string:$portal_url/++resource++vPIP/jquery.js" type="text/javascript"></script>
 	<script tal:attributes="src string:$portal_url/++resource++vPIP/vpipit.js" type="text/javascript"></script>
-</div>
+</metal:jsslot>
 
-<div metal:fill-slot="css_slot">
+<metal:cssslot fill-slot="css_slot">
 <!--	<style type="text/css" media="all">@import "http://[url where vPIP was uploaded to]/vPIPBox.css";</style>-->
 	<link rel="stylesheet" href="vPIPBox.css"
 	      tal:attributes="href string:$portal_url/++resource++vPIP/vPIPBox.css"
@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="video.css"
 	      tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
 	      />
-</div>
+</metal:cssslot>
 
 <div metal:fill-slot="main"
      tal:define="video_info context/@@video_view;
