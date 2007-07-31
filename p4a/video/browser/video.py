@@ -201,7 +201,7 @@ class VideoContainerView(object):
             field = aFile.getFile()
             w = self._widget(x)
             # IVideo.duration is a float, we need an int
-            duration = int(round(x.duration))
+            duration = int(round(x.duration or 0.0))
             self._video_items.append( \
                 {'title': x.title,
                  'url': aFile.absolute_url(),
