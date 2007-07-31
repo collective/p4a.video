@@ -56,14 +56,17 @@
                 <div tal:condition="video_info/height">
                   <strong i18n:translate="label_height">Height:</strong>
                   <span tal:content="video_info/height">Height</span>
+                  <span i18n:translate="label_pixels">pixels</span>
                 </div>
                 <div tal:condition="video_info/width">
                   <strong i18n:translate="label_width">Width:</strong>
                   <span tal:content="video_info/width">Width</span>
+                  <span i18n:translate="label_pixels">pixels</span>
                 </div>
                 <div tal:condition="video_info/duration">
                   <strong i18n:translate="label_duration">Duration:</strong>
                   <span tal:content="video_info/duration">Duration</span>
+                  <span i18n:translate="label_seconds">s</span>
                 </div>
 
             </div>
