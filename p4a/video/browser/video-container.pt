@@ -5,6 +5,12 @@
 
   <body>
 
+      <metal:cssslot fill-slot="css_slot">
+      	<link rel="stylesheet" href="video.css"
+      	      tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
+      	      />
+      </metal:cssslot>
+
     <div metal:fill-slot="main"
          tal:define="video_items view/video_items">
     <metal:main-macro define-macro="main">
@@ -14,7 +20,7 @@
         </div>
 
         <h1 tal:content="object_title" class="documentFirstHeading">
-          CD Title
+          Title
         </h1>
 
         <div class="documentDescription"
