@@ -91,6 +91,13 @@ class VideoPageView(media.BaseMediaDisplayView):
 
         return True
 
+    def has_contenttagging_support(self):
+        try:
+            from lovely.tag import interfaces as tagifaces
+        except ImportError, e:
+            return False
+        return component.queryUtility(tagifaces.ITaggingEngine) is not None
+
     def update(self):
         super(VideoPageView, self).update()        
         if not interfaces.IVideo(self.context).video_type:

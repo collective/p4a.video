@@ -84,3 +84,21 @@
     width: 200px;
 }
 
+.tags-footer DT,
+.tags-footer DD {
+    float: left;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+    font-size: 0.8em;
+}
+
+.tags-footer DT {
+    clear: left;
+    width: 7em;
+    color: #666;
+}
+
+.tags-footer DD {
+    padding-right: 0.5em;
+}

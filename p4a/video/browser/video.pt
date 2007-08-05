@@ -115,6 +115,11 @@
                       <span tal:condition="video_info/comment | nothing" tal:content="video_info/comment">Comment</span>
                     </p> -->
 
+			        <tal:block tal:condition="view/has_contenttagging_support">
+<metal:block use-macro="context/@@tag_macros/tags_footer">
+</metal:block>
+			        </tal:block>
+
 			        <tal:block tal:condition="view/has_contentlicensing_support">
 	                  <div tal:replace="structure context/@@copyright_byline_view" />
                       <div tal:replace="structure context/@@metadata_view" />
