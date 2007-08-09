@@ -2,6 +2,17 @@
 p4a.video Changes
 =================
 
+p4a.video (current)
+===================
+
+Features
+--------
+
+* Default video container view has been updated (Rocky Burt)
+
+* Added description field to IVideo and subsequent views (Rocky Burt)
+
+
 p4a.video 1.0beta1 (2007-07-31)
 ===============================
 

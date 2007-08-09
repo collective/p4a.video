@@ -28,8 +28,8 @@ class AnnotationVideo(object):
             annotations[self.ANNO_KEY] = self.video_data
             event.notify(VideoAnnotationAddedEvent(self))
 
-
     title = DictProperty(interfaces.IVideo['title'], 'video_data')
+    description = DictProperty(interfaces.IVideo['description'], 'video_data')
     height = DictProperty(interfaces.IVideo['height'], 'video_data')
     width = DictProperty(interfaces.IVideo['width'], 'video_data')
     duration = DictProperty(interfaces.IVideo['duration'], 'video_data')
