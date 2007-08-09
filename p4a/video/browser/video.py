@@ -33,7 +33,7 @@ class IVideoView(interface.Interface):
 class VideoView(object):
     """
     """
-    
+
     def __init__(self, context, request):
         self.video_info = interfaces.IVideo(context)
 
@@ -41,31 +41,13 @@ class VideoView(object):
         self.media_player = component.queryAdapter(self.video_info.file,
                                                    interfaces.IMediaPlayer,
                                                    mime_type)
-                                                       
+
     def title(self): return self.video_info.title
     def width(self): return self.video_info.width
     def height(self): return self.video_info.height
     def duration(self): return self.video_info.duration
     def video_type(self): return self.video_info.video_type
     def has_media_player(self): return self.media_player is not None
-        
-        
-    # def genre(self): 
-    #     g = self.video_info.genre
-    #     if g in genre.GENRE_VOCABULARY:
-    #         return genre.GENRE_VOCABULARY.getTerm(g).title
-    #     return u''
-    # 
-    # def frequency(self): 
-    #     if not self.video_info.frequency:
-    #         return 'N/A'
-    #     return '%i Khz' % (self.video_info.frequency / 1000)
-    # 
-    # def bit_rate(self): 
-    #     return '%i Kbps' % (self.video_info.bit_rate / 1000)
-    # 
-    # def length(self):
-    #     return formatting.fancy_time_amount(self.video_info.length)
 
 def has_contentlicensing_support(context):
     try:
@@ -103,7 +85,7 @@ class VideoPageView(media.BaseMediaDisplayView):
     @property
     def template(self):
         return self.index
-    
+
     def has_contentlicensing_support(self):
         return has_contentlicensing_support(Acquisition.aq_inner(self.context))
 
@@ -114,9 +96,10 @@ class VideoPageView(media.BaseMediaDisplayView):
         return has_commenting_support(Acquisition.aq_inner(self.context))
 
     def update(self):
-        super(VideoPageView, self).update()        
+        super(VideoPageView, self).update()
         if not interfaces.IVideo(self.context).video_type:
-            self.context.plone_utils.addPortalMessage(_(u'Unsupported video type'))
+            self.context.plone_utils.addPortalMessage( \
+                _(u'Unsupported video type'))
 
 class PopupVideoPageView(media.BaseMediaDisplayView):
     """Page for displaying video.
@@ -157,10 +140,10 @@ def applyChanges(context, form_fields, data, adapters=None):
 class VideoEditForm(form.EditForm):
     """Form for editing video fields.
     """
-    
+
     form_fields = form.FormFields(interfaces.IVideo)
     label = u'Edit Video Data'
-    
+
     @form.action(_("Apply"), condition=form.haveInputWidgets)
     def handle_edit_action(self, action, data):
         changed = applyChanges(
@@ -176,25 +159,26 @@ class VideoEditForm(form.EditForm):
             self.status = _('No changes')
         redirect = self.request.response.redirect
         msg = urllib.quote(translate(self.status))
-        redirect(self.context.absolute_url()+'/view?portal_status_message=%s' % msg)
-    
+        redirect(self.context.absolute_url()+\
+                 '/view?portal_status_message=%s' % msg)
+
 class VideoStreamerView(object):
     """View for streaming video file as M3U.
     """
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
-    
+
     def __call__(self):
         file_sans_ext = self.context.getId()
         pos = file_sans_ext.rfind('.')
         if pos > -1:
             file_sans_ext = file_sans_ext[:pos]
-        
+
         response = self.request.response
         response.setHeader('Content-Type', 'video/x-mpegurl')
-        response.setHeader('Content-Disposition', 
+        response.setHeader('Content-Disposition',
                            'attachment; filename="%s.m3u"' % file_sans_ext)
         return self.request.URL1 + '\n'
 
@@ -224,11 +208,11 @@ class VideoContainerView(object):
 
     def _build_info(self):
         provider = interfaces.IVideoProvider(self.context)
-        
+
         # cheating here by getting file properties we need by looking
         # up context attribute which isn't in the interface contract
         self._video_items = []
-        
+
         users = {}
         membership = cmfutils.getToolByName(self.context, 'portal_membership')
         for pos, x in enumerate(provider.video_items):
@@ -294,9 +278,6 @@ class VideoContainerView(object):
 
     def video_items(self):
         return self._video_items
-    
-    # def total_length(self):
-    #     return formatting.fancy_time_amount(self._total_length)
 
     def has_syndication(self):
         try:
@@ -305,4 +286,3 @@ class VideoContainerView(object):
         except:
             # it's ok if this doesn't exist, just means no syndication
             return False
-        
