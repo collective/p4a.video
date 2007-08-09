@@ -216,20 +216,24 @@ class VideoContainerView(object):
         users = {}
         membership = cmfutils.getToolByName(self.context, 'portal_membership')
         for pos, x in enumerate(provider.video_items):
-            fileobj = x.context
-            field = fileobj.getFile()
+            contentobj = x.context
+            size = 'N/A'
+            if hasattr(Acquisition.aq_base(contentobj), 'getFile'):
+                # a little duck typing
+                filefield = contentobj.getFile()
+                size = formatting.fancy_data_size(filefield.get_size())
             w = self._widget(x)
             # IVideo.duration is a float, we need an int
             duration = int(round(x.duration or 0.0))
             has_image = x.video_image is not None
 
-            author_username = author = fileobj.Creator()
+            author_username = author = contentobj.Creator()
             author_info = membership.getMemberInfo(author_username)
             if author_info is not None:
                 author = author_info.get('fullname', author_username)
             users[author_username] = author
 
-            creation_time = fileobj.created()
+            creation_time = contentobj.created()
             creation_time = datetime.date(creation_time.year(),
                                           creation_time.month(),
                                           creation_time.day())
@@ -237,7 +241,7 @@ class VideoContainerView(object):
 
             if self.has_contenttagging_support():
                 tagview = component.getMultiAdapter(
-                    (fileobj, self.request),
+                    (contentobj, self.request),
                     interface=interface.Interface,
                     name=u'tag_info')
                 tags = ({'name': x,
@@ -250,16 +254,16 @@ class VideoContainerView(object):
                 {'title': x.title,
                  'content_author': author_username,
                  'content_author_name': author,
-                 'url': fileobj.absolute_url(),
-                 'size': formatting.fancy_data_size(field.get_size()),
+                 'url': contentobj.absolute_url(),
+                 'size': size,
                  'duration': formatting.fancy_time_amount(duration),
                  'description': x.context.Description(),
-                 'icon': fileobj.getIcon(),
+                 'icon': contentobj.getIcon(),
                  'tags': tags,
                  'widget': w,
                  'has_image': has_image,
                  'oddeven': ODDEVEN[pos % 2],
-                 'mime_type': fileobj.getContentType,
+                 'mime_type': contentobj.getContentType(),
                  'imageurlwidget': self._imageurlwidget(x),
                  'creation_time': creation_time,
                  })
