@@ -41,10 +41,11 @@
               <dl>
                 <dt class="album-art">Album Art:</dt>
                 <dd class="album-art">
-                  <img tal:attributes="src video/imageurlwidget"
-                       tal:condition="video/has_image"
-                       alt="Video Album Art" />
-                  <span class="no-album-art" 
+                  <a href="" tal:attributes="href string:$viewurl"
+                     tal:condition="video/has_image"
+                    ><img tal:attributes="src video/imageurlwidget"
+                       alt="Video Album Art" /></a>
+                  <span class="no-album-art"
                         tal:condition="not:video/has_image">No video image</span>
                 </dd>
                 <dt>Time:</dt>
