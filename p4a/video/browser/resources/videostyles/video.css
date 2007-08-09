@@ -106,3 +106,124 @@
 .tags-footer DD {
     padding-right: 0.5em;
 }
+
+.media-listing .media-item {
+    border: solid 1px #cacacb;
+    padding: 0.75em;
+    margin-top: 1.5em;
+}
+
+.media-listing .media-item.even {
+    background-color: transparent;
+}
+
+.media-listing .media-item.odd {
+    background-color: #f2f5f7;
+}
+
+.media-listing .item-left {
+    float: left;
+    margin: 0;
+    padding: 0;
+    border-right: 1em solid transparent;
+}
+
+.media-listing .item-content {
+    padding-left: 1em;
+}
+
+.media-listing .item-left {
+    padding: 0;
+    margin: 0;
+}
+
+.media-listing .item-left DL {
+    padding: 0;
+    margin: 0;
+}
+
+.media-listing .item-left DT.album-art {
+    display: none;
+}
+
+.media-listing .item-left DD.album-art {
+    border: solid 1px #cacacb;
+    margin: 0 0 1em 0;
+    width: 131px;
+    height: 131px;
+}
+
+.media-listing .item-left DD.album-art IMG {
+    border: 1px solid transparent;
+    width: 128px;
+    height: 128px;
+}
+
+.media-listing .item-left .no-album-art {
+    margin: 1em auto;
+    display: block;
+    text-align: center;
+}
+
+.media-listing .item-left DT,
+.media-listing .item-left DD {
+    color: #9a9a99;
+    padding: 0;
+    margin: 0 0 0.2em 0;
+    line-height: 1.1;
+    font-size: 90%;
+}
+
+.media-listing .item-left DT {
+    float: left;
+    padding-right: 0.5em;
+}
+
+.media-listing .item-description {
+    line-height: 1.2em;
+    color: #9a9a99;
+    font-size: 1.2em;
+    margin-top: 0.5em;
+}
+
+.media-listing .item-content DT {
+    float: left;
+    line-height: 1.4em;
+    padding: 0 0.5em 0 0;
+    margin: 0;
+}
+
+.media-listing .item-content DD {
+    line-height: 1.4em;
+    margin: 0;
+    padding: 0;
+}
+
+.media-listing DT.tag {
+    background: url(../++resource++audioimages/tags.gif) transparent no-repeat;
+    padding-left: 20px;
+}
+
+.media-listing DT.comment {
+    background: url(../++resource++audioimages/comments.gif) transparent no-repeat;
+    padding-left: 20px;
+}
+
+.media-listing .rating {
+    float: right;
+}
+
+.media-listing H2 {
+    border: 0;
+    font-weight: bold;
+    display: block;
+}
+
+.media-listing .author-byline {
+    color: #9a9a99;
+    font-size: 90%;
+}
+
+.media-listing .item-content DD {
+    display: inline;
+}

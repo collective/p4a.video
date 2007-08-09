@@ -1,101 +1,101 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
-      i18n:domain="plone"
-      metal:use-macro="here/main_template/macros/master">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone4artists">
 
+  <head>
+    <div metal:fill-slot="css_slot"
+         tal:define="stylesdir string:$portal_url/++resource++videostyles">
+      <link rel="stylesheet" href="video.css"
+            tal:attributes="href string:${stylesdir}/video.css" />
+    </div>
+  </head>
   <body>
 
-      <metal:cssslot fill-slot="css_slot">
-      	<link rel="stylesheet" href="video.css"
-      	      tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
-      	      />
-      </metal:cssslot>
-
     <div metal:fill-slot="main"
-         tal:define="video_items view/video_items">
-    <metal:main-macro define-macro="main">
+         tal:define="video_items view/video_items;
+                     Batch python:modules['Products.CMFPlone'].Batch;
+                     b_size python:10;b_start python:0;b_start request/b_start | b_start;
+                     batch python:Batch(video_items, b_size, int(b_start), orphan=1);
+                     imagesdir string:$portal_url/++resource++videoimages;">
 
-        <div metal:use-macro="here/document_actions/macros/document_actions">
-          Document actions (print, sendto etc)
+      <div metal:use-macro="here/document_actions/macros/document_actions">
+        Document actions (print, sendto etc)
+      </div>
+
+      <h1 tal:content="here/pretty_title_or_id"
+          class="documentFirstHeading">Title or id</h1>
+
+      <div tal:content="here/Description"
+           tal:condition="here/Description" class="documentDescription">
+        Description
+      </div>
+
+      <div class="media-listing">
+
+        <tal:block condition="video_items" repeat="video batch">
+          <div class="media-item"
+               tal:define="viewurl string:${video/url}/view"
+               tal:attributes="class string:media-item ${video/oddeven}">
+            <div class="item-left">
+              <dl>
+                <dt class="album-art">Album Art:</dt>
+                <dd class="album-art">
+                  <img tal:attributes="src video/imageurlwidget"
+                       tal:condition="video/has_image"
+                       alt="Video Album Art" />
+                  <span class="no-album-art" 
+                        tal:condition="not:video/has_image">No video image</span>
+                </dd>
+                <dt>Time:</dt>
+                <dd tal:content="video/duration">8:30</dd>
+              </dl>
+              <div class="visualClear"></div>
+            </div>
+            <div class="item-content">
+              <h2 class="item-title">
+                <a tal:content="video/title"
+                   tal:attributes="href viewurl">Video Title</a>
+              </h2>
+              <p class="author-byline">Posted <span tal:replace="video/creation_time" /> by <a href=""
+               tal:attributes="href string:$portal_url/author/${video/content_author}"
+               tal:content="video/content_author_name"/></p>
+
+              <p class="item-description">
+                <span tal:replace="video/description"></span>
+                &nbsp;&nbsp;<a href=""
+                               tal:attributes="href viewurl">More</a>
+              </p>
+
+              <dl>
+                <tal:block tal:condition="view/has_contenttagging_support">
+                  <dt class="tag">Tags:</dt>
+                  <dd class="tag" tal:repeat="tag video/tags">
+                    <a href=""
+                       tal:attributes="href tag/url"
+                       tal:content="tag/name">sometag</a>
+                  </dd>
+                </tal:block>
+                <tal:block tal:condition="view/has_commenting_support">
+                  <dt class="comment">Comments:</dt>
+                  <dd>two comments since yesterday</dd>
+                </tal:block>
+              </dl>
         </div>
+        <div class="visualClear"><!-- --></div>
+      </div>
+    </tal:block>
 
-        <h1 tal:content="object_title" class="documentFirstHeading">
-          Title
-        </h1>
+      <p class="discreet"
+         i18n:domain="plone4artists"
+         i18n:translate="text_no_albums_video_uploaded"
+         tal:condition="python:not video_items">
+        No video uploaded yet.
+      </p>
 
-        <div class="documentDescription"
-             tal:content="here/Description"
-             tal:condition="here/Description">
-          Description
-        </div>
-        <a href=""
-           tal:condition="view/has_syndication"
-           tal:attributes="href string:${context/absolute_url}/rss.xml"
-           ><img src="" tal:attributes="src string:$portal_url/++resource++videoimages/feed-icon.png" alt="RSS Feed" /></a>
-        <tal:foldercontents>
-
-        <p tal:condition="not: video_items"
-           i18n:translate="description_no_visible_items_add_paste">
-          This folder has no video files added to it.
-        </p>
-
-        <tal:listing condition="video_items">
-          <table id="tracklisting"
-                 class="listing" 
-                 summary="Content listing"
-                 cellpadding="0" cellspacing="0">
-
-            <thead>
-
-              <metal:block>
-                <tr>
-                  <th class="nosort">&nbsp;<tal:play i18n:translate="listingheader_embedded_play"></tal:play>&nbsp;</th>
-                  <th class="nosort">&nbsp;<tal:title i18n:translate="listingheader_title">Video Title</tal:title>&nbsp;</th>
-                  <th class="nosort">&nbsp;<tal:size i18n:translate="listingheader_size">Size</tal:size>&nbsp;</th>
-                  <th class="nosort">&nbsp;<tal:length i18n:translate="listingheader_length">Length</tal:length>&nbsp;</th>
-                </tr>
-              </metal:block>
-            </thead>
-
-            <metal:block>
-              <tbody>
-                <metal:block tal:repeat="item video_items">
-                  <tr tal:define="oddrow repeat/item/odd">
-                    <td class="private video_embedded_play"><tal:widget  tal:replace="structure item/widget" />
-
-                    </td>
-                                        
-                    <td>
-
-                      <a href="#" tal:attributes="href string:${item/url}/view; 
-                                                  title item/description">
-
-                        <img tal:attributes="src item/icon" alt="Track icon"
-                             />&nbsp;<span tal:replace="item/title">Title</span>
-                      </a>
-
-                    </td>
-
-                    <td tal:content="item/size">
-						5.5 MB
-                    </td>
-
-                    <td tal:content="item/duration">
-                        track length
-                    </td>
-
-                  </tr>
-                </metal:block>
-              </tbody>
-            </metal:block>
-          </table>
-          </tal:listing>
-          </tal:foldercontents>
-
-    </metal:main-macro>
-
+      <!-- Navigation -->
+      <div metal:use-macro="here/batch_macros/macros/navigation" />
+      </div>
     </div>
-
-
   </body>
 </html>

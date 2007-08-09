@@ -1,3 +1,4 @@
+import Acquisition
 import datetime
 import urllib
 
@@ -13,6 +14,8 @@ from p4a.video import genre
 from p4a.video import interfaces
 from p4a.video.browser import media
 from p4a.video.browser import widget
+
+from p4a.fileimage.image._widget import ImageURLWidget
 
 from p4a.common import formatting
 
@@ -64,6 +67,29 @@ class VideoView(object):
     # def length(self):
     #     return formatting.fancy_time_amount(self.video_info.length)
 
+def has_contentlicensing_support(context):
+    try:
+        from Products import ContentLicensing
+    except ImportError, e:
+        return False
+
+    try:
+        cmfutils.getToolByName(context, 'portal_contentlicensing')
+    except AttributeError, e:
+        return False
+
+    return True
+
+def has_contenttagging_support(context):
+    try:
+        from lovely.tag import interfaces as tagifaces
+    except ImportError, e:
+        return False
+    return component.queryUtility(tagifaces.ITaggingEngine) is not None
+
+def has_commenting_support(context):
+    return False
+
 class VideoPageView(media.BaseMediaDisplayView):
     """Page for displaying video.
     """
@@ -79,24 +105,13 @@ class VideoPageView(media.BaseMediaDisplayView):
         return self.index
     
     def has_contentlicensing_support(self):
-        try:
-            from Products import ContentLicensing
-        except ImportError, e:
-            return False
-
-        try:
-            cmfutils.getToolByName(self.context, 'portal_contentlicensing')
-        except AttributeError, e:
-            return False
-
-        return True
+        return has_contentlicensing_support(Acquisition.aq_inner(self.context))
 
     def has_contenttagging_support(self):
-        try:
-            from lovely.tag import interfaces as tagifaces
-        except ImportError, e:
-            return False
-        return component.queryUtility(tagifaces.ITaggingEngine) is not None
+        return has_contenttagging_support(Acquisition.aq_inner(self.context))
+
+    def has_commenting_support(self):
+        return has_commenting_support(Acquisition.aq_inner(self.context))
 
     def update(self):
         super(VideoPageView, self).update()        
@@ -184,17 +199,28 @@ class VideoStreamerView(object):
         return self.request.URL1 + '\n'
 
 
+ODDEVEN = ['even', 'odd']
+
 class VideoContainerView(object):
     """View for video containers.
     """
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
         self._video_items = None
         self._total_length = 0
-        
+
         self._build_info()
+
+    def has_contentlicensing_support(self):
+        return has_contentlicensing_support(Acquisition.aq_inner(self.context))
+
+    def has_contenttagging_support(self):
+        return has_contenttagging_support(Acquisition.aq_inner(self.context))
+
+    def has_commenting_support(self):
+        return has_commenting_support(Acquisition.aq_inner(self.context))
 
     def _build_info(self):
         provider = interfaces.IVideoProvider(self.context)
@@ -203,29 +229,69 @@ class VideoContainerView(object):
         # up context attribute which isn't in the interface contract
         self._video_items = []
         
-        for x in provider.video_items:
-            aFile = x.context
-            field = aFile.getFile()
+        users = {}
+        membership = cmfutils.getToolByName(self.context, 'portal_membership')
+        for pos, x in enumerate(provider.video_items):
+            fileobj = x.context
+            field = fileobj.getFile()
             w = self._widget(x)
             # IVideo.duration is a float, we need an int
             duration = int(round(x.duration or 0.0))
+            has_image = x.video_image is not None
+
+            author_username = author = fileobj.Creator()
+            author_info = membership.getMemberInfo(author_username)
+            if author_info is not None:
+                author = author_info.get('fullname', author_username)
+            users[author_username] = author
+
+            creation_time = fileobj.created()
+            creation_time = datetime.date(creation_time.year(),
+                                          creation_time.month(),
+                                          creation_time.day())
+            creation_time = formatting.fancy_date_interval(creation_time)
+
+            if self.has_contenttagging_support():
+                tagview = component.getMultiAdapter(
+                    (fileobj, self.request),
+                    interface=interface.Interface,
+                    name=u'tag_info')
+                tags = ({'name': x,
+                         'url': tagview.tag_url(x) }
+                        for x in tagview.contextual_tags())
+            else:
+                tags = []
+
             self._video_items.append( \
                 {'title': x.title,
-                 'url': aFile.absolute_url(),
+                 'content_author': author_username,
+                 'content_author_name': author,
+                 'url': fileobj.absolute_url(),
                  'size': formatting.fancy_data_size(field.get_size()),
                  'duration': formatting.fancy_time_amount(duration),
                  'description': x.context.Description(),
-                 'icon': aFile.getIcon(),
+                 'icon': fileobj.getIcon(),
+                 'tags': tags,
                  'widget': w,
+                 'has_image': has_image,
+                 'oddeven': ODDEVEN[pos % 2],
+                 'mime_type': fileobj.getContentType,
+                 'imageurlwidget': self._imageurlwidget(x),
+                 'creation_time': creation_time,
                  })
-            
+
             self._total_length += duration
 
     def _widget(self, video):
         field = interfaces.IVideo['file'].bind(video)
         w = widget.MediaPlayerWidget(field, self.request)
         return w()
-        
+
+    def _imageurlwidget(self, video):
+        field = interfaces.IVideo['video_image'].bind(video)
+        w = ImageURLWidget(field, self.request)
+        return w()
+
     def video_items(self):
         return self._video_items
     
