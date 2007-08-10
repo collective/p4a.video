@@ -14,6 +14,7 @@ from p4a.video import genre
 from p4a.video import interfaces
 from p4a.video.browser import media
 from p4a.video.browser import widget
+from p4a.videoembed import interfaces as embedifaces
 
 from p4a.fileimage.image._widget import ImageURLWidget
 
@@ -290,3 +291,42 @@ class VideoContainerView(object):
         except:
             # it's ok if this doesn't exist, just means no syndication
             return False
+
+import urllib2
+from OFS import Image
+import tempfile
+def build_ofsimage(url):
+    datafile = tempfile.TemporaryFile('w+b')
+    fin = urllib2.urlopen(url)
+    data = fin.read(64)
+    while data:
+        datafile.write(data)
+        data = fin.read(64)
+    fin.close()
+    datafile.flush()
+    datafile.seek(0)
+
+    ofsimage = Image.Image(id='thumbnail', title='thumbnail', file=datafile)
+    datafile.close()
+
+    return ofsimage
+
+class QueryMetadata(object):
+    """Query the remote source for video metadata."""
+
+    def __call__(self):
+        context = Acquisition.aq_inner(self.context)
+        response = self.request.response
+
+        msg = 'Remote metadata could not be retrieved.'
+        retriever = component.getUtility(embedifaces.IVideoMetadataRetriever)
+        url = embedifaces.ILinkProvider(context).getLink()
+        data = retriever.get_metadata(url)
+
+        if data is not None and getattr(data, 'thumbnail_url', None):
+            video = interfaces.IVideo(context)
+            video.video_image = build_ofsimage(data.thumbnail_url)
+            msg = 'Video updated.'
+
+        response.redirect(self.context.absolute_url() + \
+                          '/view?portal_status_message='+urllib.quote(msg))
