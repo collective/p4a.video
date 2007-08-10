@@ -323,9 +323,27 @@ class QueryMetadata(object):
         url = embedifaces.ILinkProvider(context).getLink()
         data = retriever.get_metadata(url)
 
-        if data is not None and getattr(data, 'thumbnail_url', None):
-            video = interfaces.IVideo(context)
-            video.video_image = build_ofsimage(data.thumbnail_url)
+        video = interfaces.IVideo(context)
+        if data is not None:
+            if getattr(data, 'thumbnail_url', None):
+                video.video_image = build_ofsimage(data.thumbnail_url)
+            if getattr(data, 'title', None):
+                video.title = data.title
+            if getattr(data, 'description', None):
+                video.description = data.description
+
+            # tagging support not currently available
+            #if getattr(data, 'tags', None) and \
+            #       has_contenttagging_support(context):
+            #    from lovely.tag import interfaces as tagifaces
+            #    tagging = tagifaces.IUserTagging(context)
+            #    tags = set(tagging.tags)
+            #    for x in data.tags:
+            #        tags.add(x)
+            #    tagging.tags = tags
+
+            event.notify(objectevent.ObjectModifiedEvent(context))
+
             msg = 'Video updated.'
 
         response.redirect(self.context.absolute_url() + \
