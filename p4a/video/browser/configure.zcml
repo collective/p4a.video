@@ -105,20 +105,4 @@
       allowed_interface=".support.IContextualVideoSupport"
       />
 
-  <menuItem
-      menu="object_buttons"
-      for="p4a.plonevideoembed.interfaces.IAnyVideoLinkCapable"
-      title="Update With Remote Metadata"
-      action="${object_url}/video-query-metadata.html"
-      filter="object/@@p4avideoembedsupport/can_deactivate_video_link"
-      permission="cmf.ModifyPortalContent"
-      />
-
-  <page
-      name="video-query-metadata.html"
-      for="p4a.plonevideoembed.interfaces.IVideoLinkEnhanced"
-      permission="cmf.ModifyPortalContent"
-      class=".video.QueryMetadata"
-      />
-
 </configure>
