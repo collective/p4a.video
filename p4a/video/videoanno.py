@@ -14,7 +14,7 @@ class VideoAnnotationAddedEvent(objectevent.ObjectEvent):
 class AnnotationVideo(object):
     """An IVideo adapter designed to handle ATCT based file content.
     """
-    
+
     interface.implements(interfaces.IVideo)
 
     ANNO_KEY = 'p4a.video.videoanno.AnnotationVideo'
@@ -30,6 +30,7 @@ class AnnotationVideo(object):
 
     title = DictProperty(interfaces.IVideo['title'], 'video_data')
     description = DictProperty(interfaces.IVideo['description'], 'video_data')
+    video_author = DictProperty(interfaces.IVideo['video_author'], 'video_data')
     height = DictProperty(interfaces.IVideo['height'], 'video_data')
     width = DictProperty(interfaces.IVideo['width'], 'video_data')
     duration = DictProperty(interfaces.IVideo['duration'], 'video_data')

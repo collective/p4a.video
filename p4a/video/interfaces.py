@@ -36,6 +36,8 @@ class IVideo(interface.Interface):
                                  required=True,
                                  readonly=True)
 
+    video_author = schema.TextLine(title=u'Video Author', required=False)
+
 class IVideoDataAccessor(interface.Interface):
     """Video implementation accessor (ie mov, wma, flv).
     """
