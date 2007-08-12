@@ -251,6 +251,19 @@ class VideoContainerView(object):
             else:
                 tags = []
 
+            max_length = 30
+            description = ''
+            count = 0
+            for c in x.context.Description():
+                if c == ' ':
+                    count += 1
+                if count >= max_length:
+                    break
+                description += c
+
+            if len(description) != len(x.context.Description()):
+                description += ' ...'
+
             self._video_items.append( \
                 {'title': x.title,
                  'content_author': author_username,
@@ -258,7 +271,7 @@ class VideoContainerView(object):
                  'url': contentobj.absolute_url(),
                  'size': size,
                  'duration': formatting.fancy_time_amount(duration),
-                 'description': x.context.Description(),
+                 'description': description,
                  'icon': contentobj.getIcon(),
                  'tags': tags,
                  'widget': w,
