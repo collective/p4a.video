@@ -227,3 +227,17 @@
 .content-rating .label {
     display: none;
 }
+
+H2.item-title {
+    position: relative;
+}
+
+.media-listing .item-content .content-rating {
+    position: absolute;
+    right: 0;
+}
+
+.media-listing .item-content .content-rating DT,
+.media-listing .item-content .content-rating .rating {
+    display: none;
+}

@@ -264,6 +264,14 @@ class VideoContainerView(object):
             else:
                 tags = []
 
+            avgrating = None
+            if self.has_contentrating_support():
+                ratingview = component.getMultiAdapter(
+                    (contentobj, self.request),
+                    interface=interface.Interface,
+                    name=u'user_rating_view')
+                avgrating = int(ratingview.averageRating)
+
             max_length = 30
             description = ''
             count = 0
@@ -293,6 +301,7 @@ class VideoContainerView(object):
                  'mime_type': contentobj.getContentType(),
                  'imageurlwidget': self._imageurlwidget(x),
                  'creation_time': creation_time,
+                 'avgrating': avgrating,
                  })
 
             self._total_length += duration
