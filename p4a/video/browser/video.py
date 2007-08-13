@@ -63,6 +63,13 @@ def has_contentlicensing_support(context):
 
     return True
 
+def has_contentrating_support(context):
+    try:
+        import contentratings
+    except ImportError, e:
+        return False
+    return True
+
 def has_contenttagging_support(context):
     try:
         from lovely.tag import interfaces as tagifaces
@@ -86,6 +93,9 @@ class VideoPageView(media.BaseMediaDisplayView):
     @property
     def template(self):
         return self.index
+
+    def has_contentrating_support(self):
+        return has_contentrating_support(Acquisition.aq_inner(self.context))
 
     def has_contentlicensing_support(self):
         return has_contentlicensing_support(Acquisition.aq_inner(self.context))
@@ -197,6 +207,9 @@ class VideoContainerView(object):
         self._total_length = 0
 
         self._build_info()
+
+    def has_contentrating_support(self):
+        return has_contentrating_support(Acquisition.aq_inner(self.context))
 
     def has_contentlicensing_support(self):
         return has_contentlicensing_support(Acquisition.aq_inner(self.context))

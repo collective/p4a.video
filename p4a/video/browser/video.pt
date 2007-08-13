@@ -115,11 +115,23 @@
                       <span tal:condition="video_info/comment | nothing" tal:content="video_info/comment">Comment</span>
                     </p> -->
 
+<div class="bottom-content-info">
+<tal:block tal:condition="view/has_contentrating_support">
+  <dl class="content-rating">
+    <dt>Average Rating:</dt>
+    <dd><tal:user-rate tal:replace="structure context/@@user_rating_view" /></dd>
+    <dt>Your Rating:</dt>
+    <dd><tal:user-rate tal:replace="structure context/@@user_rating_set" /></dd>
+  </dl>
+</tal:block>
+
 			        <tal:block tal:condition="view/has_contenttagging_support">
 <metal:block use-macro="context/@@tag_macros/tags_footer">
 </metal:block>
 			        </tal:block>
 
+        <div class="visualClear">&nbsp;</div>
+</div>
 			        <tal:block tal:condition="view/has_contentlicensing_support">
 	                  <div tal:replace="structure context/@@copyright_byline_view" />
                       <div tal:replace="structure context/@@metadata_view" />
