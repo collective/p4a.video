@@ -27,7 +27,7 @@ class IVideo(interface.Interface):
     file = p4afile.FileField(title=u'File', required=False)
     width = schema.Int(title=u'Width', required=False, readonly=True)
     height = schema.Int(title=u'Height', required=False, readonly=True)
-    duration = schema.Float(title=u'Duration', required=False, readonly=True)
+    duration = schema.Float(title=u'Duration', required=False, readonly=False)
 
     video_image = p4aimage.ImageField(title=u'Video Image', required=False,
                                       preferred_dimensions=(320, 240))
