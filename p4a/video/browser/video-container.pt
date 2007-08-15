@@ -14,6 +14,7 @@
 
     <div metal:fill-slot="main"
          tal:define="video_items view/video_items;
+                     template_id string:video-container.html;
                      Batch python:modules['Products.CMFPlone'].Batch;
                      b_size python:10;b_start python:0;b_start request/b_start | b_start;
                      batch python:Batch(video_items, b_size, int(b_start), orphan=1);
