@@ -68,10 +68,10 @@ class AbstractDataAccessor(object):
 
     def load(self, filename):
         metadata = metadataextractor.extract(filename)
-
-        self._setup_data(metadata, 'height', int)
-        self._setup_data(metadata, 'width', int)
-        self._setup_data(metadata, 'duration', td_to_seconds)
+        if metadata is not None:
+            self._setup_data(metadata, 'height', int)
+            self._setup_data(metadata, 'width', int)
+            self._setup_data(metadata, 'duration', td_to_seconds)
 
     def store(self, filename):
         raise NotImplementedError('Write support not yet implemented')
