@@ -19,6 +19,8 @@
                 </dd>
                 <dt>Time:</dt>
                 <dd tal:content="video/duration">8:30</dd>
+                <dt>Type:</dt>
+                <dd>Video</dd>
               </dl>
               <div class="visualClear"></div>
             </div>
