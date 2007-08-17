@@ -28,6 +28,7 @@
       permission="zope2.View"
       template="video-container.pt"
       class=".video.VideoContainerView"
+      allowed_attributes="safe_video macros"
       />
 
   <page
@@ -43,6 +44,14 @@
       class=".video.VideoView"
       allowed_interface=".video.IVideoView"
       for="p4a.video.interfaces.IVideoEnhanced"
+      permission="zope2.View"
+      />
+
+  <page
+      name="video_listed_single"
+      class=".video.VideoListedSingle"
+      allowed_interface=".video.IVideoListedSingle"
+      for="*"
       permission="zope2.View"
       />
 

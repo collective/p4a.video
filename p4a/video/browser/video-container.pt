@@ -32,73 +32,15 @@
         Description
       </div>
 
-      <div class="media-listing">
+      <div class="media-listing"
+           tal:define="single nocall:context/@@video_listed_single">
 
-        <tal:block condition="video_items" repeat="video batch">
-          <div class="media-item"
-               tal:define="viewurl string:${video/url}/view"
-               tal:attributes="class string:media-item ${video/oddeven}">
-            <div class="item-left">
-              <dl>
-                <dt class="album-art">Album Art:</dt>
-                <dd class="album-art">
-                  <a href="" tal:attributes="href string:$viewurl"
-                     tal:condition="video/has_image"
-                    ><img tal:attributes="src video/imageurlwidget"
-                       alt="Video Album Art" /></a>
-                  <span class="no-album-art"
-                        tal:condition="not:video/has_image">No video image</span>
-                </dd>
-                <dt>Time:</dt>
-                <dd tal:content="video/duration">8:30</dd>
-              </dl>
-              <div class="visualClear"></div>
-            </div>
-            <div class="item-content">
-              <h2 class="item-title">
-                <a tal:content="video/title"
-                   tal:attributes="href viewurl">Video Title</a>
-<tal:block tal:condition="view/has_contentrating_support">
-  <span class="content-rating" 
-        tal:define="avg video/avgrating;
-                    stars python:range(1, 6);
-                    star_icon string:/++resource++star_icon.gif;
-                    blank_star_icon string:/++resource++blank_star_icon.gif;">
-        <img tal:repeat="star python:range(1, 6)"
-             tal:attributes="src python:avg &lt; star and blank_star_icon or star_icon;
-                             alt star" />
-  </span>
-</tal:block>
-              </h2>
-              
-              <p class="author-byline">Posted <span tal:replace="video/creation_time" /> by <a href=""
-               tal:attributes="href string:$portal_url/author/${video/content_author}"
-               tal:content="video/content_author_name"/></p>
+        <tal:block condition="video_items"
+                   repeat="videoobj batch">
 
-              <p class="item-description">
-                <span tal:replace="video/description"></span>
-                &nbsp;&nbsp;<a href=""
-                               tal:attributes="href viewurl">More</a>
-              </p>
+          <div tal:replace="structure python:single.single(videoobj, repeat['videoobj'].index)" />
 
-              <dl>
-                <tal:block tal:condition="view/has_contenttagging_support">
-                  <dt class="tag">Tags:</dt>
-                  <dd class="tag" tal:repeat="tag video/tags">
-                    <a href=""
-                       tal:attributes="href tag/url"
-                       tal:content="tag/name">sometag</a>
-                  </dd>
-                </tal:block>
-                <tal:block tal:condition="view/has_commenting_support">
-                  <dt class="comment">Comments:</dt>
-                  <dd>two comments since yesterday</dd>
-                </tal:block>
-              </dl>
-        </div>
-        <div class="visualClear"><!-- --></div>
-      </div>
-    </tal:block>
+        </tal:block>
 
       <p class="discreet"
          i18n:domain="plone4artists"
