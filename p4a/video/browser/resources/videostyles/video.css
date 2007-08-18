@@ -5,7 +5,7 @@
 .video_popup_play a span, .video_embedded_play span {
     display: none;
 }
-*/
+
 .coverImageContainer {
     float: left;
     margin: 0 1em 0.5em 0em;
@@ -121,11 +121,11 @@
     float: left;
     margin: 0;
     padding: 0;
-    border-right: 1em solid transparent;
 }
 
 .media-item .item-content {
     padding-left: 1em;
+    margin-left: 131px;
 }
 
 .media-item .item-left {
@@ -143,10 +143,9 @@
 }
 
 .media-item .item-left DD.album-art {
-    /* border: solid 1px #cacacb; */
+    border: solid 1px #cacacb;
     margin: 0 0 1em 0;
     width: 131px;
-    height: 131px;
 }
 
 .media-item .item-left DD.album-art IMG {
@@ -182,30 +181,34 @@
 }
 
 .media-item .item-content DT {
-    float: left;
     line-height: 1.4em;
     padding: 0 0.5em 0 0;
     margin: 0;
+    float: left;
+    clear: left;
+    width: 5em;
 }
 
 .media-item .item-content DD {
     line-height: 1.4em;
     margin: 0;
-    padding: 0;
+    padding: 0 0.5em 0 0;
+    float: left;
 }
 
 .media-item DT.tag {
-    background: url(../++resource++audioimages/tags.gif) transparent no-repeat;
+    background: url(../++resource++videoimages/tags.gif) transparent no-repeat;
     padding-left: 20px;
 }
 
 .media-item DT.comment {
-    background: url(../++resource++audioimages/comments.gif) transparent no-repeat;
+    background: url(../++resource++videoimages/comments.gif) transparent no-repeat;
     padding-left: 20px;
 }
 
-.media-item .rating {
-    float: right;
+.media-item DT.rating {
+    background: url(../++resource++videoimages/ratings.gif) transparent no-repeat;
+    padding-left: 20px;
 }
 
 .media-item H2 {
@@ -221,22 +224,4 @@
 
 .media-item .item-content DD {
     display: inline;
-}
-
-.content-rating .label {
-    display: none;
-}
-
-H2.item-title {
-    position: relative;
-}
-
-.media-item .item-content .content-rating {
-    position: absolute;
-    right: 0;
-}
-
-.media-item .item-content .content-rating DT,
-.media-item .item-content .content-rating .rating {
-    display: none;
 }

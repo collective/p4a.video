@@ -171,12 +171,14 @@ class VideoListedSingle(FeatureMixin):
             tags = []
 
         avgrating = None
+        rating_count = None
         if self.has_contentrating_support():
             ratingview = component.getMultiAdapter(
                 (contentobj, self.request),
                 interface=interface.Interface,
                 name=u'user_rating_view')
             avgrating = int(ratingview.averageRating)
+            rating_count = int(ratingview.numberOfRatings)
 
         max_length = 30
         description = ''
@@ -197,7 +199,8 @@ class VideoListedSingle(FeatureMixin):
             'content_author_name': author,
             'url': contentobj.absolute_url(),
             'size': size,
-            'duration': formatting.fancy_time_amount(duration),
+            'duration': formatting.fancy_time_amount(duration,
+                                                     show_legend=False),
             'description': description,
             'icon': contentobj.getIcon(),
             'tags': tags,
@@ -206,6 +209,7 @@ class VideoListedSingle(FeatureMixin):
             'mime_type': contentobj.getContentType(),
             'imageurlwidget': self._imageurlwidget(videoobj),
             'creation_time': creation_time,
+            'rating_count': rating_count,
             'avgrating': avgrating,
             }
 

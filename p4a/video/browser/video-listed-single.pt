@@ -28,17 +28,6 @@
               <h2 class="item-title">
                 <a tal:content="video/title"
                    tal:attributes="href viewurl">Video Title</a>
-<tal:block tal:condition="view/has_contentrating_support">
-  <span class="content-rating" 
-        tal:define="avg video/avgrating;
-                    stars python:range(1, 6);
-                    star_icon string:/++resource++star_icon.gif;
-                    blank_star_icon string:/++resource++blank_star_icon.gif;">
-        <img tal:repeat="star python:range(1, 6)"
-             tal:attributes="src python:avg &lt; star and blank_star_icon or star_icon;
-                             alt star" />
-  </span>
-</tal:block>
               </h2>
               
               <p class="author-byline">Posted <span tal:replace="video/creation_time" /> by <a href=""
@@ -60,6 +49,18 @@
                        tal:content="tag/name">sometag</a>
                   </dd>
                 </tal:block>
+        <tal:block tal:condition="view/has_contentrating_support">
+          <dt class="rating">Ratings:</dt>
+          <dd tal:define="avg video/avgrating;
+                          stars python:range(1, 6);
+                          star_icon string:/++resource++star_icon.gif;
+                          blank_star_icon string:/++resource++blank_star_icon.gif;">
+<span tal:content="video/rating_count" /> rating(s) &nbsp;&nbsp;
+            <img tal:repeat="star python:range(1, 6)"
+                 tal:attributes="src python:avg &lt; star and blank_star_icon or star_icon;
+              alt star" />
+          </dd>
+        </tal:block>
                 <tal:block tal:condition="view/has_commenting_support">
                   <dt class="comment">Comments:</dt>
                   <dd>two comments since yesterday</dd>
