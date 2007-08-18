@@ -123,10 +123,12 @@ class VideoListedSingle(FeatureMixin):
     def portal_url(self):
         return self.portal_url
 
-    def single(self, obj=None, pos=None):
-        return self.template(video=self.safe_video(obj=obj, pos=pos))
+    def single(self, obj=None, pos=None, relevance=None):
+        return self.template(video=self.safe_video(obj=obj,
+                                                   pos=pos,
+                                                   relevance=relevance))
 
-    def safe_video(self, obj=None, pos=None):
+    def safe_video(self, obj=None, pos=None, relevance=None):
         videoobj = obj
         if videoobj is None:
             videoobj = Acquisition.aq_inner(self.context)
@@ -211,6 +213,7 @@ class VideoListedSingle(FeatureMixin):
             'creation_time': creation_time,
             'rating_count': rating_count,
             'avgrating': avgrating,
+            'relevance': relevance,
             }
 
         if pos is not None:

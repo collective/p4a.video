@@ -22,14 +22,19 @@
                 <dt>Type:</dt>
                 <dd>Video</dd>
               </dl>
-              <div class="visualClear"></div>
+              <div class="visualClear"><!-- --></div>
             </div>
             <div class="item-content">
               <h2 class="item-title">
                 <a tal:content="video/title"
                    tal:attributes="href viewurl">Video Title</a>
+                <span class="relevance"
+                      tal:condition="python:video['relevance'] is not None">
+                  [<span tal:replace="video/relevance" />%]
+                </span>
+                <span class="visualClear"><!-- --></span>
               </h2>
-              
+
               <p class="author-byline">Posted <span tal:replace="video/creation_time" /> by <a href=""
                tal:attributes="href string:$portal_url/author/${video/content_author}"
                tal:content="video/content_author_name"/></p>
