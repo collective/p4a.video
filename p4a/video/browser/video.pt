@@ -144,6 +144,8 @@
         <div class="visualClear">&nbsp;</div>
         
     </tal:main-macro>
+    <!-- Mark this view as being a main view template /-->
+    <tal:block tal:define="global isViewTemplate python:True"/>
 </div>
 
 </body>
