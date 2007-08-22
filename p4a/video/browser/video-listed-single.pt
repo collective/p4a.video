@@ -68,9 +68,9 @@
         </tal:block>
         <tal:block tal:condition="view/has_commenting_support">
           <dt class="commenting">Comments:</dt>
-          <dd>
+          <dd><a href="" tal:attributes="href viewurl">
             <span tal:replace="video/commenting_count"></span>
-            comment(s)
+            comment(s)</a>
           </dd>
         </tal:block>
         </div>
