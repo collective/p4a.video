@@ -186,7 +186,7 @@
     margin: 0;
     float: left;
     clear: left;
-    width: 5em;
+    width: 6em;
 }
 
 .media-item .item-content DD {
@@ -201,7 +201,7 @@
     padding-left: 20px;
 }
 
-.media-item DT.comment {
+.media-item DT.commenting {
     background: url(../++resource++videoimages/comments.gif) transparent no-repeat;
     padding-left: 20px;
 }

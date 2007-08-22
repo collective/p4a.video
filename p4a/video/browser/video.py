@@ -24,20 +24,7 @@ from Products.CMFCore import utils as cmfutils
 from Products.CMFPlone import PloneMessageFactory as _
 
 from Products.Five.browser import pagetemplatefile
-
-
-def has_contentlicensing_support(context):
-    try:
-        from Products import ContentLicensing
-    except ImportError, e:
-        return False
-
-    try:
-        cmfutils.getToolByName(context, 'portal_contentlicensing')
-    except AttributeError, e:
-        return False
-
-    return True
+from Products.easycommenting.interfaces import ICommentManagement
 
 def has_contentrating_support(context):
     try:
@@ -45,6 +32,15 @@ def has_contentrating_support(context):
     except ImportError, e:
         return False
     return True
+
+def has_contentlicensing_support(context):
+    try:
+        from Products import ContentLicensing
+    except ImportError, e:
+        return False
+
+    tool = cmfutils.getToolByName(context, 'portal_contentlicensing', None)
+    return tool is not None
 
 def has_contenttagging_support(context):
     try:
@@ -54,7 +50,13 @@ def has_contenttagging_support(context):
     return component.queryUtility(tagifaces.ITaggingEngine) is not None
 
 def has_commenting_support(context):
-    return False
+    try:
+        from Products import easycommenting
+    except ImportError, e:
+        return False
+
+    tool = cmfutils.getToolByName(context, 'portal_easycommenting', None)
+    return tool is not None
 
 class FeatureMixin(object):
     def has_contentrating_support(self):
@@ -99,6 +101,13 @@ class VideoView(object):
 class IVideoListedSingle(interface.Interface):
     def single(obj=None): pass
     def safe_video(obj=None, pos=None): pass
+
+def last_comment(comments):
+    last = None
+    for x in comments:
+        if last is None or x.created > last.created:
+            last = x
+    return last
 
 class VideoListedSingle(FeatureMixin):
     """Video listed single."""
@@ -185,15 +194,29 @@ class VideoListedSingle(FeatureMixin):
         max_length = 30
         description = ''
         count = 0
-        for c in videoobj.context.Description():
+        for c in contentobj.Description():
             if c == ' ':
                 count += 1
             if count >= max_length:
                 break
             description += c
 
-        if len(description) != len(videoobj.context.Description()):
+        if len(description) != len(contentobj.Description()):
             description += ' ...'
+
+        commenting_count = None
+        commenting_last = None
+        if self.has_commenting_support():
+            comments = ICommentManagement(contentobj).getComments()
+            commenting_count = len(comments)
+            last = last_comment(comments)
+            if last is not None:
+                created = last.created
+                created = datetime.date(created.year(),
+                                        created.month(),
+                                        created.day())
+                commenting_last = formatting.fancy_date_interval(created)
+                commenting_last = commenting_last.lower()
 
         video = {
             'title': videoobj.title,
@@ -214,6 +237,8 @@ class VideoListedSingle(FeatureMixin):
             'rating_count': rating_count,
             'avgrating': avgrating,
             'relevance': relevance,
+            'commenting_count': commenting_count,
+            'commenting_last': commenting_last,
             }
 
         if pos is not None:

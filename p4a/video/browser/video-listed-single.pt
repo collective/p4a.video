@@ -66,11 +66,13 @@
               alt star" />
           </dd>
         </tal:block>
-                <tal:block tal:condition="view/has_commenting_support">
-                  <dt class="comment">Comments:</dt>
-                  <dd>two comments since yesterday</dd>
-                </tal:block>
-              </dl>
+        <tal:block tal:condition="view/has_commenting_support">
+          <dt class="commenting">Comments:</dt>
+          <dd>
+            <span tal:replace="video/commenting_count"></span>
+            comment(s)
+          </dd>
+        </tal:block>
         </div>
         <div class="visualClear"><!-- --></div>
       </div>
