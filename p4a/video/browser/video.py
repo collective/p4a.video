@@ -24,7 +24,6 @@ from Products.CMFCore import utils as cmfutils
 from Products.CMFPlone import PloneMessageFactory as _
 
 from Products.Five.browser import pagetemplatefile
-from Products.easycommenting.interfaces import ICommentManagement
 
 def has_contentrating_support(context):
     try:
@@ -207,6 +206,7 @@ class VideoListedSingle(FeatureMixin):
         commenting_count = None
         commenting_last = None
         if self.has_commenting_support():
+            from Products.easycommenting.interfaces import ICommentManagement
             comments = ICommentManagement(contentobj).getComments()
             commenting_count = len(comments)
             last = last_comment(comments)
