@@ -226,19 +226,11 @@
     display: inline;
 }
 
-.media-item H2 {
-    height: 1em;
-}
-
-.media-item H2 A {
-    float: left;
-    display: block;
-}
-
 .media-item H2 .relevance {
     display: block;
     float: right;
     font-size: 75%;
     color: #9a9a99;
     font-weight: normal;
+    margin-top: -1.5em;
 }

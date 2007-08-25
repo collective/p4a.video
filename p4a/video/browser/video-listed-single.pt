@@ -32,7 +32,6 @@
                       tal:condition="python:video['relevance'] is not None">
                   [<span tal:replace="video/relevance" />%]
                 </span>
-                <span class="visualClear"><!-- --></span>
               </h2>
 
               <p class="author-byline">Posted <span tal:replace="video/creation_time" /> by <a href=""
