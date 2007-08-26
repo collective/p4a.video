@@ -24,6 +24,7 @@ from Products.CMFCore import utils as cmfutils
 from Products.CMFPlone import PloneMessageFactory as _
 
 from Products.Five.browser import pagetemplatefile
+from Products.Five.formlib import formbase
 
 def has_contentrating_support(context):
     try:
@@ -302,7 +303,7 @@ def applyChanges(context, form_fields, data, adapters=None):
 
     return changed
 
-class VideoEditForm(form.EditForm):
+class VideoEditForm(formbase.EditForm):
     """Form for editing video fields.
     """
 
