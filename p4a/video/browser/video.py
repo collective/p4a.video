@@ -240,6 +240,7 @@ class VideoListedSingle(FeatureMixin):
             'relevance': relevance,
             'commenting_count': commenting_count,
             'commenting_last': commenting_last,
+            'portal_type': contentobj.portal_type,
             }
 
         if pos is not None:

@@ -4,8 +4,9 @@
                            video video|options/video|python:view.safe_video(videoobj);
                            viewurl string:${video/url}/view;
                            oddeven oddeven|video/oddeven|string:;
-                           portal_url portal_url|view/portal_url"
-               tal:attributes="class string:media-item $oddeven">
+                           portal_url portal_url|view/portal_url;
+                           portal_type video/portal_type"
+               tal:attributes="class string:media-item $oddeven portal_type_$portal_type">
             <div class="item-left">
               <dl>
                 <dt class="album-art">Album Art:</dt>
@@ -19,8 +20,8 @@
                 </dd>
                 <dt>Time:</dt>
                 <dd tal:content="video/duration">8:30</dd>
-                <dt>Type:</dt>
-                <dd>Video</dd>
+                <dt class="type-video">Type:</dt>
+                <dd class="type-video">Video</dd>
               </dl>
               <div class="visualClear"><!-- --></div>
             </div>
