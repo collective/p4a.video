@@ -1,10 +1,12 @@
 import Acquisition
+import AccessControl
 import datetime
 import urllib
 
 from zope import event
 from zope import component
 from zope import interface
+from zope import schema
 from zope.formlib import form
 from zope.app.event import objectevent
 from zope.app.i18n import ZopeMessageFactory as _
@@ -304,12 +306,67 @@ def applyChanges(context, form_fields, data, adapters=None):
 
     return changed
 
+class SimpleTagging(object):
+
+    def __init__(self, context):
+        from p4a.plonetagging.content import UserTagging
+        from p4a.plonetagging.utils import escape, unescape
+        self.tagging = UserTagging(context)
+        self.escape = escape
+        self.unescape = unescape
+
+    def _get_tags(self):
+        return self.escape(self.tagging.tags)
+    def _set_tags(self, v):
+        self.tagging.tags = self.unescape(v)
+    tags = property(_get_tags, _set_tags)
+
 class VideoEditForm(formbase.EditForm):
     """Form for editing video fields.
     """
 
     form_fields = form.FormFields(interfaces.IVideo)
     label = u'Edit Video Data'
+
+    def display_tags(self):
+        username = AccessControl.getSecurityManager().getUser().getId()
+        return username == self.context.getOwner().getId() and \
+               has_contenttagging_support(self.context)
+
+    def update(self):
+        self.adapters = {}
+        form_fields = self.form_fields
+        if self.display_tags():
+            from lovely.tag.interfaces import IUserTagging
+            field = schema.TextLine(__name__='tags',
+                                    title=u'Tags',
+                                    description=u'Enter as many tags as you '
+                                                u'like, separated by spaces.  '
+                                                u'If you need a tag with '
+                                                u'spaces, encase the tag in '
+                                                u'double quotes; the double '
+                                                u'quotes will be ignored.',
+                                    required=False)
+            field.interface = IUserTagging
+            form_fields = self.form_fields + form.Fields(field)
+            names = ['title', 'tags', 'description']
+            for field in interfaces.IVideo:
+                if field not in names and \
+                       form_fields.__FormFields_byname__.has_key(field):
+                    names.append(field)
+            form_fields = form_fields.select(*names)
+
+            simpletagging = SimpleTagging(self.context.context)
+            self.adapters[IUserTagging] = simpletagging
+        self.form_fields = form_fields
+
+        super(VideoEditForm, self).update()
+
+    def setUpWidgets(self, ignore_request=False):
+        self.widgets = form.setUpEditWidgets(
+            self.form_fields, self.prefix, self.context, self.request,
+            adapters=self.adapters, ignore_request=ignore_request
+            )
 
     @form.action(_("Apply"), condition=form.haveInputWidgets)
     def handle_edit_action(self, action, data):
