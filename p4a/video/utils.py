@@ -1,5 +1,5 @@
 from zope import interface
-from zope.app.annotation import interfaces as annointerfaces
+from zope.annotation import interfaces as annointerfaces
 from p4a.video import interfaces
 from p4a.video import metadataextractor
 

@@ -2,7 +2,7 @@ from persistent.dict import PersistentDict
 from zope import component
 from zope import event
 from zope import interface
-from zope.app.annotation import interfaces as annointerfaces
+from zope.annotation import interfaces as annointerfaces
 from zope.app.event import objectevent
 from p4a.video import interfaces
 from p4a.fileimage import DictProperty

@@ -1,6 +1,6 @@
 import mimetypes
 import os
-from zope.app.annotation import interfaces as annointerfaces
+from zope.annotation import interfaces as annointerfaces
 from zope import interface
 from OFS import Image as ofsimage
 from p4a.video import interfaces
