@@ -8,6 +8,7 @@
   <include package=".flv" />
   <include package=".wmv" />
   <include package=".real-media" />
+  <include package=".swf" />
 
   <include package="zope.annotation" />
 

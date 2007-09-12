@@ -318,6 +318,8 @@ class SimpleTagging(object):
     def _get_tags(self):
         return self.escape(self.tagging.tags)
     def _set_tags(self, v):
+        if not v:
+            v = []
         self.tagging.tags = self.unescape(v)
     tags = property(_get_tags, _set_tags)
 

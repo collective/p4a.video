@@ -36,14 +36,9 @@ class FLVVideoPlayer(object):
         # how do we get the imageurl?
         #
         videoobj = interfaces.IVideo(contentobj)
-        # let's make sure that we have some values
-        if not videoobj.width:
-            videoobj.width = 0
-        if not videoobj.height:
-            videoobj.height = 0
-        width = videoobj.width
+        width = videoobj.width or 0
         # 22 is added to the height so that FlowPlayer controls fit
-        height = videoobj.height + 22
+        height = (videoobj.height or 0) + 22
         config = generate_config(videoFile=downloadurl,
                                  splashImageFile=imageurl,
                                  autoPlay='false',
