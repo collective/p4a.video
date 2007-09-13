@@ -329,6 +329,7 @@ class VideoEditForm(formbase.EditForm):
 
     form_fields = form.FormFields(interfaces.IVideo)
     label = u'Edit Video Data'
+    priority_fields = ['title']
 
     def display_tags(self):
         username = AccessControl.getSecurityManager().getUser().getId()
@@ -351,10 +352,9 @@ class VideoEditForm(formbase.EditForm):
                                     required=False)
             field.interface = IUserTagging
             form_fields = self.form_fields + form.Fields(field)
-            names = ['title', 'tags', 'description']
-            for field in interfaces.IVideo:
-                if field not in names and \
-                       form_fields.__FormFields_byname__.has_key(field):
+            names = list(self.priority_fields) + ['tags']
+            for field in form_fields.__FormFields_byname__.keys():
+                if field not in names:
                     names.append(field)
             form_fields = form_fields.select(*names)
 
