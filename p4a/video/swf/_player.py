@@ -34,7 +34,7 @@ class SWFVideoPlayer(object):
     <param name="quality" value="high" />
     <param name="bgcolor" value="#ffffff" />
     <embed src="%(file_url)s" quality="high" bgcolor="#ffffff"
-           width="%(width)s" height="%(file_url)s" name="%(title)s"
+           width="%(width)s" height="%(height)s" name="%(title)s"
            align="middle" allowScriptAccess="sameDomain"
            type="application/x-shockwave-flash"
            pluginspage="http://www.adobe.com/go/getflashplayer" />
