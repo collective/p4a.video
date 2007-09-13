@@ -234,3 +234,16 @@
     font-weight: normal;
     margin-top: -1.5em;
 }
+
+.field #form\.title {
+    width: 100%;
+    font-size: 150%;
+}
+
+.field #form\.url {
+    width: 100%;
+}
+
+.field #form\.tags {
+    width: 100%;
+}

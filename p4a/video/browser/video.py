@@ -327,6 +327,7 @@ class VideoEditForm(formbase.EditForm):
     """Form for editing video fields.
     """
 
+    template = pagetemplatefile.ViewPageTemplateFile('video-edit.pt')
     form_fields = form.FormFields(interfaces.IVideo)
     label = u'Edit Video Data'
     priority_fields = ['title']
@@ -387,6 +388,23 @@ class VideoEditForm(formbase.EditForm):
         msg = urllib.quote(translate(self.status))
         redirect(self.context.absolute_url()+\
                  '/view?portal_status_message=%s' % msg)
+
+class VideoEditMacros(formbase.PageForm):
+    # short cut to get to macros more easily
+    def __getitem__(self, name):
+        if hasattr(self.template, 'macros'):
+            template = self.template
+        elif hasattr(self.template, 'default_template'):
+            template = self.template.default_template
+        else:
+            raise TypeError('Could not lookup macros on the configured '
+                            'template')
+
+        macros = template.macros.__get__(template)
+
+        if name == 'macros':
+            return macros
+        return macros[name]
 
 class VideoStreamerView(object):
     """View for streaming video file as M3U.

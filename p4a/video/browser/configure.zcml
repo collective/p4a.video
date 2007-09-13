@@ -77,6 +77,14 @@
       />
 
   <page
+      name="video_edit_macros"
+      for="*"
+      permission="cmf.ModifyPortalContent"
+      class=".video.VideoEditMacros"
+      allowed_attributes="macros"
+      />
+
+  <page
       name="popup-play.html"
       for="p4a.video.interfaces.IVideoEnhanced"
       permission="zope2.View"
