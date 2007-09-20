@@ -1,9 +1,13 @@
 from zope import interface
 from zope.formlib import form
-from zope.annotation import interfaces as annointerfaces
 from p4a.video import interfaces
 from p4a.video.browser import widget
 from p4a.common import feature
+try:
+    from zope.app.annotation import interfaces as annointerfaces
+except ImportError, err:
+    # Zope 2.10 support
+    from zope.annotation import interfaces as annointerfaces
 
 _marker = object()
 

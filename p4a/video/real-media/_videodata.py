@@ -1,10 +1,14 @@
 import mimetypes
 import os
-from zope.annotation import interfaces as annointerfaces
 from zope import interface
 from OFS import Image as ofsimage
 from p4a.video import interfaces
 from p4a.fileimage import utils as fileutils
+try:
+    from zope.app.annotation import interfaces as annointerfaces
+except ImportError, err:
+    # Zope 2.10 support
+    from zope.annotation import interfaces as annointerfaces
 
 def write_video_image(id3tags, video_image):
     size = video_image.get_size()

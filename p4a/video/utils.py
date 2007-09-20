@@ -1,7 +1,11 @@
 from zope import interface
-from zope.annotation import interfaces as annointerfaces
 from p4a.video import interfaces
 from p4a.video import metadataextractor
+try:
+    from zope.app.annotation import interfaces as annointerfaces
+except ImportError, err:
+    # Zope 2.10 support
+    from zope.annotation import interfaces as annointerfaces
 
 DEFAULT_CHARSET = 'utf-8'
 
