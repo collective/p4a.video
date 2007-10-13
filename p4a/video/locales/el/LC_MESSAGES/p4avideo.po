@@ -1,0 +1,24 @@
+# Gettext Message File for p4a.video.
+# Dimitris Moraitis - dimo (at) indy [dot] gr - 2007
+
+msgid ""
+msgstr ""
+"Project-Id-Version: p4avideo\n"
+"POT-Creation-Date: 2007-10-13 14:40default\n"
+"PO-Revision-Date: 2007-10-13 16:13+0100\n"
+"Last-Translator: Dimitris Moraitis - dimo (at) indy [dot] gr\n"
+"Language-Team: Dimitris Moraitis - dimo (at) indy [dot] gr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: el\n"
+"Language-Name: Ελληνικά\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: p4avideo\n"
+"X-Poedit-Language: Greek\n"
+"X-Poedit-Country: GREECE\n"
+
+
+msgid "text_no_albums_video_uploaded"
+msgstr "Αυτή τη στιγμή δεν υπάρχουν αντικείμενα σε αυτόν τον φάκελο."

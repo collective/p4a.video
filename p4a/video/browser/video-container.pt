@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone4artists">
+      i18n:domain="p4avideo">
 
   <head>
     <div metal:fill-slot="css_slot"
@@ -43,7 +43,6 @@
         </tal:block>
 
       <p class="discreet"
-         i18n:domain="plone4artists"
          i18n:translate="text_no_albums_video_uploaded"
          tal:condition="python:not video_items">
         No video uploaded yet.
