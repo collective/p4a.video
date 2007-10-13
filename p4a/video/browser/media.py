@@ -1,6 +1,7 @@
 from zope import interface
 from zope.formlib import form
 from p4a.video import interfaces
+from p4a.video import media
 from p4a.video.browser import widget
 from p4a.common import feature
 try:
@@ -11,36 +12,13 @@ except ImportError, err:
 
 _marker = object()
 
-class ToggleEnhancementsView(object):
+class ToggleEnhancementsView(media.MediaActivator):
     """
     """
     
     def __init__(self, context, request):
         self.context = context
         self.request = request
-
-    _video_activated = feature.FeatureProperty(interfaces.IPossibleVideo,
-                                               interfaces.IVideoEnhanced,
-                                               'context')
-    _video_container_activated = feature.FeatureProperty \
-                                 (interfaces.IPossibleVideoContainer,
-                                  interfaces.IVideoContainerEnhanced,
-                                  'context')
-    
-    def media_activated(self, v=_marker):
-        if v is _marker:
-            if interfaces.IPossibleVideo.providedBy(self.context):
-                return self._video_activated
-            elif interfaces.IPossibleVideoContainer.providedBy(self.context):
-                return self._video_container_activated
-            return False
-            
-        if interfaces.IPossibleVideo.providedBy(self.context):
-            self._video_activated = v
-        elif interfaces.IPossibleVideoContainer.providedBy(self.context):
-            self._video_container_activated = v
-
-    media_activated = property(media_activated, media_activated)
 
     def __call__(self):
         was_activated = self.media_activated

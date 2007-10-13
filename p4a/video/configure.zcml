@@ -33,6 +33,8 @@
         />
   </configure>
 
+  <adapter factory=".media.MediaActivator" />
+
   <utility
       factory=".migration.Migrator"
       />

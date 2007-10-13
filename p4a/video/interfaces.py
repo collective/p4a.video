@@ -89,3 +89,10 @@ class IBasicVideoSupport(interface.Interface):
 class IVideoSupport(IBasicVideoSupport):
     """Provides full information about video support.
     """
+
+class IMediaActivator(interface.Interface):
+    """For seeing the activation status or toggling activation."""
+
+    media_activated = schema.Bool(title=u'Media Activated',
+                                  required=True,
+                                  readonly=False)
