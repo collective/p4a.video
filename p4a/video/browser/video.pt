@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="p4a.video">
+      i18n:domain="p4avideo">
 
 <body>
 
@@ -55,17 +55,17 @@
                 </div>    
                 <div tal:condition="video_info/height">
                   <strong i18n:translate="label_height">Height:</strong>
-                  <span tal:content="video_info/height">Height</span>
+                  <span tal:content="video_info/height">height</span>
                   <span i18n:translate="label_pixels">pixels</span>
                 </div>
                 <div tal:condition="video_info/width">
                   <strong i18n:translate="label_width">Width:</strong>
-                  <span tal:content="video_info/width">Width</span>
+                  <span tal:content="video_info/width">width</span>
                   <span i18n:translate="label_pixels">pixels</span>
                 </div>
                 <div tal:condition="video_info/duration">
                   <strong i18n:translate="label_duration">Duration:</strong>
-                  <span tal:content="video_info/duration">Duration</span>
+                  <span tal:content="video_info/duration">duration</span>
                   <span i18n:translate="label_seconds">s</span>
                 </div>
 
@@ -118,9 +118,9 @@
 <div class="bottom-content-info">
 <tal:block tal:condition="view/has_contentrating_support">
   <dl class="content-rating">
-    <dt>Average Rating:</dt>
+    <dt i18n:translate="label_average_rating">Average Rating:</dt>
     <dd><tal:user-rate tal:replace="structure context/@@user_rating_view" /></dd>
-    <dt>Your Rating:</dt>
+    <dt i18n:translate="label_your_rating">Your Rating:</dt>
     <dd><tal:user-rate tal:replace="structure context/@@user_rating_set" /></dd>
   </dl>
 </tal:block>

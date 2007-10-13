@@ -1,10 +1,9 @@
 # Gettext Message File for p4a.video.
 # Dimitris Moraitis - dimo (at) indy [dot] gr - 2007
-
 msgid ""
 msgstr ""
 "Project-Id-Version: p4avideo\n"
-"POT-Creation-Date: 2007-10-13 14:40default\n"
+"POT-Creation-Date: 2007-10-13 14:22+0000\n"
 "PO-Revision-Date: 2007-10-13 16:13+0100\n"
 "Last-Translator: Dimitris Moraitis - dimo (at) indy [dot] gr\n"
 "Language-Team: Dimitris Moraitis - dimo (at) indy [dot] gr\n"
@@ -19,6 +18,103 @@ msgstr ""
 "X-Poedit-Language: Greek\n"
 "X-Poedit-Country: GREECE\n"
 
+#. Default: "Album Art:"
+#: ../browser/video-listed-single.pt
+msgid "label_album_art"
+msgstr ""
 
+#. Default: "Average Rating:"
+#: ../browser/video.pt
+msgid "label_average_rating"
+msgstr "Μέση βαθμολογία"
+
+#. Default: "Comments:"
+#: ../browser/video-listed-single.pt
+msgid "label_comments"
+msgstr "Σχόλια"
+
+#. Default: "Duration:"
+#: ../browser/video.pt
+msgid "label_duration"
+msgstr "Διάρκεια"
+
+#. Default: "File type:"
+#: ../browser/video.pt
+msgid "label_file_type"
+msgstr "Τύπος αρχείου"
+
+#. Default: "Height:"
+#: ../browser/video.pt
+msgid "label_height"
+msgstr "Ύψος"
+
+#. Default: "More"
+#: ../browser/video-listed-single.pt
+msgid "label_more"
+msgstr "Περισσότερα"
+
+#. Default: "No video image"
+#: ../browser/video-listed-single.pt
+msgid "label_no_video_image"
+msgstr "Χωρίς εικόνα"
+
+#. Default: "pixels"
+#: ../browser/video.pt
+msgid "label_pixels"
+msgstr "px"
+
+#. Default: "Ratings:"
+#: ../browser/video-listed-single.pt
+msgid "label_ratings"
+msgstr ""
+
+#. Default: "s"
+#: ../browser/video.pt
+msgid "label_seconds"
+msgstr "s"
+
+#. Default: "Size:"
+#: ../browser/video.pt
+msgid "label_size"
+msgstr "Μέγεθος"
+
+#. Default: "Tags:"
+#: ../browser/video-listed-single.pt
+msgid "label_tags"
+msgstr "Ετικέτες"
+
+#. Default: "Time:"
+#: ../browser/video-listed-single.pt
+msgid "label_time"
+msgstr "Διάρκεια"
+
+#. Default: "Type:"
+#: ../browser/video-listed-single.pt
+msgid "label_type"
+msgstr "Τύπος"
+
+#. Default: "Video"
+#: ../browser/video-listed-single.pt
+msgid "label_video"
+msgstr "Βίντεο"
+
+#. Default: "Width:"
+#: ../browser/video.pt
+msgid "label_width"
+msgstr "Πλάτος"
+
+#. Default: "Your Rating:"
+#: ../browser/video.pt
+msgid "label_your_rating"
+msgstr ""
+
+#. Default: "(No file has been uploaded yet)"
+#: ../browser/video.pt
+msgid "no_file_uploaded"
+msgstr "Αυτή τη στιγμή δεν υπάρχουν αντικείμενα σε αυτόν τον φάκελο"
+
+#. Default: "No video uploaded yet."
+#: ../browser/video-container.pt
 msgid "text_no_albums_video_uploaded"
-msgstr "Αυτή τη στιγμή δεν υπάρχουν αντικείμενα σε αυτόν τον φάκελο."
+msgstr "Αυτή τη στιγμή δεν υπάρχουν βίντεο σε αυτόν τον φάκελο."
+
