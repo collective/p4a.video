@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-10-14 11:48+0000\n"
+"POT-Creation-Date: 2007-10-14 13:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,7 @@ msgstr ""
 
 #. Default: "Average Rating:"
 #: browser/video.pt
+#: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
 msgid "label_average_rating"
 msgstr ""
 
@@ -87,6 +88,11 @@ msgstr ""
 msgid "label_size"
 msgstr ""
 
+#. Default: "Source URL:"
+#: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
+msgid "label_source_url"
+msgstr ""
+
 #. Default: "Tags:"
 #: browser/video-listed-single.pt
 msgid "label_tags"
@@ -107,6 +113,11 @@ msgstr ""
 msgid "label_video"
 msgstr ""
 
+#. Default: "Video Author:"
+#: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
+msgid "label_video_author"
+msgstr ""
+
 #. Default: "Width:"
 #: browser/video.pt
 msgid "label_width"
@@ -114,6 +125,7 @@ msgstr ""
 
 #. Default: "Your Rating:"
 #: browser/video.pt
+#: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
 msgid "label_your_rating"
 msgstr ""
 

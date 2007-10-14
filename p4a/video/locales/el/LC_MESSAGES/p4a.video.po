@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: p4a.video\n"
-"POT-Creation-Date: 2007-10-14 11:48+0000\n"
+"POT-Creation-Date: 2007-10-14 13:44+0000\n"
 "PO-Revision-Date: 2007-10-13 16:13+0100\n"
 "Last-Translator: Dimitris Moraitis - dimo (at) indy [dot] gr\n"
 "Language-Team: Dimitris Moraitis - dimo (at) indy [dot] gr\n"
@@ -25,6 +25,7 @@ msgstr ""
 
 #. Default: "Average Rating:"
 #: browser/video.pt
+#: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
 msgid "label_average_rating"
 msgstr "Αξιολόγηση"
 
@@ -88,6 +89,11 @@ msgstr "δευτερόλεπτα"
 msgid "label_size"
 msgstr "Μέγεθος"
 
+#. Default: "Source URL:"
+#: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
+msgid "label_source_url"
+msgstr ""
+
 #. Default: "Tags:"
 #: browser/video-listed-single.pt
 msgid "label_tags"
@@ -108,6 +114,11 @@ msgstr "Τύπος"
 msgid "label_video"
 msgstr "Βίντεο"
 
+#. Default: "Video Author:"
+#: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
+msgid "label_video_author"
+msgstr ""
+
 #. Default: "Width:"
 #: browser/video.pt
 msgid "label_width"
@@ -115,6 +126,7 @@ msgstr "Πλάτος"
 
 #. Default: "Your Rating:"
 #: browser/video.pt
+#: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
 msgid "label_your_rating"
 msgstr "Η αξιολόγησή μου"
 
