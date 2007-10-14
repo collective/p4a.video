@@ -38,7 +38,7 @@
   <utility
       factory=".migration.Migrator"
       />
-      
+  
   <i18n:registerTranslations directory="locales" />
-
+  
 </configure>

@@ -1,4 +1,4 @@
-<metal:block metal:define-macro="listed_video" i18n:domain="p4avideo">
+<metal:block metal:define-macro="listed_video" i18n:domain="p4a.video">
           <div class="media-item"
                tal:define="videoobj videoobj|options/videoobj|nothing;
                            video video|options/video|python:view.safe_video(videoobj);
@@ -35,9 +35,9 @@
                 </span>
               </h2>
 
-              <p class="author-byline">Posted <span tal:replace="video/creation_time" /> by <a href=""
+              <p class="author-byline" i18n:translate="label_posted">Posted <span tal:replace="python: video['creation_time']" i18n:name="date" /> by <a href=""
                tal:attributes="href string:$portal_url/author/${video/content_author}"
-               tal:content="video/content_author_name"/></p>
+               tal:content="python: len(video['content_author_name']) and video['content_author_name'] or video['content_author']" i18n:name="author" /></p>
 
               <p class="item-description">
                 <span tal:replace="video/description"></span>
@@ -61,7 +61,7 @@
                           stars python:range(1, 6);
                           star_icon string:/++resource++star_icon.gif;
                           blank_star_icon string:/++resource++blank_star_icon.gif;">
-<span tal:content="video/rating_count" /> rating(s) &nbsp;&nbsp;
+			<span i18n:translate="label_rating_s"> <tal:ratings i18n:name="ratings" tal:content="video/rating_count" /> rating(s)</span> &nbsp;&nbsp;
             <img tal:repeat="star python:range(1, 6)"
                  tal:attributes="src python:avg &lt; star and blank_star_icon or star_icon;
               alt star" />

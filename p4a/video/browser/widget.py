@@ -5,7 +5,7 @@ from p4a.fileimage import file
 from p4a.fileimage.image._widget import ImageURLWidget
 
 from zope.i18nmessageid import MessageFactory
-_ = MessageFactory('p4avideo')
+_ = MessageFactory('p4a.video')
 
 class MediaPlayerWidget(file.FileDownloadWidget):
     """Widget which produces some form of media player.

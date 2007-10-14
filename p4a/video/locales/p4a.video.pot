@@ -1,118 +1,129 @@
-# Gettext Message File for p4a.video.
-# Dimitris Moraitis - dimo (at) indy [dot] gr - 2007
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: p4avideo\n"
-"POT-Creation-Date: 2007-10-13 14:22+0000\n"
-"PO-Revision-Date: 2007-10-13 16:13+0100\n"
-"Last-Translator: Dimitris Moraitis - dimo (at) indy [dot] gr\n"
-"Language-Team: Dimitris Moraitis - dimo (at) indy [dot] gr\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2007-10-14 11:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
-"Preferred-Encodings: utf-8\n"
-"Domain: p4avideo\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: p4a.video\n"
 
 #. Default: "Album Art:"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_album_art"
 msgstr ""
 
 #. Default: "Average Rating:"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_average_rating"
 msgstr ""
 
 #. Default: "Comments:"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_comments"
 msgstr ""
 
 #. Default: "Duration:"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_duration"
 msgstr ""
 
 #. Default: "File type:"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_file_type"
 msgstr ""
 
 #. Default: "Height:"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_height"
 msgstr ""
 
 #. Default: "More"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_more"
 msgstr ""
 
 #. Default: "No video image"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_no_video_image"
 msgstr ""
 
 #. Default: "pixels"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_pixels"
 msgstr ""
 
+#. Default: "Posted ${date} by ${author}"
+#: browser/video-listed-single.pt
+msgid "label_posted"
+msgstr ""
+
+#. Default: "${ratings} rating(s)"
+#: browser/video-listed-single.pt
+msgid "label_rating_s"
+msgstr ""
+
 #. Default: "Ratings:"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_ratings"
 msgstr ""
 
 #. Default: "s"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_seconds"
 msgstr ""
 
 #. Default: "Size:"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_size"
 msgstr ""
 
 #. Default: "Tags:"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_tags"
 msgstr ""
 
 #. Default: "Time:"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_time"
 msgstr ""
 
 #. Default: "Type:"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_type"
 msgstr ""
 
 #. Default: "Video"
-#: ../browser/video-listed-single.pt
+#: browser/video-listed-single.pt
 msgid "label_video"
 msgstr ""
 
 #. Default: "Width:"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_width"
 msgstr ""
 
 #. Default: "Your Rating:"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "label_your_rating"
 msgstr ""
 
 #. Default: "(No file has been uploaded yet)"
-#: ../browser/video.pt
+#: browser/video.pt
 msgid "no_file_uploaded"
 msgstr ""
 
 #. Default: "No video uploaded yet."
-#: ../browser/video-container.pt
+#: browser/video-container.pt
 msgid "text_no_albums_video_uploaded"
-msgstr "No videos uploaded yet."
+msgstr ""
 

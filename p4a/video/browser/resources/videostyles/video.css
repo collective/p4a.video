@@ -95,7 +95,7 @@
 
 .bottom-content-info DT {
     clear: left;
-    width: 10em;
+    width: 12em;
     color: #666;
 }
 
@@ -199,6 +199,7 @@
 .media-item DT.tag {
     background: url(../++resource++videoimages/tags.gif) transparent no-repeat;
     padding-left: 20px;
+    padding-right: 30px;    
 }
 
 .media-item DT.commenting {
@@ -209,6 +210,7 @@
 .media-item DT.rating {
     background: url(../++resource++videoimages/ratings.gif) transparent no-repeat;
     padding-left: 20px;
+    padding-right: 30px;    
 }
 
 .media-item H2 {
