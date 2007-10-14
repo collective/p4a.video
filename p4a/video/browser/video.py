@@ -399,7 +399,10 @@ class VideoEditMacros(formbase.PageForm):
             raise TypeError('Could not lookup macros on the configured '
                             'template')
 
-        macros = template.macros.__get__(template)
+        if getattr(template.macros, '__get__', None):
+            macros = template.macros.__get__(template)
+        else:
+            macros = template.macros
 
         if name == 'macros':
             return macros
