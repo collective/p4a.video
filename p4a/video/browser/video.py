@@ -37,12 +37,11 @@ def has_contentrating_support(context):
 
 def has_contentlicensing_support(context):
     try:
-        from Products import ContentLicensing
+        from Products.ContentLicensing.DublinCoreExtensions.interfaces import ILicensable
     except ImportError, e:
         return False
 
-    tool = cmfutils.getToolByName(context, 'portal_contentlicensing', None)
-    return tool is not None
+    return ILicensable.providedBy(context)
 
 def has_contenttagging_support(context):
     try:
