@@ -17,122 +17,122 @@ msgstr ""
 #. Default: "Album Art:"
 #: browser/video-listed-single.pt
 msgid "label_album_art"
-msgstr ""
+msgstr "Arte del album:"
 
 #. Default: "Average Rating:"
 #: browser/video.pt
 #: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
 msgid "label_average_rating"
-msgstr ""
+msgstr "Rating promedio:"
 
 #. Default: "Comments:"
 #: browser/video-listed-single.pt
 msgid "label_comments"
-msgstr ""
+msgstr "Comentarios:"
 
 #. Default: "Duration:"
 #: browser/video.pt
 msgid "label_duration"
-msgstr ""
+msgstr "Duración:"
 
 #. Default: "File type:"
 #: browser/video.pt
 msgid "label_file_type"
-msgstr ""
+msgstr "Formato:"
 
 #. Default: "Height:"
 #: browser/video.pt
 msgid "label_height"
-msgstr ""
+msgstr "Alto:"
 
 #. Default: "More"
 #: browser/video-listed-single.pt
 msgid "label_more"
-msgstr ""
+msgstr "Mas"
 
 #. Default: "No video image"
 #: browser/video-listed-single.pt
 msgid "label_no_video_image"
-msgstr ""
+msgstr "No hay imagen"
 
 #. Default: "pixels"
 #: browser/video.pt
 msgid "label_pixels"
-msgstr ""
+msgstr "píxeles"
 
 #. Default: "Posted ${date} by ${author}"
 #: browser/video-listed-single.pt
 msgid "label_posted"
-msgstr ""
+msgstr "Subido el ${date} por ${author}  "
 
 #. Default: "${ratings} rating(s)"
 #: browser/video-listed-single.pt
 msgid "label_rating_s"
-msgstr ""
+msgstr "${ratings} Rating "
 
 #. Default: "Ratings:"
 #: browser/video-listed-single.pt
 msgid "label_ratings"
-msgstr ""
+msgstr "Ratings"
 
 #. Default: "s"
 #: browser/video.pt
 msgid "label_seconds"
-msgstr ""
+msgstr "s"
 
 #. Default: "Size:"
 #: browser/video.pt
 msgid "label_size"
-msgstr ""
+msgstr "Tamaño:"
 
 #. Default: "Source URL:"
 #: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
 msgid "label_source_url"
-msgstr ""
+msgstr "Fuente:"
 
 #. Default: "Tags:"
 #: browser/video-listed-single.pt
 msgid "label_tags"
-msgstr ""
+msgstr "Etiquetas:"
 
 #. Default: "Time:"
 #: browser/video-listed-single.pt
 msgid "label_time"
-msgstr ""
+msgstr "Tiempo:"
 
 #. Default: "Type:"
 #: browser/video-listed-single.pt
 msgid "label_type"
-msgstr ""
+msgstr "Formato:"
 
 #. Default: "Video"
 #: browser/video-listed-single.pt
 msgid "label_video"
-msgstr ""
+msgstr "Video"
 
 #. Default: "Video Author:"
 #: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
 msgid "label_video_author"
-msgstr ""
+msgstr "Autor:"
 
 #. Default: "Width:"
 #: browser/video.pt
 msgid "label_width"
-msgstr ""
+msgstr "Ancho:"
 
 #. Default: "Your Rating:"
 #: browser/video.pt
 #: ../../../p4a.plonevideoembed/p4a/plonevideoembed/video-link.pt
 msgid "label_your_rating"
-msgstr ""
+msgstr "Tu rating:"
 
 #. Default: "(No file has been uploaded yet)"
 #: browser/video.pt
 msgid "no_file_uploaded"
-msgstr ""
+msgstr "(No hay archivos)"
 
 #. Default: "No video uploaded yet."
 #: browser/video-container.pt
 msgid "text_no_albums_video_uploaded"
-msgstr ""
+msgstr "No hay videos"
 
