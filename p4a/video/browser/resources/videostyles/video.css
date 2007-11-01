@@ -93,6 +93,22 @@
     font-size: 0.8em;
 }
 
+* HTML BODY .bottom-content-info DT,
+* HTML BODY .bottom-content-info DD {
+    float: none;
+}
+
+* HTML BODY .bottom-content-info DD {
+    padding-left: 2em;
+    margin-right: -2em;
+    float: left;
+}
+
+* HTML BODY .bottom-content-info DL {
+    padding: 0;
+    margin: 0;
+}
+
 .bottom-content-info DT {
     clear: left;
     width: 12em;
