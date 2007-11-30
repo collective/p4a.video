@@ -40,5 +40,17 @@
       />
   
   <i18n:registerTranslations directory="locales" />
-  
+
+  <utility
+      name="p4a.video.Video"
+      factory=".subtype.VideoDescriptor" />
+
+  <utility
+      name="p4a.video.FolderVideoContainer"
+      factory=".subtype.FolderVideoContainerDescriptor" />
+
+  <utility
+      name="p4a.video.TopicVideoContainer"
+      factory=".subtype.TopicVideoContainerDescriptor" />
+ 
 </configure>

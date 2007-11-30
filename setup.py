@@ -26,6 +26,7 @@ with video files and their various means of storing/loading metadata.""",
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'p4a.subtyper',
           'p4a.common>=1.0',
           'p4a.z2utils>=1.0',
           'p4a.fileimage>=1.0',
