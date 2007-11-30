@@ -25,7 +25,10 @@ with video files and their various means of storing/loading metadata.""",
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          # -*- Extra requirements: -*-
+          'setuptools',
+          'p4a.common>=1.0',
+          'p4a.z2utils>=1.0',
+          'p4a.fileimage>=1.0',
       ],
       entry_points="""
       # -*- Entry points: -*-
