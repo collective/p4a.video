@@ -67,13 +67,11 @@
               alt star" />
           </dd>
         </tal:block>
-        <tal:block tal:condition="view/has_commenting_support">
-          <dt class="commenting" i18n:translate="label_comments">Comments:</dt>
-          <dd><a href="" tal:attributes="href viewurl">
-            <span tal:replace="video/commenting_count"></span>
-            comment(s)</a>
-          </dd>
-        </tal:block>
+        <dt class="commenting" i18n:translate="label_comments">Comments:</dt>
+        <dd><a href="" tal:attributes="href viewurl">
+          <span tal:replace="video/commenting_count"></span>
+          comment(s)</a>
+        </dd>
         </div>
         <div class="visualClear"><!-- --></div>
       </div>

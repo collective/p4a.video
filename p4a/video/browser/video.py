@@ -50,15 +50,6 @@ def has_contenttagging_support(context):
         return False
     return component.queryUtility(tagifaces.ITaggingEngine) is not None
 
-def has_commenting_support(context):
-    try:
-        from Products import easycommenting
-    except ImportError, e:
-        return False
-
-    tool = cmfutils.getToolByName(context, 'portal_easycommenting', None)
-    return tool is not None
-
 class FeatureMixin(object):
     def has_contentrating_support(self):
         return has_contentrating_support(Acquisition.aq_inner(self.context))
@@ -68,9 +59,6 @@ class FeatureMixin(object):
 
     def has_contenttagging_support(self):
         return has_contenttagging_support(Acquisition.aq_inner(self.context))
-
-    def has_commenting_support(self):
-        return has_commenting_support(Acquisition.aq_inner(self.context))
 
 class IVideoView(interface.Interface):
     def title(): pass
@@ -121,6 +109,8 @@ class VideoListedSingle(FeatureMixin):
         self.membership = cmfutils.getToolByName(context, 'portal_membership')
         self.portal_url = cmfutils.getToolByName(context, 'portal_url') \
                           .getPortalObject().absolute_url()
+        self.discussion = cmfutils.getToolByName(context,
+                                                 'portal_discussion')
 
     def __call__(self):
         return self.single()
@@ -205,20 +195,21 @@ class VideoListedSingle(FeatureMixin):
         if len(description) != len(contentobj.Description()):
             description += ' ...'
 
-        commenting_count = None
+        disc = self.discussion.getDiscussionFor(contentobj)
+        commenting_count = disc.replyCount(contentobj)
         commenting_last = None
-        if self.has_commenting_support():
-            from Products.easycommenting.interfaces import ICommentManagement
-            comments = ICommentManagement(contentobj).getComments()
-            commenting_count = len(comments)
-            last = last_comment(comments)
-            if last is not None:
-                created = last.created
-                created = datetime.date(created.year(),
-                                        created.month(),
-                                        created.day())
-                commenting_last = formatting.fancy_date_interval(created)
-                commenting_last = commenting_last.lower()
+
+        for x in disc.objectValues():
+            if commenting_last is None or \
+                   x.created() > commenting_last.created():
+                commenting_last = x
+        if commenting_last is not None:
+            created = commenting_last.created()
+            created = datetime.date(created.year(),
+                                    created.month(),
+                                    created.day())
+            commenting_last = formatting.fancy_date_interval(created)
+            commenting_last = commenting_last.lower()
 
         video = {
             'title': videoobj.title,

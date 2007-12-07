@@ -5,6 +5,9 @@ p4a.video Changes
 p4a.video (unreleased)
 ======================
 
+* Now uses standard plone/cmf comments instead of easycommenting
+  (Rocky Burt)
+
 * Now uses p4a.subtyper to expose video subtype action (Rocky Burt)
 
 
