@@ -91,13 +91,6 @@ class IVideoListedSingle(interface.Interface):
     def single(obj=None): pass
     def safe_video(obj=None, pos=None): pass
 
-def last_comment(comments):
-    last = None
-    for x in comments:
-        if last is None or x.created > last.created:
-            last = x
-    return last
-
 class VideoListedSingle(FeatureMixin):
     """Video listed single."""
 
