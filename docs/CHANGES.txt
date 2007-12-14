@@ -8,6 +8,8 @@ p4a.video (unreleased)
 Features
 --------
 
+* Added rich text description field (Rocky Burt)
+
 * Now uses p4a.subtyper to expose video subtype action (Rocky Burt)
 
 Miscellaneous

@@ -24,6 +24,8 @@ class IVideo(interface.Interface):
 
     title = schema.TextLine(title=u'Video Title', required=False)
     description = schema.Text(title=u'Description', required=False)
+    rich_description = schema.Text(title=u'Rich Text Description',
+                                   required=False)
     file = p4afile.FileField(title=u'File', required=False)
     width = schema.Int(title=u'Width', required=False, readonly=False)
     height = schema.Int(title=u'Height', required=False, readonly=False)

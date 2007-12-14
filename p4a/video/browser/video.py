@@ -10,7 +10,6 @@ from zope import schema
 from zope.formlib import form
 from zope.app.event import objectevent
 from zope.app.i18n import ZopeMessageFactory as _
-from zope.i18n import translate
 
 from p4a.video import genre
 from p4a.video import interfaces
@@ -20,6 +19,7 @@ from p4a.videoembed import interfaces as embedifaces
 
 from p4a.fileimage.image._widget import ImageURLWidget
 
+from p4a.common import at
 from p4a.common import formatting
 
 from Products.CMFCore import utils as cmfutils
@@ -37,7 +37,8 @@ def has_contentrating_support(context):
 
 def has_contentlicensing_support(context):
     try:
-        from Products.ContentLicensing.DublinCoreExtensions.interfaces import ILicensable
+        from Products.ContentLicensing.DublinCoreExtensions.interfaces \
+             import ILicensable
     except ImportError, e:
         return False
 
@@ -86,6 +87,8 @@ class VideoView(object):
     def duration(self): return self.video_info.duration
     def video_type(self): return self.video_info.video_type
     def has_media_player(self): return self.media_player is not None
+    def description(self): return self.video_info.description
+    def rich_description(self): return self.video_info.rich_description
 
 class IVideoListedSingle(interface.Interface):
     def single(obj=None): pass
@@ -312,6 +315,7 @@ class VideoEditForm(formbase.EditForm):
 
     template = pagetemplatefile.ViewPageTemplateFile('video-edit.pt')
     form_fields = form.FormFields(interfaces.IVideo)
+    form_fields['rich_description'].custom_widget = at.RichTextEditWidget
     label = u'Edit Video Data'
     priority_fields = ['title']
 
@@ -368,7 +372,7 @@ class VideoEditForm(formbase.EditForm):
         else:
             self.status = _('No changes')
         redirect = self.request.response.redirect
-        msg = urllib.quote(translate(self.status))
+        msg = urllib.quote(self.status)
         redirect(self.context.absolute_url()+\
                  '/view?portal_status_message=%s' % msg)
 

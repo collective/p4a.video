@@ -34,6 +34,8 @@ class AnnotationVideo(object):
 
     title = DictProperty(interfaces.IVideo['title'], 'video_data')
     description = DictProperty(interfaces.IVideo['description'], 'video_data')
+    rich_description = DictProperty(interfaces.IVideo['rich_description'],
+                                    'video_data')
     video_author = DictProperty(interfaces.IVideo['video_author'], 'video_data')
     height = DictProperty(interfaces.IVideo['height'], 'video_data')
     width = DictProperty(interfaces.IVideo['width'], 'video_data')

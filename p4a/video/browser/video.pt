@@ -45,6 +45,16 @@
           Get the byline - contains details about author and modification date.
         </div>
 
+        <p tal:content="video_info/description" class="documentDescription">
+          Description
+        </p>
+
+        <div tal:content="structure video_info/rich_description"
+             tal:condition="video_info/rich_description"
+             class="richDocumentDescription">
+          Description
+        </div>
+
         <div id="summary_wrapper">
             <div id="video_metadata">
                 <div><strong i18n:translate="label_size">Size:</strong>
