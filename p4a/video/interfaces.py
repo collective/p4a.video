@@ -40,6 +40,11 @@ class IVideo(interface.Interface):
 
     video_author = schema.TextLine(title=u'Video Author', required=False)
 
+    urls = schema.Tuple(
+        title=u'Video URLs', required=False,
+        value_type=schema.Tuple(title=u'Mimetype and URL pair',
+                                min_length=2, max_length=2))
+
 class IVideoDataAccessor(interface.Interface):
     """Video implementation accessor (ie mov, wma, flv).
     """

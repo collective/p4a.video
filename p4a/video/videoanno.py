@@ -43,3 +43,4 @@ class AnnotationVideo(object):
     file = DictProperty(interfaces.IVideo['file'], 'video_data')
     video_image = DictProperty(interfaces.IVideo['video_image'], 'video_data')
     video_type = DictProperty(interfaces.IVideo['video_type'], 'video_data')
+    urls = DictProperty(interfaces.IVideo['urls'], 'video_data')
