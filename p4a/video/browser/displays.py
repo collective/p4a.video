@@ -2,6 +2,7 @@ from zope import interface
 from zope import component
 from p4a.video import interfaces
 
+import p4a.z2utils #Patch CMFDynamicViewFTI
 from Products.CMFDynamicViewFTI import interfaces as cmfdynifaces
 
 class VideoContainerDynamicViews(object):

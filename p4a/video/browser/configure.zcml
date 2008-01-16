@@ -4,6 +4,8 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="p4a.video">
 
+  <include package="p4a.common" />
+
   <resourceDirectory
       name="videostyles"
       directory="resources/videostyles"

@@ -15,6 +15,18 @@
       name="video/x-flv"
       />
 
+  <adapter
+      for="p4a.video.interfaces.IPossibleVideo"
+      factory="._videodata.FLVVideoDataAccessor"
+      provides="p4a.video.interfaces.IVideoDataAccessor"
+      name="application/x-flash-video"
+      />
+
+  <adapter
+      factory="._player.FLVVideoPlayer"
+      name="application/x-flash-video"
+      />
+
   <browser:resourceDirectory 
       name="flowplayer" 
       directory="flowplayer" 

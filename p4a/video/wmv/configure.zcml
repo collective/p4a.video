@@ -40,6 +40,11 @@
 
   <adapter
       factory="._player.WMVVideoPlayer"
+      name="video/x-msvideo"
+      />
+
+  <adapter
+      factory="._player.WMVVideoPlayer"
       name="video/x-ms-asf"
       />
 
