@@ -1,7 +1,6 @@
 from zope import interface
 from zope import component
 from p4a.video import interfaces
-from Products.CMFCore import utils as cmfutils
 
 class SWFVideoPlayer(object):
     interface.implements(interfaces.IMediaPlayer)
