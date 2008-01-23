@@ -109,19 +109,8 @@
                 <div id="object_metadata">
 
                     <div class="bottom-content-info">
-                        <tal:block tal:condition="view/has_contentrating_support">
-                          <dl class="content-rating">
-                            <dt i18n:translate="label_average_rating">Average Rating:</dt>
-                            <dd><tal:user-rate tal:replace="structure context/@@user_rating_view" /></dd>
-                            <dt i18n:translate="label_your_rating">Your Rating:</dt>
-                            <dd><tal:user-rate tal:replace="structure context/@@user_rating_set" /></dd>
-                          </dl>
-                        </tal:block>
 
-                        <tal:block tal:condition="view/has_contenttagging_support">
-                            <metal:block use-macro="context/@@tag_macros/tags_footer">
-                            </metal:block>
-                        </tal:block>
+		<metal:ratings-and-tags use-macro="context/@@video_macros/user_rating_set" />
 
                         <div class="visualClear">&nbsp;</div>
                     </div>

@@ -42,6 +42,13 @@
       />
 
   <page
+      name="video_macros"
+      template="video_macros.pt"
+      for="*"
+      permission="zope.Public"
+      />
+
+  <page
       name="video_view"
       class=".video.VideoView"
       allowed_interface=".video.IVideoView"
