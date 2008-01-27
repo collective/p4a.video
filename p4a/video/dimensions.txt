@@ -8,9 +8,11 @@ Verify that the media player widgets take default dimensions from the
 IVideo schema.
 
     >>> import Products.CMFPlone.utils
+    >>> from p4a.video import interfaces
     >>> self.loginAsPortalOwner()
     >>> foo = Products.CMFPlone.utils._createObjectByType(
     ...     'File', self.portal, 'foo')
+    >>> interfaces.IMediaActivator(foo).media_activated = True
 
     >>> class Context(object):
     ...     def __init__(self, context):

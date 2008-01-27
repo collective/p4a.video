@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope">
 
+  <include package="p4a.subtyper" />
   <include package="." />
 
   <adapter factory=".videoanno.AnnotationVideo"
