@@ -22,7 +22,7 @@ class IVideo(interface.Interface):
     """Objects which have video information.
     """
 
-    title = schema.TextLine(title=u'Video Title', required=False)
+    title = schema.TextLine(title=u'Title', required=False)
     description = schema.Text(title=u'Description', required=False)
     rich_description = schema.Text(title=u'Rich Text Description',
                                    required=False)
@@ -33,14 +33,14 @@ class IVideo(interface.Interface):
                         readonly=False)
     duration = schema.Float(title=u'Duration', required=False, readonly=False)
 
-    video_image = p4aimage.ImageField(title=u'Video Image', required=False,
+    video_image = p4aimage.ImageField(title=u'Image', required=False,
                                       preferred_dimensions=(320, 240))
 
-    video_type = schema.TextLine(title=u'Video Type',
+    video_type = schema.TextLine(title=u'Type',
                                  required=True,
                                  readonly=True)
 
-    video_author = schema.TextLine(title=u'Video Author', required=False)
+    video_author = schema.TextLine(title=u'Author', required=False)
 
     urls = schema.Tuple(
         title=u'Video URLs', required=False,
