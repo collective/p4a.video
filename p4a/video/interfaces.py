@@ -43,7 +43,7 @@ class IVideo(interface.Interface):
     video_author = schema.TextLine(title=u'Author', required=False)
 
     urls = schema.Tuple(
-        title=u'Video URLs', required=False,
+        title=u'Video URLs', required=False, default=(),
         value_type=schema.Tuple(title=u'Mimetype and URL pair',
                                 min_length=2, max_length=2))
 
