@@ -191,21 +191,23 @@ class VideoListedSingle(FeatureMixin):
         if len(description) != len(contentobj.Description()):
             description += ' ...'
 
-        disc = self.discussion.getDiscussionFor(contentobj)
-        commenting_count = disc.replyCount(contentobj)
+        commenting_count = 0
         commenting_last = None
+        if self.discussion.isDiscussionAllowedFor(contentobj):
+            disc = self.discussion.getDiscussionFor(contentobj)
+            commenting_count = disc.replyCount(contentobj)
 
-        for x in disc.objectValues():
-            if commenting_last is None or \
-                   x.created() > commenting_last.created():
-                commenting_last = x
-        if commenting_last is not None:
-            created = commenting_last.created()
-            created = datetime.date(created.year(),
-                                    created.month(),
-                                    created.day())
-            commenting_last = formatting.fancy_date_interval(created)
-            commenting_last = commenting_last.lower()
+            for x in disc.objectValues():
+                if commenting_last is None or \
+                       x.created() > commenting_last.created():
+                    commenting_last = x
+            if commenting_last is not None:
+                created = commenting_last.created()
+                created = datetime.date(created.year(),
+                                        created.month(),
+                                        created.day())
+                commenting_last = formatting.fancy_date_interval(created)
+                commenting_last = commenting_last.lower()
 
         video = {
             'title': videoobj.title,
