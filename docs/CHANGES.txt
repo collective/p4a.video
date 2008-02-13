@@ -2,8 +2,8 @@
 p4a.video Changes
 =================
 
-p4a.video (unreleased)
-======================
+p4a.video 1.1b1 (2008-02-13)
+============================
 
 Features
 --------
@@ -17,7 +17,7 @@ Bug Fixes
 
 * Support additional mime type synonyms (Ross Patterson)
 
-* Support reasonable default dimensions for the players 
+* Support reasonable default dimensions for the players
   (Ross Patterson)
 
 Miscellaneous
