@@ -8,17 +8,19 @@ p4a.video 1.1b1 (2008-02-13)
 Features
 --------
 
-* Added rich text description field (Rocky Burt)
+* Added Plone 3 compatibility (Rocky Burt) r1794
 
-* Now uses p4a.subtyper to expose video subtype action (Rocky Burt)
+* Added rich text description field (Rocky Burt) r1829
+
+* Now uses p4a.subtyper to expose video subtype action (Rocky Burt) r1787
 
 Bug Fixes
 ---------
 
-* Support additional mime type synonyms (Ross Patterson)
+* Support additional mime type synonyms - video/x-msvideo and video/x-flash-video (Ross Patterson) r1881
 
 * Support reasonable default dimensions for the players
-  (Ross Patterson)
+  (Ross Patterson) r1920
 
 Miscellaneous
 -------------
