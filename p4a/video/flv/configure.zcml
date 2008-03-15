@@ -27,10 +27,16 @@
       name="application/x-flash-video"
       />
 
-  <browser:resourceDirectory 
-      name="flowplayer" 
-      directory="flowplayer" 
-      permission="zope.Public" 
-      /> 
+  <adapter
+      for="p4a.video.interfaces.IPossibleVideo"
+      factory="._videodata.FLVVideoDataAccessor"
+      provides="p4a.video.interfaces.IVideoDataAccessor"
+      name="video/mpeg"
+      />
+
+  <adapter
+      factory="._player.FLVVideoPlayer"
+      name="video/mpeg"
+      />
 
 </configure>
