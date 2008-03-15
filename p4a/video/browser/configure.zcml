@@ -24,6 +24,18 @@
       permission="zope.Public"
       />
 
+  <resourceDirectory
+      name="flowplayer"
+      directory="resources/flowplayer"
+      permission="zope.Public"
+      />
+
+  <!-- <resourceDirectory
+      name="flowplayer-resources"
+      directory="resources/flowplayer/html"
+      permission="zope.Public"
+      /> -->
+      
   <page
       name="video-container.html"
       for="p4a.video.interfaces.IVideoContainerEnhanced"
