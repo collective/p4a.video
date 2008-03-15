@@ -317,6 +317,7 @@ class VideoEditForm(formbase.EditForm):
 
     template = pagetemplatefile.ViewPageTemplateFile('video-edit.pt')
     form_fields = form.FormFields(interfaces.IVideo)
+    form_fields = form_fields.omit('urls')
     form_fields['rich_description'].custom_widget = at.RichTextEditWidget
     label = u'Edit Video Data'
     priority_fields = ['title']
