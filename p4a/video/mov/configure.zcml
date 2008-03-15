@@ -26,6 +26,18 @@
       factory="._player.MOVVideoPlayer"
       name="video/mp4"
       />
+      
+  <adapter
+      for="p4a.video.interfaces.IPossibleVideo"
+      factory="._videodata.MOVVideoDataAccessor"
+      provides="p4a.video.interfaces.IVideoDataAccessor"
+      name="video/mpeg"
+      />
+
+  <adapter
+      factory="._player.MOVVideoPlayer"
+      name="video/mpeg"
+      />
     
 
   <!-- <browser:resourceDirectory -->
