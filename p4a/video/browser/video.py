@@ -24,6 +24,7 @@ from p4a.common import formatting
 
 from Products.CMFCore import utils as cmfutils
 from Products.CMFPlone import PloneMessageFactory as _
+from Products.statusmessages import interfaces as statusmessages_ifaces
 
 from Products.Five.browser import pagetemplatefile
 from Products.Five.formlib import formbase
@@ -374,10 +375,10 @@ class VideoEditForm(formbase.EditForm):
             self.status = _("Successfully updated")
         else:
             self.status = _('No changes')
+        statusmessages_ifaces.IStatusMessage(
+            self.request).addStatusMessage(self.status, 'info')
         redirect = self.request.response.redirect
-        msg = urllib.quote(self.status)
-        redirect(self.context.absolute_url()+\
-                 '/view?portal_status_message=%s' % msg)
+        return redirect(self.context.absolute_url()+'/view')
 
 class VideoEditMacros(formbase.PageForm):
     # short cut to get to macros more easily
