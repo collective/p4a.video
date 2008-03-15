@@ -19,7 +19,7 @@ class MOVVideoPlayer(object):
               <img src="%(imageurl)s" /></a>
         <br />
           <a href="%(url)s" type="video/quicktime" onclick="vPIPPlay(this, '', '', ''); return false;">
-        Play Quicktime version</a>
+        Play this file</a>
         </div>        
         """ % {'url': url,
                'imageurl': imageurl}
