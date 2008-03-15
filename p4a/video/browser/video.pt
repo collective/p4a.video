@@ -8,9 +8,11 @@
 <metal:jsslot fill-slot="javascript_head_slot">
 <!-- TODO: these should really get added to portal_js for optimization -->
 	<script tal:attributes="src string:$portal_url/++resource++vPIP/vpip.js" type="text/javascript"></script>
-	<script tal:attributes="src string:$portal_url/++resource++vPIP/jquery.js" type="text/javascript"></script>
 	<script tal:attributes="src string:$portal_url/++resource++vPIP/vpipit.js" type="text/javascript"></script>
-	<script tal:attributes="src string:$portal_url/++resource++swfobject/swfobject.js" type="text/javascript"></script>
+	<script tal:attributes="src string:$portal_url/++resource++flowplayer/html/swfobject.js" type="text/javascript"></script>
+	<script tal:attributes="src string:$portal_url/++resource++flowplayer/html/jquery-1.2.3.pack.js" type="text/javascript"></script>
+    <script tal:attributes="src string:$portal_url/++resource++flowplayer/html/jquery.flashembed.pack.js" type="text/javascript"></script>
+      
 </metal:jsslot>
 
 <metal:cssslot fill-slot="css_slot">
@@ -29,35 +31,44 @@
      tal:define="video_info context/@@video_view;
                  context_url string:${context/absolute_url};
                  mime_type context/content_type;
+                 mt context/portal_migration;
+                 versionTuple mt/getInstanceVersionTuple;
+                 majorVersion python:versionTuple[0];
+                 isPlone3 python:majorVersion == 3;
      "
      id="media-view">
     <tal:main-macro metal:define-macro="main" 
-           tal:define="size python:context.getObjSize(context);">
-
-        <div metal:use-macro="context/document_actions/macros/document_actions">
-            Document actions (print, sendto etc)
-        </div>
-
-        <h1 tal:content="video_info/title" class="documentFirstHeading">
-            Title or id
+           tal:define="size python:context.getObjSize(context);
+                       content_type here/get_content_type|here/Format;
+                       kssClassesView context/@@kss_field_decorator_view | nothing; 
+                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable | nothing">
+       
+       <tal:legacy tal:condition="not:isPlone3">  
+       <div metal:use-macro="here/document_actions/macros/document_actions">
+         Document actions (print, sendto etc)
+       </div>
+       </tal:legacy>
+       
+        <div tal:condition="isPlone3" tal:replace="structure provider:plone.abovecontenttitle" />
+        
+        <h1 class="documentFirstHeading">
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
         </h1>
-
-        <div metal:use-macro="context/document_byline/macros/byline">
-          Get the byline - contains details about author and modification date.
-        </div>
+            
+        <div tal:condition="isPlone3" tal:replace="structure provider:plone.belowcontenttitle" />
 
         <div class="video-description-wrapper">
         <h2 class="hiddenStructure">Video Description</h2>
-        <p tal:content="video_info/description" class="documentDescription">
-          Description
+        <p class="documentDescription">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+            </metal:field>
         </p>
         </div>
 
-        <div tal:content="structure video_info/rich_description"
-             tal:condition="video_info/rich_description"
-             class="richDocumentDescription">
-          Description
-        </div>
+        <div tal:condition="isPlone3" tal:replace="structure provider:plone.abovecontentbody" />
 
         <div id="summary_wrapper">
             <div id="video_metadata">
@@ -106,9 +117,15 @@
                 </div>
                 <div tal:replace="structure view/widgets/media_player"></div>
 
-            <!-- <div class="video-images">
-              <img tal:replace="structure view/widgets/video_image" />
-            </div> -->
+                <p>
+                    <metal:field use-macro="python:here.widget('file', mode='view')">
+                    File
+                    </metal:field>
+                </p>
+
+                <div tal:replace="structure view/widgets/rich_description"></div>
+
+
 
                 <div id="object_metadata">
 
@@ -129,6 +146,8 @@
             </div>
         </div>
         <div class="visualClear">&nbsp;</div>
+        
+        <div tal:condition="isPlone3" tal:replace="structure provider:plone.belowcontentbody" />
         
     </tal:main-macro>
     <!-- Mark this view as being a main view template /-->
