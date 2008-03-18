@@ -20,8 +20,8 @@ IVideo schema.
     >>> context = Context(Context(foo))
 
     >>> from p4a.video.flv import _player
-    >>> _player.FLVVideoPlayer(context)(None, None)
-    '...width="480" height="382"...
+    >>> print _player.FLVVideoPlayer(context)(None, None)
+    <...width:480, height:382...
 
     >>> from p4a.video.swf import _player
     >>> _player.SWFVideoPlayer(context)(None, None)
