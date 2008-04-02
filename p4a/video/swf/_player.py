@@ -23,7 +23,11 @@ class SWFVideoPlayer(object):
         width = videoobj.width
         height = videoobj.height + 22
 
-        return '''
+        title = contentobj.Title()
+        if isinstance(title, str):
+            title = title.decode('utf8')
+
+        s = u'''
 <div class="flash-movie">
   <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
           codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" 
@@ -42,4 +46,5 @@ class SWFVideoPlayer(object):
         ''' % {'file_url': file_url,
                'width': width,
                'height': height,
-               'title': contentobj.Title()}
+               'title': title}
+        return s
