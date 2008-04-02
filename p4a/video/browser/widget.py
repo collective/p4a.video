@@ -46,5 +46,5 @@ class MediaPlayerWidget(file.FileDownloadWidget):
                     contents=_('No available player for mime type "%s"'
                                % mime_type))
         
-        return u'<div class="media-player">%s</div>' \
-               % media_player(url, imageurl)
+        s = u'<div class="media-player">%s</div>' % media_player(url, imageurl)
+        return s
