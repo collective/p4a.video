@@ -43,6 +43,11 @@ def has_contentlicensing_support(context):
     except ImportError, e:
         return False
 
+    from Products.ContentLicensing.utilities import interfaces as clifaces
+    u = component.queryUtility(clifaces.IContentLicensingUtility)
+    if u is None:
+        return False
+
     return ILicensable.providedBy(context)
 
 def has_contenttagging_support(context):
