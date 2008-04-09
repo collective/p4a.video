@@ -2,6 +2,28 @@
 p4a.video Changes
 =================
 
+p4a.video 1.1 (2008-04-09)
+==========================
+
+Bug Fixes
+---------
+
+* Fixed ContentLicensing optional'ness to fix issue #40 (Ross Patterson and
+  Rocky Burt)
+
+* Fixed handling of unicode AT titles for issues #41 and #47 (Ross Patterson
+  and Rocky Burt)
+
+* Updated vPIP (Nate Aune)
+
+* Updated flowplayer (Ross Patterson and Rocky Burt)
+
+* Portal status message handling was made to work better to fix issue #38
+  (Ross Patterson)
+
+* Hooked up video/mpeg mime type and player link to fix issue #28
+  (Ross Patterson)
+
 p4a.video 1.1b1 (2008-02-13)
 ============================
 
