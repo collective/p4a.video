@@ -25,19 +25,26 @@ class MediaPlayerWidget(file.FileDownloadWidget):
                                         cssClass='media-absent media-player',
                                         contents=_('No media to play'))
 
-        imageurl = None
+
         video = self.context.context
         if video.video_image is not None:
             field = interfaces.IVideo['video_image'].bind(video)
             imageurl = ImageURLWidget(field, self.request).url or None
+        else:
+            imageurl = None
 
         field = self.context
         contentobj = field.context.context
 
+        width = video.width
+        height = video.height
         mime_type = unicode(contentobj.get_content_type())
         media_player = component.queryAdapter(field,
                                               interface=interfaces.IMediaPlayer,
                                               name=mime_type)
+
+        absolute_url = video.context.absolute_url()        
+
 
         if media_player is None:
             return widget.renderElement \
@@ -45,6 +52,6 @@ class MediaPlayerWidget(file.FileDownloadWidget):
                     cssClass='player-not-available media-player',
                     contents=_('No available player for mime type "%s"'
                                % mime_type))
-        
-        s = u'<div class="media-player">%s</div>' % media_player(url, imageurl)
+               
+        s = u'<div class="media-player">%s</div>' % media_player(absolute_url, imageurl, width, height)
         return s

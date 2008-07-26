@@ -22,7 +22,7 @@ class FLVVideoPlayer(object):
     def __init__(self, context):
         self.context = context
     
-    def __call__(self, downloadurl, imageurl):
+    def __call__(self, downloadurl, imageurl, width, height):
         contentobj = self.context.context.context
         portal_tool = cmfutils.getToolByName(contentobj, 'portal_url')
         portal_url = portal_tool.getPortalObject().absolute_url()
@@ -35,42 +35,40 @@ class FLVVideoPlayer(object):
         imageurl = portal_url + \
                        "/%2b%2bresource%2b%2bflowplayer/html/play-button-328x240.jpg"
         downloadurl = contentobj.absolute_url()
+
         title = contentobj.title
 
-        # how do we get the imageurl?
-        #
-        videoobj = interfaces.IVideo(contentobj)
-        width = videoobj.width
+        if not (width and height):
+            width = 320
+            height = 240
         # 22 is added to the height so that FlowPlayer controls fit
-        height = (videoobj.height) + 22
+        height = height + 22
+
         config = generate_config(videoFile=downloadurl,
                                  splashImageFile=imageurl,
                                  autoPlay='false',
                                  useNativeFullScreen='true',
                                  initialScale='scale',
-                                 loop='false')
-
+                                 videoHeight=height)
         return """
-
-        <div id="playerContainer">
-        </div>
-
-        <script type="text/javascript">
-        $(document).ready(function() {
-        
-            $("#playerContainer").flashembed({
-                src:'%(player)s',
-                width:%(width)s, 
-                height:%(height)s
-              },
-              { 
-                %(config)s
-              } 
-            );
-
-        });
-        </script>
-
+            <div id="playerContainer">
+            </div>
+    
+            <script type="text/javascript">
+            $(document).ready(function() {
+            
+                $("#playerContainer").flashembed({
+                    src:'%(player)s',
+                    width:%(width)s, 
+                    height:%(height)s
+                  },
+                  { 
+                    %(config)s
+                  } 
+                );
+    
+            });
+            </script>
         """ % {'player': player,
                'config': config,
                'title': title,

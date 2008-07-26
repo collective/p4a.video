@@ -10,15 +10,21 @@ class RealVideoPlayer(object):
     def __init__(self, context):
         self.context = context
     
-    def __call__(self, downloadurl):
-        contentobj = self.context.context.context
-        site = cmfutils.getToolByName(contentobj, 'portal_url').getPortalObject()
-        
+    def __call__(self, downloadurl, imageurl, width, height):
+
+        if not (width and height):
+            width = 320
+            height = 240
+
         # playerurl = "%s/++resource++flashmp3player/musicplayer.swf?song_url=%s"
-        url = ''.join(contentobj.absolute_url(),'?embed')
+        url = ''.join(downloadurl,'?embed')
         # mime_type = contentobj.mime_type()
-        
+
         return """
-        <embed href="%(url)s" name="realvideoax" controls="ImageWindow" AUTOSTART="true" console="clip1" LOOP=true height="" width="" border="0">     
-        """ % {'url': url}
+              <embed href="%(url)s" name="realvideoax" controls="ImageWindow" AUTOSTART="true" console="clip1" LOOP=true height="%(height)s" width="%(width)s" border="0">     
+              """ % {'url': downloadurl,
+                     'height': height, 
+                     'width': width}
+        
+
 
