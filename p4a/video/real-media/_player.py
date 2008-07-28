@@ -17,7 +17,7 @@ class RealVideoPlayer(object):
             height = 240
 
         # playerurl = "%s/++resource++flashmp3player/musicplayer.swf?song_url=%s"
-        url = ''.join(downloadurl,'?embed')
+        url = "%s?embed" % downloadurl
         # mime_type = contentobj.mime_type()
 
         return """
