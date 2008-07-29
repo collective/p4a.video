@@ -18,6 +18,13 @@
       />
 
   <adapter
+      for="p4a.video.interfaces.IPossibleVideo"
+      factory="._videodata.RealVideoDataAccessor"
+      provides="p4a.video.interfaces.IVideoDataAccessor"
+      name="audio/x-pn-realaudio"
+      />
+
+  <adapter
       factory="._player.RealVideoPlayer"
       name="application/vnd.rn-realmedia"
       />
@@ -25,6 +32,11 @@
   <adapter
       factory="._player.RealVideoPlayer"
       name="video/vnd.rn-realvideo"
+      />
+
+  <adapter
+      factory="._player.RealVideoPlayer"
+      name="audio/x-pn-realaudio"
       />
 
 
