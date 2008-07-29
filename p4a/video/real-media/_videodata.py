@@ -4,6 +4,8 @@ from zope import interface
 from OFS import Image as ofsimage
 from p4a.video import interfaces
 from p4a.fileimage import utils as fileutils
+from p4a.video import metadataextractor
+
 try:
     from zope.app.annotation import interfaces as annointerfaces
 except ImportError, err:
@@ -56,13 +58,11 @@ class RealVideoDataAccessor(object):
         return annotations.get(self._video.ANNO_KEY, None)
 
     def load(self, filename):
-
+        # TODO: need to verify height is extracted properly (db)
         metadata = metadataextractor.extract(filename)
-
-        self._video_data['height'] = str(getattr(metadata,'height',[None])[0])
-        self._video_data['width'] = str(getattr(metadata,'width',[None])[0])
-        self._video_data['duration'] = str(metadata.duration[0])
-
+        self._video_data['height'] = getattr(metadata,'height',[None])[0]
+        self._video_data['width'] = getattr(metadata,'width',[None])[0]
+        self._video_data['duration'] = getattr(metadata,'duration',[None])[0]
 
     def store(self, filename):
         # content_type = self._filecontent.get_content_type()
