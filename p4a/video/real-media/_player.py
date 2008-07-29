@@ -16,15 +16,26 @@ class RealVideoPlayer(object):
             width = 320
             height = 240
 
-        # playerurl = "%s/++resource++flashmp3player/musicplayer.swf?song_url=%s"
         url = "%s?embed" % downloadurl
-        # mime_type = contentobj.mime_type()
 
         return """
-              <embed href="%(url)s" name="realvideoax" controls="ImageWindow" AUTOSTART="true" console="clip1" LOOP=true height="%(height)s" width="%(width)s" border="0">     
-              """ % {'url': downloadurl,
-                     'height': height, 
-                     'width': width}
+            <OBJECT ID="videoObj" WIDTH="%(width)s" HEIGHT="%(width)s" CLASSID="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA">
+              <PARAM NAME="controls" VALUE="ImageWindow" />
+              <PARAM NAME="console" VALUE="Clip1" />
+              <PARAM NAME="autostart" VALUE="false"/>
+              <PARAM NAME="src" VALUE="%(url)s"/>
+                <EMBED WIDTH="%(width)s" HEIGHT="%(height)s" AUTOSTART="false" CONTROLS="ImageWindow" CONSOLE="Clip1" TYPE="audio/x-pn-realaudio-plugin"
+                   SRC="%(url)s"/>
+            </OBJECT>
+            <OBJECT ID="controlObj" WIDTH="%(width)s" HEIGHT="55" CLASSID="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA">
+              <PARAM VALUE="All" NAME="controls"/>
+              <PARAM VALUE="Clip1" NAME="console"/>
+                <EMBED WIDTH="%(width)s" HEIGHT="55" AUTOSTART="false" CONTROLS="All" CONSOLE="Clip1" TYPE="audio/x-pn-realaudio-plugin"/>
+            </OBJECT>
+            """ % {'url': downloadurl,
+                   'height': height, 
+                   'width': width}
+
         
 
 
