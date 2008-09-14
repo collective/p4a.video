@@ -38,7 +38,18 @@
       factory="._player.MOVVideoPlayer"
       name="video/mpeg"
       />
-    
+      
+  <adapter
+      for="p4a.video.interfaces.IPossibleVideo"
+      factory="._videodata.MOVVideoDataAccessor"
+      provides="p4a.video.interfaces.IVideoDataAccessor"
+      name="video/x-m4v"
+      />
+
+  <adapter
+      factory="._player.MOVVideoPlayer"
+      name="video/x-m4v"
+      />
 
   <!-- <browser:resourceDirectory -->
   <!--     name="flashmp3player" -->
