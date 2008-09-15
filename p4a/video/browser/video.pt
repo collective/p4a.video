@@ -123,7 +123,7 @@
                     </metal:field>
                 </p>
 
-                <div tal:replace="structure view/widgets/rich_description"></div>
+                <div tal:replace="structure video_info/rich_description"></div>
 
 
 
