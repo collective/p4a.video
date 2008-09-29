@@ -27,7 +27,8 @@ We begin by defining the required adapter.
   ...     adapts(object)
   ...     def __init__(self, context):
   ...         self.context = context
-  ...     def __call__(self, downloadurl, imageurl):
+  ...     def __call__(self, downloadurl, imageurl,
+  ...                  width=0, height=0):
   ...         return '<div>My Player for Foo Media</div>'
 
   >>> provideAdapter(FooMediaPlayer, name=u'text/foobar')
@@ -53,6 +54,8 @@ We start by defining some mock objects.
 
   >>> class MockView(object):
   ...     video_image = None
+  ...     width = 0
+  ...     height = 0
 
   >>> class MockContentObject(object):
   ...     mime_type = 'application/none-set'
