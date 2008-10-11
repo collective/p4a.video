@@ -2,6 +2,29 @@
 p4a.video Changes
 =================
 
+p4a.video 1.1.1 (Unreleased)
+==========================
+
+Features
+--------
+
+* Support for iPod video - video/x-m4v.  TODO: tests.  (Nate Aune)
+
+* Brazilian Portuguese translation. (ericoandrei)
+
+* Preliminary fixed rate Real media support. TODO:
+  tests. (danielblackburn)
+
+Bug Fixes
+---------
+
+* Fix rich text widget handling.  TODO: tests.  (Nate Aune)
+
+* Depend on hachoir. (Nate Aune)
+
+* fixed issue where url assignment, was not updated properly with rest
+  of the method. TODO: tests. (danielblackburn)
+
 p4a.video 1.1 (2008-04-09)
 ==========================
 
