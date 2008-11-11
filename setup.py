@@ -31,9 +31,9 @@ with video files and their various means of storing/loading metadata.""",
           'p4a.common>=1.0',
           'p4a.z2utils>=1.0',
           'p4a.fileimage>=1.0',
-          'hachoir_core',
-          'hachoir_metadata',
-          'hachoir_parser',
+          'hachoir_core==1.2',
+          'hachoir_metadata==1.2',
+          'hachoir_parser==1.2',
       ],
       entry_points="""
       # -*- Entry points: -*-
