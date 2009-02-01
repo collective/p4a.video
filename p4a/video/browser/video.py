@@ -1,7 +1,6 @@
 import Acquisition
 import AccessControl
 import datetime
-import urllib
 
 from zope import event
 from zope import component
@@ -11,11 +10,9 @@ from zope.formlib import form
 from zope.app.event import objectevent
 from zope.app.i18n import ZopeMessageFactory as _
 
-from p4a.video import genre
 from p4a.video import interfaces
 from p4a.video.browser import media
 from p4a.video.browser import widget
-from p4a.videoembed import interfaces as embedifaces
 
 from p4a.fileimage.image._widget import ImageURLWidget
 
@@ -23,7 +20,6 @@ from p4a.common import at
 from p4a.common import formatting
 
 from Products.CMFCore import utils as cmfutils
-from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages import interfaces as statusmessages_ifaces
 
 from Products.Five.browser import pagetemplatefile
