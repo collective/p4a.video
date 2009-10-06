@@ -50,7 +50,7 @@ class MediaPlayerWidget(file.FileDownloadWidget):
             return widget.renderElement \
                    (u'span',
                     cssClass='player-not-available media-player',
-                    contents=_('No available player for mime type "%s"'
+                    contents=_("No available player for mime type '%s'"
                                % mime_type))
                
         s = u'<div class="media-player">%s</div>' % media_player(absolute_url, imageurl, width, height)

@@ -1,4 +1,4 @@
-  <metal:ratings-and-tags define-macro="user_rating_set">
+  <metal:ratings-and-tags define-macro="user_rating_set" i18n:domain="p4a.video">
     <tal:block tal:condition="view/has_contentrating_support">
       <dl class="content-rating">
 	<dt i18n:translate="label_average_rating">Average Rating:</dt>

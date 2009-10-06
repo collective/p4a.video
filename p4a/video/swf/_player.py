@@ -2,6 +2,10 @@ from zope import interface
 from zope import component
 from p4a.video import interfaces
 
+from zope.i18nmessageid import MessageFactory
+_ = MessageFactory('p4a.video')
+
+
 class SWFVideoPlayer(object):
     interface.implements(interfaces.IMediaPlayer)
     component.adapts(object)
@@ -22,9 +26,10 @@ class SWFVideoPlayer(object):
         videoobj = interfaces.IVideo(contentobj)
 
         if not videoobj.width or not videoobj.height:
+            msg= _(u'No dimensions specified for flash video')
             return '''<div class="flas-movie no-dimensions">
-            No dimensions specified for flash video
-            </div>'''
+            %s
+            </div>''' % msg
 
 
         title = contentobj.Title()

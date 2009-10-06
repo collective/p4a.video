@@ -2,6 +2,9 @@ from zope import interface
 from zope import component
 from p4a.video import interfaces
 
+from zope.i18nmessageid import MessageFactory
+_ = MessageFactory('p4a.video')
+
 class WMVVideoPlayer(object):
     interface.implements(interfaces.IMediaPlayer)
     component.adapts(object)
@@ -31,8 +34,10 @@ class WMVVideoPlayer(object):
 
         result += """          
                   <a href="%(url)s" type="video/x-ms-wmv" onclick="vPIPPlay(this, '%(args)s', '', ''); return false;">
-                  Play WindowsMedia version</a>
+                  %(msg)s</a>
                   </div>        
                  """ % {'url': downloadurl, 
-                        'args': argstring}
-        return result               
+                        'args': argstring,
+                        'msg':_(u'Play WindowsMedia version')}
+        return result
+        
