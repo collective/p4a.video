@@ -10,21 +10,21 @@ class IContextualVideoSupport(interfaces.IBasicVideoSupport):
                                        readonly=True)
 
 class Support(object):
-    """A view that returns certain information regarding p4acal status.
+    """A view that returns certain information regarding p4a.video status.
     """
 
     interface.implements(IContextualVideoSupport)
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        
+
     @property
     def support_enabled(self):
         """Check to make sure an IVideoSupport utility is available and
         if so, query it to determine if support is enabled.
         """
-        
+
         support = component.queryUtility(interfaces.IVideoSupport)
         if support is None:
             return False
@@ -45,7 +45,7 @@ class Support(object):
     def can_activate_video(self):
         if not self._basic_can:
             return False
-        
+
         mediaconfig = component.getMultiAdapter((self.context, self.request),
                                                 name='video-config.html')
         return not mediaconfig.media_activated
@@ -54,7 +54,7 @@ class Support(object):
     def can_deactivate_video(self):
         if not self._basic_can:
             return False
-        
+
         mediaconfig = component.getMultiAdapter((self.context, self.request),
                                                 name='video-config.html')
         return mediaconfig.media_activated
