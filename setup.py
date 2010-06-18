@@ -1,9 +1,17 @@
+import os
+
 from setuptools import setup, find_packages
 
-version = '1.2'
-readme = open('README.txt')
-long_description = readme.read()
-readme.close()
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
+version = '1.2dev'
+long_description = """
+%s
+
+%s
+""" % (read("README.txt"),
+       read("docs", "CHANGES.txt"))
 
 setup(name='p4a.video',
       version=version,

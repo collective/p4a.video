@@ -1,15 +1,48 @@
-=================
-p4a.video Changes
-=================
+Changes
+=======
 
-p4a.video 1.2 (Unreleased)
-==========================
+1.2 (2010-06018)
+----------------
 
-p4a.video 1.1.1 (2008-10-10)
-============================
+- Added CSS and JS files to their respective registries.
+  Removed them from video.pt.
+  [davidblewett]
+
+- Updated README to include dependency information in the Install section.
+  [davidblewett]
+
+- Updated README with information from the plone4artistsvideo product page.
+  Changed setuptools' long description to use the contents of README.txt.
+  [davidblewett]
+
+- Updated old reference to p4acal.
+  [davidblewett]
+
+- Forgot to commit more translations. Sorry
+  [tzicatl]
+
+- Added more translation strings.
+  Added Spanish translation strings
+  [tzicatl]
+
+- Remove some unused imports
+  [rosspatterson]
+
+- Pyflakes fix
+  [rosspatterson]
+
+- add the it translation
+  [stemrc]
+
+- pinned Hachoir versions to 1.2 since the latest 1.2.1 only works with Python 2.5
+  [nate]
+
+
+1.1.1 (2008-10-10)
+------------------
 
 Features
---------
+~~~~~~~~
 
 * Support for iPod video - video/x-m4v.  TODO: tests.  (Nate Aune)
 
@@ -19,7 +52,7 @@ Features
   tests. (danielblackburn)
 
 Bug Fixes
----------
+~~~~~~~~~
 
 * Fix rich text widget handling.  TODO: tests.  (Nate Aune)
 
@@ -28,11 +61,11 @@ Bug Fixes
 * fixed issue where url assignment, was not updated properly with rest
   of the method. TODO: tests. (danielblackburn)
 
-p4a.video 1.1 (2008-04-09)
-==========================
+1.1 (2008-04-09)
+----------------
 
 Bug Fixes
----------
+~~~~~~~~~
 
 * Fixed ContentLicensing optional'ness to fix issue #40 (Ross Patterson and
   Rocky Burt)
@@ -50,11 +83,11 @@ Bug Fixes
 * Hooked up video/mpeg mime type and player link to fix issue #28
   (Ross Patterson)
 
-p4a.video 1.1b1 (2008-02-13)
-============================
+1.1b1 (2008-02-13)
+------------------
 
 Features
---------
+~~~~~~~~
 
 * Added Plone 3 compatibility (Rocky Burt) r1794
 
@@ -63,7 +96,7 @@ Features
 * Now uses p4a.subtyper to expose video subtype action (Rocky Burt) r1787
 
 Bug Fixes
----------
+~~~~~~~~~
 
 * Support additional mime type synonyms - video/x-msvideo and video/x-flash-video (Ross Patterson) r1881
 
@@ -71,30 +104,31 @@ Bug Fixes
   (Ross Patterson) r1920
 
 Miscellaneous
--------------
+~~~~~~~~~~~~~
 
 * Now uses standard plone/cmf comments instead of easycommenting
   (Rocky Burt)
 
 
-p4a.video 1.0 (2007-11-28)
-==========================
+1.0 (2007-11-28)
+----------------
 
 Features
---------
+~~~~~~~~
 
 * Default video container view has been updated (Rocky Burt)
 
 * Added description field to IVideo and subsequent views (Rocky Burt)
 
 
-p4a.video 1.0beta1 (2007-07-31)
-===============================
+1.0beta1 (2007-07-31)
+---------------------
 
 * Various bug fixes and general improvments.
 
 
-p4a.video 1.0alpha1 (2007-04-29)
-================================
+1.0alpha1 (2007-04-29)
+----------------------
 
 * First release.
+
