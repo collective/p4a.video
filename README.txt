@@ -18,9 +18,21 @@ Project Description
 
 Installation
 ------------
-Add these lines to your buildout.cfg file, and re-run your buildout.
-Then install the add-ons from the Add/Remove products page in the
-Plone Control Panel.::
+*p4a.video* depends on the following packages:
+
+* p4a.subtyper
+* p4a.common
+* p4a.z2utils
+* p4a.fileimage
+* hachoir_core
+* hachoir_metadata
+* hachoir_parser
+
+If you use buildout, you can have it manage these dependencies by:
+
+* adding these lines to your buildout.cfg file
+
+::
 
     [buildout]
     ...
@@ -36,6 +48,9 @@ Plone Control Panel.::
         ...
         p4a.video
 
+* re-run your buildout
+* Install the add-ons from the Add-on Products page in the
+  Plone Control Panel
 
 Features
 --------
