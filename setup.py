@@ -1,12 +1,14 @@
 from setuptools import setup, find_packages
 
 version = '1.2'
+readme = open('README.txt')
+long_description = readme.read()
+readme.close()
 
 setup(name='p4a.video',
       version=version,
       description="Plone4Artists video abstraction library",
-      long_description="""p4a.video is a Python video library for dealing
-with video files and their various means of storing/loading metadata.""",
+      long_description=long_description,
       classifiers=[
           'Framework :: Zope2',
           'Framework :: Zope3',
@@ -19,7 +21,7 @@ with video files and their various means of storing/loading metadata.""",
       keywords='Plone4Artists video multimedia quicktime flash flv vodcast',
       author='Rocky Burt',
       author_email='rocky@serverzen.com',
-      url='http://www.plone4artists.org/products/plone4artistsvideo',
+      url='http://plone.org/products/plone4artistsvideo',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['p4a'],
