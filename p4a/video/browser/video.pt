@@ -5,28 +5,6 @@
 
 <body>
 
-<metal:jsslot fill-slot="javascript_head_slot">
-<!-- TODO: these should really get added to portal_js for optimization -->
-	<script tal:attributes="src string:$portal_url/++resource++vPIP/vpip.js" type="text/javascript"></script>
-	<script tal:attributes="src string:$portal_url/++resource++vPIP/vpipit.js" type="text/javascript"></script>
-	<script tal:attributes="src string:$portal_url/++resource++flowplayer/html/swfobject.js" type="text/javascript"></script>
-	<script tal:attributes="src string:$portal_url/++resource++flowplayer/html/jquery-1.2.3.pack.js" type="text/javascript"></script>
-    <script tal:attributes="src string:$portal_url/++resource++flowplayer/html/jquery.flashembed.pack.js" type="text/javascript"></script>
-      
-</metal:jsslot>
-
-<metal:cssslot fill-slot="css_slot">
-<!-- TODO: these should really get added to portal_css for optimization -->
-	<link rel="stylesheet" href="vPIPBox.css"
-	      tal:attributes="href string:$portal_url/++resource++vPIP/vPIPBox.css"
-	      />
-
-	<link rel="stylesheet" href="video.css"
-	      tal:attributes="href string:$portal_url/++resource++videostyles/video.css"
-	      />
-
-</metal:cssslot>
-
 <div metal:fill-slot="main"
      tal:define="video_info context/@@video_view;
                  context_url string:${context/absolute_url};

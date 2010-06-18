@@ -30,11 +30,11 @@
       permission="zope.Public"
       />
 
-  <!-- <resourceDirectory
-      name="flowplayer-resources"
+  <resourceDirectory
+      name="flowplayer-html"
       directory="resources/flowplayer/html"
       permission="zope.Public"
-      /> -->
+      />
       
   <page
       name="video-container.html"

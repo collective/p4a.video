@@ -5,6 +5,8 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="p4a.video">
 
+  <include file="profiles.zcml" />
+
   <include package=".browser" />
   <include package=".mov" />
   <include package=".flv" />
