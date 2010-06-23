@@ -36,7 +36,7 @@ class FLVVideoPlayer(object):
         image_tag = ""
         if not imageurl:
             imageurl = flow_player_base + "/example/play-button-328x240.jpg"
-        tag = '<img src="%s" alt="%s" height="%s" width="%s" />'
+        tag = '<img src="%s" alt="%s" style="cursor: pointer; height: %spx; width:%spx" />'
         image_tag = tag % (imageurl, title, height, width)
         # 22 is added to the height so that FlowPlayer controls fit
         height = height + 22
@@ -46,15 +46,14 @@ class FLVVideoPlayer(object):
             autoPlay='false',
             )
         return """
-<div id="playerContainer" style="height: %(height)spx; width: %(width)spx">
+<div id="playerContainer" href="%(downloadurl)s" style="display: block; height: %(height)spx; width: %(width)spx">
+    %(image_tag)s
 </div>
 
 <script type="text/javascript">
 jq(document).ready(function() {
 
-    flowplayer("playerContainer", {
-        src: '%(player)s',
-
+    flowplayer("playerContainer", "%(player)s", {
         // we need at least this version
         version: [9, 115],
 
@@ -62,13 +61,12 @@ jq(document).ready(function() {
         onFail: function()  {
             document.getElementById("info").innerHTML =
                 "You need the latest Flash version to view MP4 movies. " +
-                "Your version is " + this.getVersion()
-            ;
-        },
+                "Your version is " + this.getVersion();
+        }
     }, {
         // here is our third argument which is the Flowplayer configuration
-        %(config)s,
+        %(config)s
     });
-    })
+});
 </script>
         """ % locals()
