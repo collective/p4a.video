@@ -76,6 +76,10 @@
 .media-player.player-not-available{
     display: none;
 }
+.media-player .playButton {
+    position: absolute;
+    cursor: pointer;
+}
 .hVlog{
   text-align: center;
 }

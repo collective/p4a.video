@@ -33,20 +33,27 @@ class FLVVideoPlayer(object):
         if not (width and height):
             width = 320
             height = 240
-        image_tag = ""
-        if not imageurl:
-            imageurl = flow_player_base + "/example/play-button-328x240.jpg"
-        tag = '<img src="%s" alt="%s" style="cursor: pointer; height: %spx; width:%spx" />'
-        image_tag = tag % (imageurl, title, height, width)
         # 22 is added to the height so that FlowPlayer controls fit
         height = height + 22
+        image_tag = ""
+        tag = '<img src="%s" alt="%s" style="cursor: pointer; height: %spx; width:%spx" />'
+        image_tag = tag % (imageurl, title, height, width)
+        if not imageurl:
+            image_tag = ""
+        # center the play button
+        buttonTop = height/2 - 22
+        buttonLeft = width/2 - 22
         config = generate_config(
             'clip',
             url=downloadurl,
             autoPlay='false',
             )
         return """
-<div id="playerContainer" href="%(downloadurl)s" style="display: block; height: %(height)spx; width: %(width)spx">
+<div id="playerContainer"
+     href="%(downloadurl)s"
+     style="display: block; height: %(height)spx; width: %(width)spx; background-color: #000000">
+    <img src="%(flow_player_base)s/example/play.png" alt="Play" class="playButton"
+         style="margin: %(buttonTop)spx 0 0 %(buttonLeft)spx"/>
     %(image_tag)s
 </div>
 
