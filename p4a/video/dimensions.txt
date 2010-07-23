@@ -21,7 +21,7 @@ IVideo schema.
 
     >>> from p4a.video.flv import _player
     >>> print _player.FLVVideoPlayer(context)(None, None, 800, 600)
-    <...width:800, height:622...
+    <...height: 622px; width: 800px...
 
     >>> from p4a.video.swf import _player
     >>> print _player.SWFVideoPlayer(context)(None, None, 1024, 768)
