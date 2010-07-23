@@ -48,7 +48,7 @@ class FLVVideoPlayer(object):
             url=downloadurl,
             autoPlay='false',
             )
-        return """
+        return """\
 <div id="playerContainer"
      href="%(downloadurl)s"
      style="display: block; height: %(height)spx; width: %(width)spx; background-color: #000000">
