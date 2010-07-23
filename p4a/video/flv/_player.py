@@ -52,7 +52,7 @@ class FLVVideoPlayer(object):
 <div id="playerContainer"
      href="%(downloadurl)s"
      style="display: block; height: %(height)spx; width: %(width)spx; background-color: #000000">
-    <img src="%(flow_player_base)s/example/play.png" alt="Play" class="playButton"
+    <img src="%(flow_player_base)s/html/play.png" alt="Play" class="playButton"
          style="margin: %(buttonTop)spx 0 0 %(buttonLeft)spx"/>
     %(image_tag)s
 </div>
