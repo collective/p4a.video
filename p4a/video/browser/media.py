@@ -1,14 +1,11 @@
 from zope import interface
+from zope.annotation import interfaces as annointerfaces
 from zope.formlib import form
+
 from p4a.video import interfaces
 from p4a.video import media
 from p4a.video.browser import widget
 from p4a.common import feature
-try:
-    from zope.app.annotation import interfaces as annointerfaces
-except ImportError, err:
-    # Zope 2.10 support
-    from zope.annotation import interfaces as annointerfaces
 
 _marker = object()
 
@@ -54,7 +51,7 @@ class BaseMediaDisplayView(form.PageDisplayForm):
         player_widget.name = self.prefix + 'media_player'
         player_widget._data = field.get(video)
         return player_widget
-    
+
     def update(self):
         super(BaseMediaDisplayView, self).update()
         player_widget = self._media_player()

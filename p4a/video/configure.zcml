@@ -14,18 +14,7 @@
   <include package=".real-media" />
   <include package=".swf" />
 
-  <!-- Zope 2.9 / 3.2 support -->
-  <configure zcml:condition="installed zope.app.annotation.tests">
-    <include package="zope.app.annotation" />
-
-    <adapter
-        for=".interfaces.IPossibleVideo"
-        provides="zope.app.annotation.interfaces.IAnnotations"
-        factory="zope.app.annotation.attribute.AttributeAnnotations"
-        />
-  </configure>
-
-  <!-- Zope 2.10 / 3.3 support -->
+  <!-- Zope 2.10 / Plone 3.2 support -->
   <configure zcml:condition="installed zope.annotation">
     <include package="zope.annotation" />
 

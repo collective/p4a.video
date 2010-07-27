@@ -2,16 +2,13 @@ from persistent.dict import PersistentDict
 from zope import component
 from zope import event
 from zope import interface
-try:
-    from zope.app.annotation import interfaces as annointerfaces
-except ImportError, err:
-    # Zope 2.10 support
-    from zope.annotation import interfaces as annointerfaces
-from zope.app.event import objectevent
+from zope import lifecycleevent
+from zope.annotation import interfaces as annointerfaces
+
 from p4a.video import interfaces
 from p4a.fileimage import DictProperty
 
-class VideoAnnotationAddedEvent(objectevent.ObjectEvent):
+class VideoAnnotationAddedEvent(lifecycleevent.ObjectEvent):
     """Annotations added to an object for video metadata.
     """
 

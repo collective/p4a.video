@@ -1,16 +1,13 @@
 import mimetypes
 import os
 from zope import interface
+from zope.annotation import interfaces as annointerfaces
 from OFS import Image as ofsimage
+
 from p4a.video import interfaces
 from p4a.fileimage import utils as fileutils
 from p4a.video import metadataextractor
 
-try:
-    from zope.app.annotation import interfaces as annointerfaces
-except ImportError, err:
-    # Zope 2.10 support
-    from zope.annotation import interfaces as annointerfaces
 
 def write_video_image(id3tags, video_image):
     size = video_image.get_size()
@@ -18,7 +15,7 @@ def write_video_image(id3tags, video_image):
     desc = u''
 
     tempfilename = fileutils.write_to_tempfile(video_image)
-    frame = frames.ImageFrame.create(frames.ImageFrame.FRONT_COVER, 
+    frame = frames.ImageFrame.create(frames.ImageFrame.FRONT_COVER,
                                      tempfilename,
                                      desc)
 
@@ -36,7 +33,7 @@ def write_video_image(id3tags, video_image):
 
 class RealVideoDataAccessor(object):
     interface.implements(interfaces.IVideoDataAccessor)
-    
+
     def __init__(self, context):
         self._filecontent = context
 
