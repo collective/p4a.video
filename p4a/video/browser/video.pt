@@ -8,12 +8,7 @@
 <div metal:fill-slot="main"
      tal:define="video_info context/@@video_view;
                  context_url string:${context/absolute_url};
-                 mime_type context/content_type;
-                 mt context/portal_migration;
-                 versionTuple mt/getInstanceVersionTuple;
-                 majorVersion python:versionTuple[0];
-                 isPlone3 python:majorVersion == 3;
-     "
+                 mime_type context/content_type;"
      id="media-view">
     <tal:main-macro metal:define-macro="main" 
            tal:define="size python:context.getObjSize(context);
@@ -21,13 +16,7 @@
                        kssClassesView context/@@kss_field_decorator_view | nothing; 
                        getKssClasses nocall:kssClassesView/getKssClassesInlineEditable | nothing">
        
-       <tal:legacy tal:condition="not:isPlone3">  
-       <div metal:use-macro="here/document_actions/macros/document_actions">
-         Document actions (print, sendto etc)
-       </div>
-       </tal:legacy>
-       
-        <div tal:condition="isPlone3" tal:replace="structure provider:plone.abovecontenttitle" />
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
         
         <h1 class="documentFirstHeading">
             <metal:field use-macro="python:here.widget('title', mode='view')">
@@ -35,7 +24,7 @@
             </metal:field>
         </h1>
             
-        <div tal:condition="isPlone3" tal:replace="structure provider:plone.belowcontenttitle" />
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
 
         <div class="video-description-wrapper">
         <h2 class="hiddenStructure">Video Description</h2>
@@ -46,7 +35,7 @@
         </p>
         </div>
 
-        <div tal:condition="isPlone3" tal:replace="structure provider:plone.abovecontentbody" />
+        <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <div id="summary_wrapper">
             <div id="video_metadata">
@@ -125,7 +114,7 @@
         </div>
         <div class="visualClear">&nbsp;</div>
         
-        <div tal:condition="isPlone3" tal:replace="structure provider:plone.belowcontentbody" />
+        <div tal:replace="structure provider:plone.belowcontentbody" />
         
     </tal:main-macro>
     <!-- Mark this view as being a main view template /-->
