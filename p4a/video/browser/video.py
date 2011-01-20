@@ -7,8 +7,14 @@ from zope import component
 from zope import interface
 from zope import schema
 from zope.formlib import form
-from zope.app.event import objectevent
-from zope.app.i18n import ZopeMessageFactory as _
+from zope import lifecycleevent
+
+try:
+    #Plone 3
+    from zope.app.i18n import ZopeMessageFactory as _
+except ImportError:
+    from zope.i18nmessageid import MessageFactory
+    _ = MessageFactory('zope')
 
 from p4a.video import interfaces
 from p4a.video.browser import media
@@ -368,9 +374,9 @@ class VideoEditForm(formbase.EditForm):
         changed = applyChanges(
             self.context, self.form_fields, data, self.adapters)
         if changed:
-            attrs = objectevent.Attributes(interfaces.IVideo, *changed)
+            attrs = lifecycleevent.Attributes(interfaces.IVideo, *changed)
             event.notify(
-                objectevent.ObjectModifiedEvent(self.context, attrs)
+                lifecycleevent.ObjectModifiedEvent(self.context, attrs)
                 )
             # TODO: Needs locale support. See also Five.form.EditView.
             self.status = _("Successfully updated")

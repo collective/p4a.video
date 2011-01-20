@@ -48,9 +48,11 @@ We start by defining some mock objects.
   ...    __name__ = u'mockfield'
   ...    required = False
   ...    default = None
+  ...    description = u'Mock Field'
   ...    missing_value = None
   ...    interface = IMockSchema
   ...    getName = lambda self: self.__name__
+  ...    title = u'mockfield'
 
   >>> class MockView(object):
   ...     video_image = None

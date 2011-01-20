@@ -4,7 +4,15 @@ Changes
 1.4 (XXXX-XX-XX)
 ----------------
 
+- Minimum Plone version supported is now 3.2, removed all backwards-compatibility
+  support for Plone 2.5.
+  [davidblewett]
 
+- Updated events to import from zope.lifecycleevent, instead of zope.app.event.
+  [davidblewett]
+
+- Changed annotation support to use zope.annotation instead of zope.app.annotation.
+  [davidblewett]
 
 1.3 (2010-07-28)
 ----------------

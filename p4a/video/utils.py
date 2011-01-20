@@ -1,18 +1,16 @@
+# -*- coding: utf-8 -*-
 from zope import interface
+from zope.annotation import interfaces as annointerfaces
+
 from p4a.video import interfaces
 from p4a.video import metadataextractor
-try:
-    from zope.app.annotation import interfaces as annointerfaces
-except ImportError, err:
-    # Zope 2.10 support
-    from zope.annotation import interfaces as annointerfaces
 
 DEFAULT_CHARSET = 'utf-8'
 
 def td_to_seconds(td):
     """
     """
-    
+
     total = td.days * 24 * 60 * 60
     total += td.seconds
     total = float(total) + (float(td.microseconds) * 0.000001)
