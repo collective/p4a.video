@@ -4,6 +4,10 @@ Changes
 1.4 (XXXX-XX-XX)
 ----------------
 
+- Included the zcml from p4a.fileimage, so it is not necessary to include
+  manually when adding p4a.video to a buildout.
+  [davidblewett]
+
 - Minimum Plone version supported is now 3.2, removed all backwards-compatibility
   support for Plone 2.5.
   [davidblewett]
