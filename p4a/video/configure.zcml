@@ -9,6 +9,7 @@
   <include file="profiles.zcml" />
 
   <include package="p4a.fileimage" />
+  <include package="p4a.subtyper" />
 
   <include package=".browser" />
   <include package=".mov" />

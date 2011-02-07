@@ -4,6 +4,9 @@ Changes
 1.4 (XXXX-XX-XX)
 ----------------
 
+- Included the zcml from p4a.subtyper.
+  [davidblewett]
+
 - Included the zcml from p4a.fileimage, so it is not necessary to include
   manually when adding p4a.video to a buildout.
   [davidblewett]
