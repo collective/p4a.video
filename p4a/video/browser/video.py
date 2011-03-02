@@ -29,7 +29,13 @@ from Products.CMFCore import utils as cmfutils
 from Products.statusmessages import interfaces as statusmessages_ifaces
 
 from Products.Five.browser import pagetemplatefile
-from Products.Five.formlib import formbase
+
+try:
+    #Plone 3
+    from Products.Five.formlib import formbase
+except ImportError:
+    #Plone 4.1
+    from five.formlib import formbase
 
 def has_contentrating_support(context):
     try:
