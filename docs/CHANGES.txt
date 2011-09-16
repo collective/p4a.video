@@ -3,6 +3,8 @@ Changes
 
 1.4 (XXXX-XX-XX)
 ----------------
+- Fix IE conflict with kukit
+  [afd]
 
 - Included the zcml from p4a.subtyper.
   [davidblewett]
