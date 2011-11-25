@@ -29,7 +29,7 @@ from Products.CMFCore import utils as cmfutils
 from Products.statusmessages import interfaces as statusmessages_ifaces
 
 from Products.Five.browser import pagetemplatefile
-
+from Products.Five import BrowserView
 try:
     #Plone 3
     from Products.Five.formlib import formbase
@@ -252,7 +252,7 @@ class VideoListedSingle(FeatureMixin):
 
         return video
 
-class VideoPageView(media.BaseMediaDisplayView, FeatureMixin):
+class VideoPageView(media.BaseMediaDisplayView, FeatureMixin, BrowserView):
     """Page for displaying video.
     """
 

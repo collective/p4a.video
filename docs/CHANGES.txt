@@ -3,6 +3,8 @@ Changes
 
 1.4 (XXXX-XX-XX)
 ----------------
+- Made VideoPageView inherit also from BrowserView so that it can be customized
+  ttw with portal_view_customizations [ichimdav]
 - Fix IE conflict with kukit
   [afd]
 
