@@ -41,11 +41,15 @@ setup(name='p4a.video',
           'p4a.common>=1.0',
           'p4a.z2utils>=1.0',
           'p4a.fileimage>=1.0',
-          'hachoir_core==1.2',
-          'hachoir_metadata==1.2',
-          'hachoir_parser==1.2',
+# XXX hachoir-parser 1.2 is broken on PyPI: ImportError: No module named README
+#          'hachoir_core==1.2',
+#          'hachoir_metadata==1.2',
+#          'hachoir_parser==1.2',
+          'hachoir_core',
+          'hachoir_metadata',
+          'hachoir_parser',
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
+      entry_points={
+        'z3c.autoinclude.plugin': 'target = plone',
+      },
       )
